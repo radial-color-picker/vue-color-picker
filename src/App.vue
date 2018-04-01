@@ -31,7 +31,10 @@
         props: {
             scrollSensitivity: {
                 default: 2
-            }
+            },
+            mouseScroll: {
+                default: false
+            },
         },
         data() {
             return {
@@ -45,6 +48,10 @@
             }
         },
         mounted() {
+            if (this.mouseScroll) {
+                this.$refs.rotator.addEventListener('wheel', this.onScroll);
+            }
+
             fillColorWheel(this.$refs.colorPalette, this.$el.offsetWidth || 280);
 
             rotator = new Rotator(this.$refs.rotator, {
@@ -56,6 +63,18 @@
             });
         },
         methods: {
+            onScroll(ev) {
+                if (this.isDisabled)
+                    return;
+
+                ev.preventDefault();
+
+                if (ev.deltaY > 0) {
+                    rotator.angle += this.scrollSensitivity;
+                } else {
+                    rotator.angle -= this.scrollSensitivity;
+                }
+            },
             onKeydownDecrement(ev) {
                 if (this.isDisabled)
                     return;
