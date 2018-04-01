@@ -29,11 +29,14 @@
     export default {
         name: 'vue-radial-color-picker',
         props: {
+            value: {
+                default: () => ({ hue: 0, saturation: 100, luminosity: 50, alpha: 1 }),
+            },
             scrollSensitivity: {
-                default: 2
+                default: 2,
             },
             mouseScroll: {
-                default: false
+                default: false,
             },
         },
         data() {
@@ -44,8 +47,21 @@
                 isRippleAnimating: false,
                 isDragging: false,
                 isDisabled: false,
-                color: `hsla(0, 100%, 50%, 1)`
             }
+        },
+        computed: {
+            color() {
+                const { hue, saturation, luminosity, alpha } = this.value;
+
+                return `hsla(${hue}, ${saturation}%, ${luminosity}%, ${alpha})`;
+            }
+        },
+        watch: {
+            'value.hue': function(newAngle, oldAngle) {
+                if (newAngle != oldAngle) {
+                    rotator.angle = newAngle;
+                }
+            },
         },
         mounted() {
             if (this.mouseScroll) {
@@ -56,7 +72,7 @@
 
             rotator = new Rotator(this.$refs.rotator, {
                 inertia: 0.7,
-                angle: 0,
+                angle: this.value.hue,
                 onRotate: this.updateColor,
                 onDragStart: this.enableDragging,
                 onDragStop: this.disableDragging,
@@ -104,9 +120,7 @@
                 rotator.angle += (this.scrollSensitivity) * multiplier;
             },
             updateColor(hue) {
-                let color = `hsla(${hue}, 100%, 50%, 1)`;
-
-                this.color = color;
+                this.$emit('input', Object.assign({}, this.value, { hue }));
             },
             enableDragging() {
                 this.isDragging = true;
