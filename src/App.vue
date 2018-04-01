@@ -138,6 +138,7 @@
                 this.isColorSelAnimating = true;
 
                 if (!this.isDisabled) {
+                    this.$emit('select', this.value);
                     this.isRippleAnimating = true;
                 } else {
                     this.isPaletteIn = true;
