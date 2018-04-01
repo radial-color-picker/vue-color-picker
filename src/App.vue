@@ -1,6 +1,12 @@
 <template>
-    <div class="color-picker" tabindex="0">
-        <div class="color-palette" :class="isPaletteIn ? 'blur-palette-in' : 'blur-palette-out'" @transitionend="onPaletteTransitionEnd">
+    <div class="color-picker"
+         tabindex="0"
+         @keyup.enter="onColorSelClick"
+         @keydown.up.right.prevent="onKeydownIncrement"
+         @keydown.down.left.prevent="onKeydownDecrement">
+        <div class="color-palette"
+             :class="isPaletteIn ? 'blur-palette-in' : 'blur-palette-out'"
+             @transitionend="onPaletteTransitionEnd">
             <canvas ref="colorPalette"></canvas>
         </div>
 
@@ -22,13 +28,17 @@
 
     export default {
         name: 'vue-radial-color-picker',
+        props: {
+            scrollSensitivity: {
+                default: 2
+            }
+        },
         data() {
             return {
                 isPaletteIn: true,
                 isKnobIn: true,
                 isColorSelAnimating: false,
                 isRippleAnimating: false,
-                angle: 0,
                 isDragging: false,
                 isDisabled: false,
                 color: `hsla(0, 100%, 50%, 1)`
@@ -39,13 +49,41 @@
 
             rotator = new Rotator(this.$refs.rotator, {
                 inertia: 0.7,
-                angle: this.angle,
+                angle: 0,
                 onRotate: this.updateColor,
                 onDragStart: this.enableDragging,
                 onDragStop: this.disableDragging,
             });
         },
         methods: {
+            onKeydownDecrement(ev) {
+                if (this.isDisabled)
+                    return;
+
+                let multiplier = -1;
+
+                if (ev.ctrlKey) {
+                    multiplier = -6;
+                } else if (ev.shiftKey) {
+                    multiplier = -3;
+                }
+
+                rotator.angle += (this.scrollSensitivity) * multiplier;
+            },
+            onKeydownIncrement(ev) {
+                if (this.isDisabled)
+                    return;
+
+                let multiplier = 1;
+
+                if (ev.ctrlKey) {
+                    multiplier = 6;
+                } else if (ev.shiftKey) {
+                    multiplier = 3;
+                }
+
+                rotator.angle += (this.scrollSensitivity) * multiplier;
+            },
             updateColor(hue) {
                 let color = `hsla(${hue}, 100%, 50%, 1)`;
 
