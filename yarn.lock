@@ -632,6 +632,10 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-0.1.0.tgz#e875fd82597cb99ee8e9cc73ac6342e6503d48b0"
 
+"@radial-color-picker/rotator@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-0.3.2.tgz#249409e52ad2e5ca261cc9628a6816a0a80d4915"
+
 "@vue/babel-preset-app@^3.0.0-beta.6":
   version "3.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-3.0.0-beta.6.tgz#bb51c59d8526f1521caaa3d6e08591fc653f0948"

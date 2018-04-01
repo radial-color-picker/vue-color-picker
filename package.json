@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@radial-color-picker/color-wheel": "^0.1.0",
+    "@radial-color-picker/rotator": "^0.3.2",
     "vue": "^2.5.13"
   },
   "devDependencies": {
