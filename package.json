@@ -1,0 +1,28 @@
+{
+  "name": "@radial-color-picker/vue-color-picker",
+  "version": "0.1.0",
+  "description": "Vue color picker",
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "vue": "^2.5.13"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.6",
+    "@vue/cli-service": "^3.0.0-beta.6",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^4.4.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "repository": "git@github.com:radial-color-picker/vue-color-picker.git",
+  "author": "Rosen Kanev <rkunev@gmail.com>",
+  "license": "MIT"
+}
