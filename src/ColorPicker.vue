@@ -22,20 +22,25 @@
 
     export default {
         name: 'vue-radial-color-picker',
+        props: {
+            colorModel: {
+                default: 20
+            }
+        },
         data() {
             return {
                 isPaletteIn: true,
                 isKnobIn: true,
                 isColorSelAnimating: false,
                 isRippleAnimating: false,
-                angle: 0,
+                angle: this.colorModel,
                 isDragging: false,
                 isDisabled: false,
-                color: `hsla(0, 100%, 50%, 1)`
+                color: `hsla(${this.colorModel}, 100%, 50%, 1)`
             }
         },
         mounted() {
-            fillColorWheel(this.$refs.colorPalette, this.$el.offsetWidth || 280);
+            fillColorWheel(this.$refs.colorPalette, 280);
 
             rotator = new Rotator(this.$refs.rotator, {
                 inertia: 0.7,
