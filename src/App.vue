@@ -1,12 +1,16 @@
 <template>
-    <div class="color-picker">
-        <div class="color-palette" :class="isPaletteIn ? 'blur-palette-in' : 'blur-palette-out'">
+    <div class="color-picker" tabindex="0">
+        <div class="color-palette" :class="isPaletteIn ? 'blur-palette-in' : 'blur-palette-out'" @transitionend="onPaletteTransitionEnd">
             <canvas ref="colorPalette"></canvas>
         </div>
 
-        <div @dblclick.self="changeHueToMouse" ref="rotator" class="rotator" :class="{ 'dragging': isDragging }">
+        <div @dblclick.self="changeHueToMouse" ref="rotator" class="rotator" :class="{ 'disabled': isDisabled, 'dragging': isDragging }" @transitionend="onKnobTransitionEnd">
             <div class="knob" :class="isKnobIn ? 'zoom-knob-in' : 'zoom-knob-out'"></div>
         </div>
+
+        <div :class="{ 'color-shadow-animate': isRippleAnimating }" :style="{ borderColor: color }" @animationend="onRippleAnimationEnd" class="color-shadow"></div>
+
+        <button :class="{ 'click-color': isColorSelAnimating }" :style="{ backgroundColor: color }" @animationend="onColorSelAnimationEnd" @click="onColorSelClick" type="button" class="color"></button>
     </div>
 </template>
 
@@ -22,9 +26,12 @@
             return {
                 isPaletteIn: true,
                 isKnobIn: true,
+                isColorSelAnimating: false,
+                isRippleAnimating: false,
                 angle: 0,
                 isDragging: false,
                 isDisabled: false,
+                color: `hsla(0, 100%, 50%, 1)`
             }
         },
         mounted() {
@@ -33,6 +40,11 @@
             rotator = new Rotator(this.$refs.rotator, {
                 angle: this.angle,
                 inertia: 0.7,
+                onRotate: angle => {
+                    let color = `hsla(${angle}, 100%, 50%, 1)`;
+
+                    this.color = color;
+                },
                 onDragStart: () => {
                     this.isDragging = true;
                 },
@@ -48,6 +60,44 @@
 
                 rotator.setAngleFromEvent(ev);
             },
+            onColorSelClick() {
+                this.isColorSelAnimating = true;
+
+                if (!this.isDisabled) {
+                    this.isRippleAnimating = true;
+                } else {
+                    this.isPaletteIn = true;
+                }
+            },
+            onColorSelAnimationEnd() {
+                if (this.isDisabled) {
+                    this.isKnobIn = true;
+                } else {
+                    this.isKnobIn = false;
+                }
+
+                this.isColorSelAnimating = false;
+            },
+            onKnobTransitionEnd() {
+                if (!this.isDisabled) {
+                    this.isPaletteIn = false;
+                } else {
+                    this.isDisabled = false;
+                }
+            },
+            onRippleAnimationEnd() {
+                this.isRippleAnimating = false;
+            },
+            onPaletteTransitionEnd(ev) {
+                // 'transitionend' fires for every transitioned property
+                if (ev.propertyName === 'transform') {
+                    if (this.isDisabled) {
+                        this.isKnobIn = true;
+                    } else {
+                        this.isDisabled = true;
+                    }
+                }
+            },
         },
         beforeDestroy() {
             rotator.destroy();
@@ -58,6 +108,8 @@
 
 <style lang="scss">
     .color-picker {
+        $initial-color: #ff0000;
+        $button-border: #b2b2b2;
         $material-curve-angular: cubic-bezier(0.35, 0, 0.25, 1);
 
         @function z-depth-all($depth: 1) {
@@ -98,8 +150,11 @@
         }
 
         &,
+        .color-palette,
         .rotator,
-        .color-palette {
+        .color,
+        .color-shadow,
+        .knob {
             @include disable-user-select();
             box-sizing: border-box;
 
@@ -189,5 +244,83 @@
         .dragging .knob {
             @include z-depth-all(6);
         }
+
+        .color {
+            position: absolute;
+            width: 25%;
+            height: 25%;
+            top: 37.5%;
+            left: 37.5%;
+            padding: 0;
+            margin: 0;
+            border-radius: 50%;
+            background-color: $initial-color;
+            outline: 0;
+            cursor: pointer;
+            transition: transform .7s $material-curve-angular;
+            will-change: transform;
+            overflow: visible;
+            border: 6px solid #fff;
+            box-shadow: 0 0 0 1px $button-border;
+
+            &::-moz-focus-inner {
+              border: 0;
+            }
+
+            &:hover {
+                box-shadow: 0 0 1px 1px #333;
+            }
+
+            &:focus {
+                box-shadow: 0 0 1px 2px $button-border;
+            }
+
+            &.zoom-color-in {
+                transform: scale(1);
+            }
+
+            &.zoom-color-out {
+                transform: scale(0);
+                transition-delay: .5s;
+            }
+
+            &.click-color {
+                animation: click-color .4s $material-curve-angular forwards;
+            }
+        }
+
+        .color-shadow {
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            border: $initial-color solid 8px;
+            opacity: 0;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            z-index: -1;
+        }
+
+        .color-shadow-animate {
+            z-index: 0;
+            animation: color-shadow-animation .5s $material-curve-angular forwards;
+        }
     }
+
+@keyframes color-shadow-animation {
+    0%   { transform: scale(1); opacity: .3; }
+    50%  { opacity: .1; }
+    100% {
+        opacity: 0;
+        border-width: 0;
+        transform: scale(3.8);
+    }
+}
+
+@keyframes click-color {
+    0%   { transform: scale(1); }
+    25%  { transform: scale(0.8); }
+    50%  { transform: scale(1); }
+    100% { transform: scale(1); }
+}
 </style>
