@@ -1,15 +1,19 @@
 {
   "name": "@radial-color-picker/vue-color-picker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Vue color picker",
+  "main": "dist/vue-color-picker.common.js",
+  "browser": "dist/vue-color-picker.umd.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "@radial-color-picker/color-wheel": "^0.1.0",
-    "@radial-color-picker/rotator": "^0.3.2",
-    "vue": "^2.5.13"
+    "@radial-color-picker/rotator": "^0.3.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
@@ -18,6 +22,9 @@
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^4.4.1"
+  },
+  "peerDependencies": {
+    "vue": "^2.5.16"
   },
   "browserslist": [
     "> 1%",
