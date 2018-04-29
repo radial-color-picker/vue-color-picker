@@ -120,7 +120,12 @@
                 rotator.angle += (this.scrollSensitivity) * multiplier;
             },
             updateColor(hue) {
-                this.$emit('input', Object.assign({}, this.value, { hue }));
+                this.$emit('input', {
+                    hue,
+                    saturation: this.value.saturation,
+                    luminosity: this.value.luminosity,
+                    alpha: this.value.alpha,
+                });
             },
             enableDragging() {
                 this.isDragging = true;
