@@ -1,4 +1,4 @@
-# Vue Color Picker | Webpack Simple
+# Example - Webpack Simple
 
 This is a basic example of how to use `vue-color-picker`. It's scaffolded with `vue-cli` and [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template and loads the CSS with the default `css-loader`.
 
