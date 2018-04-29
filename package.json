@@ -12,8 +12,8 @@
     "build": "vue-cli-service build --mode production --target lib --name vue-color-picker"
   },
   "dependencies": {
-    "@radial-color-picker/color-wheel": "^0.1.0",
-    "@radial-color-picker/rotator": "^0.3.2"
+    "@radial-color-picker/color-wheel": "^0.2.0",
+    "@radial-color-picker/rotator": "^0.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
