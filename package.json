@@ -1,6 +1,6 @@
 {
   "name": "@radial-color-picker/vue-color-picker",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Vue color picker",
   "main": "dist/vue-color-picker.common.js",
   "browser": "dist/vue-color-picker.umd.js",
