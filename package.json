@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build --mode production --target lib --name vue-color-picker"
   },
   "dependencies": {
     "@radial-color-picker/color-wheel": "^0.1.0",
