@@ -1,22 +1,34 @@
 <template>
     <div class="color-picker"
          tabindex="0"
-         @keyup.enter="onColorSelClick"
-         @keydown.up.right.prevent="onKeydownIncrement"
-         @keydown.down.left.prevent="onKeydownDecrement">
-        <div class="color-palette"
-             :class="isPaletteIn ? 'blur-palette-in' : 'blur-palette-out'"
-             @transitionend="onPaletteTransitionEnd">
-            <canvas ref="colorPalette"></canvas>
+         @keyup.enter="selectColor"
+         @keydown.up.right.prevent="rotate($event, true)"
+         @keydown.down.left.prevent="rotate($event, false)">
+        <div class="palette" :class="isPaletteIn ? 'is-in' : 'is-out'" @transitionend="toggleKnob">
+            <canvas ref="palette"></canvas>
         </div>
 
-        <div @dblclick.self="changeHueToMouse" ref="rotator" class="rotator" :class="{ 'disabled': isDisabled, 'dragging': isDragging }" @transitionend="onKnobTransitionEnd">
-            <div class="knob" :class="isKnobIn ? 'zoom-knob-in' : 'zoom-knob-out'"></div>
+        <div class="rotator"
+             :class="{ 'disabled': isDisabled, 'dragging': isDragging }"
+             @dblclick.self="rotateToMouse"
+             ref="rotator"
+             @transitionend="hidePalette">
+            <div class="knob" :class="isKnobIn ? 'is-in' : 'is-out'"></div>
         </div>
 
-        <div :class="{ 'color-shadow-animate': isRippleAnimating }" :style="{ borderColor: color }" @animationend="onRippleAnimationEnd" class="color-shadow"></div>
+        <div class="ripple"
+             :class="{ 'is-rippling': isRippling }"
+             :style="{ borderColor: color }"
+             @animationend="stopRipple">
+        </div>
 
-        <button :class="{ 'click-color': isColorSelAnimating }" :style="{ backgroundColor: color }" @animationend="onColorSelAnimationEnd" @click="onColorSelClick" type="button" class="color"></button>
+        <button type="button"
+                class="selector"
+                :class="{ 'is-pressed': isPressed }"
+                :style="{ backgroundColor: color }"
+                @animationend="togglePicker"
+                @click="selectColor">
+        </button>
     </div>
 </template>
 
@@ -43,8 +55,8 @@
             return {
                 isPaletteIn: true,
                 isKnobIn: true,
-                isColorSelAnimating: false,
-                isRippleAnimating: false,
+                isPressed: false,
+                isRippling: false,
                 isDragging: false,
                 isDisabled: false,
             }
@@ -68,14 +80,18 @@
                 this.$refs.rotator.addEventListener('wheel', this.onScroll);
             }
 
-            fillColorWheel(this.$refs.colorPalette, this.$el.offsetWidth || 280);
+            fillColorWheel(this.$refs.palette, this.$el.offsetWidth || 280);
 
             rotator = new Rotator(this.$refs.rotator, {
                 inertia: 0.7,
                 angle: this.value.hue,
                 onRotate: this.updateColor,
-                onDragStart: this.enableDragging,
-                onDragStop: this.disableDragging,
+                onDragStart: () => {
+                    this.isDragging = true;
+                },
+                onDragStop: () => {
+                    this.isDragging = false;
+                },
             });
         },
         methods: {
@@ -91,33 +107,19 @@
                     rotator.angle -= this.scrollSensitivity;
                 }
             },
-            onKeydownDecrement(ev) {
+            rotate(ev, isIncrementing) {
                 if (this.isDisabled)
                     return;
 
-                let multiplier = -1;
+                let multiplier = isIncrementing ? 1 : -1;
 
                 if (ev.ctrlKey) {
-                    multiplier = -6;
+                    multiplier *= 6;
                 } else if (ev.shiftKey) {
-                    multiplier = -3;
+                    multiplier *= 3;
                 }
 
-                rotator.angle += (this.scrollSensitivity) * multiplier;
-            },
-            onKeydownIncrement(ev) {
-                if (this.isDisabled)
-                    return;
-
-                let multiplier = 1;
-
-                if (ev.ctrlKey) {
-                    multiplier = 6;
-                } else if (ev.shiftKey) {
-                    multiplier = 3;
-                }
-
-                rotator.angle += (this.scrollSensitivity) * multiplier;
+                rotator.angle += this.scrollSensitivity * multiplier;
             },
             updateColor(hue) {
                 this.$emit('input', {
@@ -127,48 +129,42 @@
                     alpha: this.value.alpha,
                 });
             },
-            enableDragging() {
-                this.isDragging = true;
-            },
-            disableDragging() {
-                this.isDragging = false;
-            },
-            changeHueToMouse(ev) {
+            rotateToMouse(ev) {
                 if (this.isDisabled)
                     return;
 
                 rotator.setAngleFromEvent(ev);
             },
-            onColorSelClick() {
-                this.isColorSelAnimating = true;
+            selectColor() {
+                this.isPressed = true;
 
                 if (!this.isDisabled) {
                     this.$emit('select', this.value);
-                    this.isRippleAnimating = true;
+                    this.isRippling = true;
                 } else {
                     this.isPaletteIn = true;
                 }
             },
-            onColorSelAnimationEnd() {
+            togglePicker() {
                 if (this.isDisabled) {
                     this.isKnobIn = true;
                 } else {
                     this.isKnobIn = false;
                 }
 
-                this.isColorSelAnimating = false;
+                this.isPressed = false;
             },
-            onKnobTransitionEnd() {
+            hidePalette() {
                 if (!this.isDisabled) {
                     this.isPaletteIn = false;
                 } else {
                     this.isDisabled = false;
                 }
             },
-            onRippleAnimationEnd() {
-                this.isRippleAnimating = false;
+            stopRipple() {
+                this.isRippling = false;
             },
-            onPaletteTransitionEnd(ev) {
+            toggleKnob(ev) {
                 // 'transitionend' fires for every transitioned property
                 if (ev.propertyName === 'transform') {
                     if (this.isDisabled) {
@@ -230,10 +226,10 @@
         }
 
         &,
-        .color-palette,
+        .palette,
         .rotator,
-        .color,
-        .color-shadow,
+        .selector,
+        .ripple,
         .knob {
             @include disable-user-select();
             box-sizing: border-box;
@@ -243,7 +239,7 @@
             }
         }
 
-        .color-palette {
+        .palette {
             position: absolute;
             top: 0;
             left: 0;
@@ -270,12 +266,12 @@
                 border-radius: 50%;
             }
 
-            &.blur-palette-in {
+            &.is-in {
                 transform: scale(1);
                 opacity: 1;
             }
 
-            &.blur-palette-out {
+            &.is-out {
                 transform: scale(0);
                 opacity: 0;
             }
@@ -308,11 +304,11 @@
             outline: 0;
             border-style: none;
 
-            &.zoom-knob-in {
+            &.is-in {
                 transform: scale(1);
             }
 
-            &.zoom-knob-out {
+            &.is-out {
                 transform: scale(0);
             }
         }
@@ -325,7 +321,7 @@
             @include z-depth-all(6);
         }
 
-        .color {
+        .selector {
             position: absolute;
             width: 25%;
             height: 25%;
@@ -355,21 +351,12 @@
                 box-shadow: 0 0 1px 2px $button-border;
             }
 
-            &.zoom-color-in {
-                transform: scale(1);
-            }
-
-            &.zoom-color-out {
-                transform: scale(0);
-                transition-delay: .5s;
-            }
-
-            &.click-color {
-                animation: click-color .4s $material-curve-angular forwards;
+            &.is-pressed {
+                animation: color-picker-beat .4s $material-curve-angular forwards;
             }
         }
 
-        .color-shadow {
+        .ripple {
             width: 20%;
             height: 20%;
             border-radius: 50%;
@@ -381,13 +368,13 @@
             z-index: -1;
         }
 
-        .color-shadow-animate {
+        .is-rippling {
             z-index: 0;
-            animation: color-shadow-animation .5s $material-curve-angular forwards;
+            animation: color-picker-ripple .5s $material-curve-angular forwards;
         }
     }
 
-@keyframes color-shadow-animation {
+@keyframes color-picker-ripple {
     0%   { transform: scale(1); opacity: .3; }
     50%  { opacity: .1; }
     100% {
@@ -397,7 +384,7 @@
     }
 }
 
-@keyframes click-color {
+@keyframes color-picker-beat {
     0%   { transform: scale(1); }
     25%  { transform: scale(0.8); }
     50%  { transform: scale(1); }
