@@ -39,7 +39,7 @@
     let rotator;
 
     export default {
-        name: 'vue-radial-color-picker',
+        name: 'vue-color-picker',
         props: {
             value: {
                 default: () => ({ hue: 0, saturation: 100, luminosity: 50, alpha: 1 }),
