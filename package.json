@@ -4,6 +4,7 @@
   "description": "Vue color picker",
   "main": "dist/vue-color-picker.common.js",
   "browser": "dist/vue-color-picker.umd.js",
+  "unpkg": "dist/vue-color-picker.umd.min.js",
   "files": [
     "dist"
   ],
