@@ -44,7 +44,7 @@
             value: {
                 default: () => ({ hue: 0, saturation: 100, luminosity: 50, alpha: 1 }),
             },
-            scrollSensitivity: {
+            step: {
                 default: 2,
             },
             mouseScroll: {
@@ -102,9 +102,9 @@
                 ev.preventDefault();
 
                 if (ev.deltaY > 0) {
-                    rotator.angle += this.scrollSensitivity;
+                    rotator.angle += this.step;
                 } else {
-                    rotator.angle -= this.scrollSensitivity;
+                    rotator.angle -= this.step;
                 }
             },
             rotate(ev, isIncrementing) {
@@ -119,7 +119,7 @@
                     multiplier *= 3;
                 }
 
-                rotator.angle += this.scrollSensitivity * multiplier;
+                rotator.angle += this.step * multiplier;
             },
             updateColor(hue) {
                 this.$emit('input', {
