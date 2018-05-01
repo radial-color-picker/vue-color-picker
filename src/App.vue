@@ -63,7 +63,7 @@
         },
         computed: {
             color() {
-                const { hue, saturation, luminosity, alpha } = this.value;
+                const { hue, saturation = 100, luminosity = 50, alpha = 1 } = this.value;
 
                 return `hsla(${hue}, ${saturation}%, ${luminosity}%, ${alpha})`;
             }
@@ -124,9 +124,9 @@
             updateColor(hue) {
                 this.$emit('input', {
                     hue,
-                    saturation: this.value.saturation,
-                    luminosity: this.value.luminosity,
-                    alpha: this.value.alpha,
+                    saturation: this.value.saturation || 100,
+                    luminosity: this.value.luminosity || 50,
+                    alpha: this.value.alpha || 1,
                 });
             },
             rotateToMouse(ev) {
