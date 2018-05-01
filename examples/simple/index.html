@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Radial Color Picker | Vue | Simple</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.css">
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #2c3e50;
+            margin-top: 40px;
+        }
+
+        h1 {
+            font-weight: normal;
+        }
+
+        pre {
+            min-width: 275px;
+            padding: 15px 30px;
+            background: #f8f8f8;
+            color: #525252;
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 420px) {
+            h1 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <color-picker v-model="color"></color-picker>
+        <h1>{{ msg }}</h1>
+        <pre>{{ color }}</pre>
+    </div>
+
+    <script>
+        var ColorPicker = window['vue-color-picker'];
+
+        var app = new Vue({
+            el: '#app',
+            components: {
+                ColorPicker: ColorPicker
+            },
+            data: {
+                msg: 'Welcome to Your Vue.js App',
+                color: {
+                    hue: 50,
+                    saturation: 100,
+                    luminosity: 50,
+                    alpha: 1,
+                },
+            },
+        });
+    </script>
+</body>
+</html>
