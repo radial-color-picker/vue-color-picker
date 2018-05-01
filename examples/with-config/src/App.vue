@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <color-picker v-model="color" :mouse-scroll="useScroll" :scroll-sensitivity="scrollSensitivity" />
+        <color-picker v-model="color" :mouse-scroll="useScroll" :step="step" />
         <h1>{{ msg }}</h1>
         <pre>{{ color }}</pre>
     </div>
@@ -22,7 +22,7 @@ export default {
                 alpha: 1,
             },
             useScroll: true, // change color with mouse scroll
-            scrollSensitivity: 5, // increase scroll (and keyboard) step size
+            step: 5, // increase scroll (and keyboard) step size
         };
     },
 };
