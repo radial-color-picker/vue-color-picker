@@ -189,11 +189,11 @@
         $material-curve-angular: cubic-bezier(0.35, 0, 0.25, 1);
 
         @function z-depth-all($depth: 1) {
-            $color1:    0.12, 0.19, 0.19, 0.21, 0.22, 0.38;
-            $blur1:     10px, 20px, 50px, 55px, 77px, 30px;
+            $color1:    0.12, 0.19, 0.38;
+            $blur1:     10px, 50px, 30px;
 
-            $color2:    0.16, 0.2, 0.24, 0.22, 0.2, 0.48;
-            $blur2:     5px, 17px, 15px, 28px, 24px, 15px;
+            $color2:    0.16, 0.24, 0.48;
+            $blur2:     5px, 15px, 15px;
             @return 0 0 nth($blur1, $depth) rgba(0, 0, 0, nth($color1, $depth)), 0 0 nth($blur2, $depth) rgba(0, 0, 0, nth($color2, $depth));
         }
 
@@ -221,7 +221,7 @@
             outline: 0;
 
             .knob {
-                @include z-depth-all(6);
+                @include z-depth-all(3);
             }
         }
 
@@ -314,11 +314,11 @@
         }
 
         &:not(:focus) .knob:hover {
-            @include z-depth-all(3);
+            @include z-depth-all(2);
         }
 
         .dragging .knob {
-            @include z-depth-all(6);
+            @include z-depth-all(3);
         }
 
         .selector {
