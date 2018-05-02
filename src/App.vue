@@ -197,10 +197,6 @@
             @return 0 0 nth($blur1, $depth) rgba(0, 0, 0, nth($color1, $depth)), 0 0 nth($blur2, $depth) rgba(0, 0, 0, nth($color2, $depth));
         }
 
-        @mixin z-depth-all($depth: 1) {
-            box-shadow: z-depth-all($depth);
-        }
-
         @mixin disable-user-select() {
             -webkit-touch-callout: none;
               -webkit-user-select: none;
@@ -221,7 +217,7 @@
             outline: 0;
 
             .knob {
-                @include z-depth-all(3);
+                box-shadow: z-depth-all(3);
             }
         }
 
@@ -292,7 +288,7 @@
         }
 
         .knob {
-            @include z-depth-all(1);
+            box-shadow: z-depth-all(1);
             border-radius: 50%;
             position: absolute;
             width: 7%;
@@ -314,7 +310,7 @@
         }
 
         &:not(:focus) .knob:hover {
-            @include z-depth-all(2);
+            box-shadow: z-depth-all(2);
         }
 
         .selector {
