@@ -197,16 +197,6 @@
             @return 0 0 nth($blur1, $depth) rgba(0, 0, 0, nth($color1, $depth)), 0 0 nth($blur2, $depth) rgba(0, 0, 0, nth($color2, $depth));
         }
 
-        @mixin disable-user-select() {
-            -webkit-touch-callout: none;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                      user-select: none;
-
-            -webkit-tap-highlight-color: transparent;
-        }
-
         display: block;
         overflow: hidden;
         width: 280px;
@@ -227,7 +217,9 @@
         .selector,
         .ripple,
         .knob {
-            @include disable-user-select();
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
             box-sizing: border-box;
 
             &::before {
