@@ -317,10 +317,6 @@
             @include z-depth-all(2);
         }
 
-        .dragging .knob {
-            @include z-depth-all(3);
-        }
-
         .selector {
             position: absolute;
             width: 25%;
