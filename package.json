@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build --mode production --target lib --name vue-color-picker"
+    "build": "bili"
   },
   "dependencies": {
     "@radial-color-picker/color-wheel": "^0.2.0",
@@ -19,8 +19,11 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
     "@vue/cli-service": "^3.0.0-beta.6",
+    "bili": "^3.1.0",
     "node-sass": "^4.7.2",
+    "rollup-plugin-vue": "^3.0.0",
     "sass-loader": "^6.0.6",
+    "vue": "^2.5.16",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^4.4.1"
   },
@@ -28,9 +31,9 @@
     "vue": "^2.5.16"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    ">0.75%",
+    "not ie 11",
+    "not op_mini all"
   ],
   "repository": "git@github.com:radial-color-picker/vue-color-picker.git",
   "author": "Rosen Kanev <rkunev@gmail.com>",
