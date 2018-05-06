@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.css">
+    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css">
     <style>
         #app {
             font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -50,7 +50,7 @@
     </div>
 
     <script>
-        var ColorPicker = window['vue-color-picker'];
+        var ColorPicker = window.VueColorPicker;
 
         var app = new Vue({
             el: '#app',

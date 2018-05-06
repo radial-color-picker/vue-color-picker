@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style>
-@import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.css';
+@import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

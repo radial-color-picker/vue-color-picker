@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "node_modules/@radial-color-picker/vue-color-picker/dist/vue-color-picker";
+@import "node_modules/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min";
 
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

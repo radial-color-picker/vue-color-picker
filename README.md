@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style>
-@import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.css';
+@import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 </style>
 ```
 
@@ -76,8 +76,8 @@ You can also use the minified sources directly:
 ```html
 <head>
     <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
-    <link href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.css" rel="stylesheet">
+    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.js"></script>
+    <link href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css" rel="stylesheet">
 </head>
 <body>
     <color-picker v-model="color"></color-picker>
