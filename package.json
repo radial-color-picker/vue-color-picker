@@ -2,8 +2,8 @@
   "name": "@radial-color-picker/vue-color-picker",
   "version": "0.4.0",
   "description": "Vue color picker",
-  "main": "dist/vue-color-picker.common.js",
-  "browser": "dist/vue-color-picker.umd.js",
+  "main": "dist/vue-color-picker.cjs.js",
+  "browser": "dist/vue-color-picker.min.js",
   "unpkg": "dist/vue-color-picker.min.js",
   "files": [
     "dist"
