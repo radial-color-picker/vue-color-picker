@@ -29,6 +29,8 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
 
 ## <a name="demos">Demos</a>
 
+* Basic Example - [Codepen](https://codepen.io/rkunev/pen/zjEmwV/)
+
 ## <a name="usage">Usage</a>
 
 #### With Module Build System
