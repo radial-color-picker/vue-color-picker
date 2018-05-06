@@ -1,6 +1,6 @@
 ## Radial Color Picker - Vue
 
-<p align="center"><img width="250" src="./screenshots/thumbnail.png" alt="screenshot"></p>
+<p align="center"><img width="250" src="https://raw.githubusercontent.com/radial-color-picker/vue-color-picker/HEAD/screenshots/thumbnail.png" alt="screenshot"></p>
 
 <p align="center"><a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker"> <img src="https://img.shields.io/npm/dt/@radial-color-picker/vue-color-picker.svg" alt="Downloads"> </a> <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker"> <img src="https://img.shields.io/npm/v/@radial-color-picker/vue-color-picker.svg" alt="Version"> </a> <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker"> <img src="https://img.shields.io/npm/l/@radial-color-picker/vue-color-picker.svg" alt="License"> </a></p>
 
