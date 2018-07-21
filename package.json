@@ -13,19 +13,18 @@
     "build": "bili"
   },
   "dependencies": {
-    "@radial-color-picker/color-wheel": "^0.2.0",
+    "@radial-color-picker/color-wheel": "0.2.0",
     "@radial-color-picker/rotator": "1.0.0-beta.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.6",
-    "@vue/cli-service": "^3.0.0-beta.6",
-    "bili": "^3.1.0",
-    "node-sass": "^4.7.2",
-    "rollup-plugin-vue": "^3.0.0",
-    "sass-loader": "^6.0.6",
-    "vue": "^2.5.16",
-    "vue-template-compiler": "^2.5.13",
-    "webpack": "^4.4.1"
+    "@vue/cli-plugin-babel": "3.0.0-rc.5",
+    "@vue/cli-service": "3.0.0-rc.5",
+    "node-sass": "4.9.0",
+    "sass-loader": "7.0.1",
+    "vue-template-compiler": "2.5.16",
+    "bili": "3.1.2",
+    "rollup-plugin-vue": "3.0.0",
+    "vue": "2.5.16"
   },
   "peerDependencies": {
     "vue": "^2.5.16"
