@@ -83,7 +83,6 @@
             fillColorWheel(this.$refs.palette, this.$el.offsetWidth || 280);
 
             rotator = new Rotator(this.$refs.rotator, {
-                inertia: 0.7,
                 angle: this.value.hue,
                 onRotate: this.updateColor,
                 onDragStart: () => {
@@ -106,6 +105,8 @@
                 } else {
                     rotator.angle -= this.step;
                 }
+
+                this.updateColor(rotator.angle);
             },
             rotate(ev, isIncrementing) {
                 if (this.isDisabled)
@@ -120,6 +121,7 @@
                 }
 
                 rotator.angle += this.step * multiplier;
+                this.updateColor(rotator.angle);
             },
             updateColor(hue) {
                 this.$emit('input', {
