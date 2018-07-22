@@ -2,21 +2,31 @@
 
 <p align="center"><img width="250" src="https://raw.githubusercontent.com/radial-color-picker/vue-color-picker/HEAD/screenshots/thumbnail.png" alt="screenshot"></p>
 
-<p align="center"><a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker"> <img src="https://img.shields.io/npm/dt/@radial-color-picker/vue-color-picker.svg" alt="Downloads"> </a> <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker"> <img src="https://img.shields.io/npm/v/@radial-color-picker/vue-color-picker.svg" alt="Version"> </a> <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker"> <img src="https://img.shields.io/npm/l/@radial-color-picker/vue-color-picker.svg" alt="License"> </a></p>
+<p align="center">
+    <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker">
+        <img src="https://img.shields.io/npm/dt/@radial-color-picker/vue-color-picker.svg" alt="Downloads">
+    </a>
+    <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker">
+        <img src="https://img.shields.io/npm/v/@radial-color-picker/vue-color-picker.svg" alt="Version">
+    </a>
+    <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker">
+        <img src="https://img.shields.io/npm/l/@radial-color-picker/vue-color-picker.svg" alt="License">
+    </a>
+</p>
 
 ## Introduction
 
 Great UX starts with two basic principles - ease of use and simplicity. Selecting a color should be as easy as moving a slider, clicking a checkbox or pressing a key just like other basic form elements behave.
 
 This is a flexible and minimalistic color picker. Developed with mobile devices and keyboard usage in mind. Key features:
-* Small size - 3.8 KB gzipped (JS and CSS combined)
+* Small size - 3.4 KB gzipped (JS and CSS combined)
 * Supports touch devices
 * Optimized animations
 * Ease of use
     * Double click anywhere to move the knob to a color
     * <kbd>Tab</kbd> to focus the picker
-    * <kbd>Up</kbd> or <kbd>Right</kbd> arrow key to increase hue. Hold <kbd>Ctrl</kbd> to go quicker
-    * <kbd>Bottom</kbd> or <kbd>Left</kbd> arrow key decrease hue. Hold <kbd>Ctrl</kbd> to go quicker
+    * <kbd>↑</kbd> or <kbd>→</kbd> arrow key to increase hue. <kbd>Shift + ↑/→</kbd> to go quicker and <kbd>Ctrl + ↑/→</kbd> to go even quicker.
+    * <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>Shift + ↓/←</kbd> to go quicker and <kbd>Ctrl + ↓/←</kbd> to go even quicker.
     * <kbd>Enter</kbd> to select a color and close the picker or to open it
     * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in)
 
@@ -26,6 +36,10 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
 * [Usage](#user-content-usage)
 * [Options](#user-content-options)
 * [FAQ](#user-content-questions)
+* [Change log](#user-content-change-log)
+* [Contributing](#user-content-contributing)
+* [Credits](#user-content-credits)
+* [License](#user-content-license)
 
 ## <a name="demos">Demos</a>
 
@@ -174,5 +188,40 @@ export default {
     <p>It's another non-passive event that could potentially introduce jank on scroll. To rotate the color knob, but stay on the same scrolling position the <code>wheel</code> event is blocked with <code>preventDefault()</code>. Thus, if you really want this feature for your users you'll have to explicitly add <code>:mouse-scroll="true"</code>.</p>
 </details>
 <br>
+
+[Back To Top](#user-content-quick-links)
+
+
+## Change log
+
+Please see [Releases][link-releases] for more information on what has changed recently.
+
+[Back To Top](#user-content-quick-links)
+
+## Contributing
+
+If you're interested in the project you can help out with feature requests, bugfixes, documentation improvements or any other helpful contributions. You can use the issue list of this repo for bug reports and feature requests and as well as for questions and support.
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+
+[Back To Top](#user-content-quick-links)
+
+## Credits
+
+- [Rosen Kanev][link-author]
+- [All Contributors][link-contributors]
+
+This component is based on the great work that was done for the AngularJs color picker [angular-radial-color-picker][link-angular-radial-color-picker].
+
+[Back To Top](#user-content-quick-links)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+[link-angular-radial-color-picker]: https://github.com/talamaska/angular-radial-color-picker
+[link-author]: https://github.com/rkunev
+[link-contributors]: ../../contributors
+[link-releases]: ../../releases
 
 [Back To Top](#user-content-quick-links)
