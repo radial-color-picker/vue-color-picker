@@ -1,7 +1,7 @@
 {
   "name": "@radial-color-picker/vue-color-picker",
-  "version": "0.4.2",
-  "description": "Vue color picker",
+  "version": "1.0.0",
+  "description": "Radial Color Picker - Vue",
   "main": "dist/vue-color-picker.cjs.js",
   "browser": "dist/vue-color-picker.min.js",
   "unpkg": "dist/vue-color-picker.min.js",
@@ -13,8 +13,8 @@
     "build": "bili"
   },
   "dependencies": {
-    "@radial-color-picker/color-wheel": "1.0.0-beta.1",
-    "@radial-color-picker/rotator": "1.0.0-beta.1"
+    "@radial-color-picker/color-wheel": "1.0.0",
+    "@radial-color-picker/rotator": "1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "3.0.0-rc.5",
