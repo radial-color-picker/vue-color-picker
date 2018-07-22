@@ -32,20 +32,20 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
 
 ## Quick Links
 
-* [Demos](#user-content-demos)
-* [Usage](#user-content-usage)
-* [Options](#user-content-options)
-* [FAQ](#user-content-questions)
-* [Change log](#user-content-change-log)
-* [Contributing](#user-content-contributing)
-* [Credits](#user-content-credits)
-* [License](#user-content-license)
+* [Demos](#demos)
+* [Usage](#usage)
+* [Options](#options)
+* [FAQ](#first-asked-questions)
+* [Change log](#change-log)
+* [Contributing](#contributing)
+* [Credits](#credits)
+* [License](#license)
 
-## <a name="demos">Demos</a>
+## Demos
 
 * Basic Example - [Codepen](https://codepen.io/rkunev/pen/zjEmwV/)
 
-## <a name="usage">Usage</a>
+## Usage
 
 #### With Module Build System
 Color Picker on [npm](https://www.npmjs.com/package/@radial-color-picker/vue-color-picker)
@@ -119,9 +119,9 @@ You can also use the minified sources directly:
 </body>
 ```
 
-[Back To Top](#user-content-quick-links)
+[Back To Top](#quick-links)
 
-## <a name="options">Options</a>
+## Options
 `<color-picker>` component has several props and events, of which only `v-model` is required. [See the example](./examples/with-config) which uses all options.
 
 ### Props
@@ -169,9 +169,9 @@ export default {
 </script>
 ```
 
-[Back To Top](#user-content-quick-links)
+[Back To Top](#quick-links)
 
-## <a name="questions">First Asked Questions</a>
+## First Asked Questions
 
 <details>
     <summary>How to select other shades of the solid colors?</summary>
@@ -189,14 +189,14 @@ export default {
 </details>
 <br>
 
-[Back To Top](#user-content-quick-links)
+[Back To Top](#quick-links)
 
 
 ## Change log
 
 Please see [Releases][link-releases] for more information on what has changed recently.
 
-[Back To Top](#user-content-quick-links)
+[Back To Top](#quick-links)
 
 ## Contributing
 
@@ -204,7 +204,7 @@ If you're interested in the project you can help out with feature requests, bugf
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-[Back To Top](#user-content-quick-links)
+[Back To Top](#quick-links)
 
 ## Credits
 
@@ -213,7 +213,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 
 This component is based on the great work that was done for the AngularJs color picker [angular-radial-color-picker][link-angular-radial-color-picker].
 
-[Back To Top](#user-content-quick-links)
+[Back To Top](#quick-links)
 
 ## License
 
@@ -224,4 +224,4 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 [link-contributors]: ../../contributors
 [link-releases]: ../../releases
 
-[Back To Top](#user-content-quick-links)
+[Back To Top](#quick-links)
