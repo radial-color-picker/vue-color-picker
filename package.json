@@ -13,7 +13,7 @@
     "build": "bili"
   },
   "dependencies": {
-    "@radial-color-picker/color-wheel": "0.2.0",
+    "@radial-color-picker/color-wheel": "1.0.0-beta.1",
     "@radial-color-picker/rotator": "1.0.0-beta.1"
   },
   "devDependencies": {
