@@ -14,17 +14,17 @@
   },
   "dependencies": {
     "@radial-color-picker/color-wheel": "1.0.0",
-    "@radial-color-picker/rotator": "1.0.0"
+    "@radial-color-picker/rotator": "1.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "3.0.0-rc.5",
     "@vue/cli-service": "3.0.0-rc.5",
-    "node-sass": "4.9.0",
-    "sass-loader": "7.0.1",
-    "vue-template-compiler": "2.5.16",
     "bili": "3.1.2",
+    "node-sass": "4.9.0",
     "rollup-plugin-vue": "3.0.0",
-    "vue": "2.5.16"
+    "sass-loader": "7.0.1",
+    "vue": "2.5.16",
+    "vue-template-compiler": "2.5.16"
   },
   "peerDependencies": {
     "vue": "^2.5.16"
