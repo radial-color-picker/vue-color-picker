@@ -30,6 +30,14 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
     * <kbd>Enter</kbd> to select a color and close the picker or to open it
     * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in)
 
+## Ecosystem
+
+The right color picker, but not the framework you're looking for?
+* [Vue][link-vue-color-picker] - you're here!
+* [React][link-react-color-picker]
+* [AngularJs][link-angularjs-color-picker]
+* [Angular][link-angular-color-picker] (under construction)
+
 ## Quick Links
 
 * [Demos](#demos)
@@ -219,7 +227,10 @@ This component is based on the great work that was done for the AngularJs color 
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
-[link-angular-radial-color-picker]: https://github.com/talamaska/angular-radial-color-picker
+[link-react-color-picker]: https://github.com/radial-color-picker/react-color-picker
+[link-vue-color-picker]: https://github.com/radial-color-picker/vue-color-picker
+[link-angular-color-picker]: https://github.com/radial-color-picker/angular-color-picker
+[link-angularjs-color-picker]: https://github.com/talamaska/angular-radial-color-picker
 [link-author]: https://github.com/rkunev
 [link-contributors]: ../../contributors
 [link-releases]: ../../releases
