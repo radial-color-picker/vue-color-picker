@@ -50,6 +50,9 @@
             mouseScroll: {
                 default: false,
             },
+            variant: {
+                default: 'collapsible', // collapsible | persistent
+            }
         },
         data() {
             return {
@@ -148,10 +151,12 @@
                 }
             },
             togglePicker() {
-                if (this.isDisabled) {
-                    this.isKnobIn = true;
-                } else {
-                    this.isKnobIn = false;
+                if (this.variant !== 'persistent') {
+                    if (this.isDisabled) {
+                        this.isKnobIn = true;
+                    } else {
+                        this.isKnobIn = false;
+                    }
                 }
 
                 this.isPressed = false;
