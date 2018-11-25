@@ -13,8 +13,8 @@
     "build": "bili"
   },
   "dependencies": {
-    "@radial-color-picker/color-wheel": "1.0.0",
-    "@radial-color-picker/rotator": "1.0.1"
+    "@radial-color-picker/color-wheel": "2.0.0",
+    "@radial-color-picker/rotator": "2.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "3.0.0-rc.5",

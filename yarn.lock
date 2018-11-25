@@ -1223,13 +1223,13 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@radial-color-picker/color-wheel@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-1.0.0.tgz#c1dd93af28b119c0e8bbb4fa341bb17756735842"
+"@radial-color-picker/color-wheel@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-2.0.0.tgz#86bce8c853c30f17f04d226757f652303abb2d67"
 
-"@radial-color-picker/rotator@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-1.0.1.tgz#35293286336a74744054edd6d1ea98a8476a731d"
+"@radial-color-picker/rotator@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-2.0.0.tgz#7bf3634e71a8cbc98d28fe02a8ea9b66b198d378"
 
 "@types/acorn@^4.0.3":
   version "4.0.3"
