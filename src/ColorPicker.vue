@@ -1,6 +1,7 @@
 <template>
-    <div class="color-picker"
-         tabindex="0"
+    <div tabindex="0"
+         class="color-picker"
+         :class="{ 'dragging': isDragging }"
          @keyup.enter="selectColor"
          @keydown.up.right.prevent="rotate($event, true)"
          @keydown.down.left.prevent="rotate($event, false)">
@@ -197,10 +198,10 @@
 
         @function z-depth-all($depth: 1) {
             $color1: 0.12, 0.19, 0.38;
-            $blur1: 10px, 50px, 30px;
+            $blur1: 10px, 20px, 30px;
 
             $color2: 0.16, 0.24, 0.48;
-            $blur2: 5px, 15px, 15px;
+            $blur2: 5px, 10px, 15px;
             @return 0 0 nth($blur1, $depth) rgba(0, 0, 0, nth($color1, $depth)), 0 0 nth($blur2, $depth) rgba(0, 0, 0, nth($color2, $depth));
         }
 
@@ -209,12 +210,22 @@
         width: 280px;
         height: 280px;
         position: relative;
+        transform: scale(1.001);
+        transition: transform 0.15s cubic-bezier(0.68, 0, 0.47, 2);
 
         &:focus {
             outline: 0;
+        }
 
-            .knob {
-                box-shadow: z-depth-all(3);
+        &:hover .knob {
+            box-shadow: z-depth-all(2);
+        }
+
+        &.dragging {
+            transform: scale(1.04);
+
+            .rotator {
+                z-index: 1;
             }
         }
 
@@ -277,10 +288,6 @@
             height: 100%;
             position: absolute;
 
-            &.dragging {
-                z-index: 1;
-            }
-
             &.disabled {
                 pointer-events: none;
             }
@@ -306,10 +313,6 @@
             &.is-out {
                 transform: scale(0);
             }
-        }
-
-        &:not(:focus) .knob:hover {
-            box-shadow: z-depth-all(2);
         }
 
         .selector {
