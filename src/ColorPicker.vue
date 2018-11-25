@@ -1,31 +1,31 @@
 <template>
     <div tabindex="0"
-         class="color-picker"
+         class="rcp"
          :class="{ 'dragging': isDragging }"
          @keyup.enter="selectColor"
          @keydown.up.right.prevent="rotate($event, true)"
          @keydown.down.left.prevent="rotate($event, false)">
-        <div class="palette" :class="isPaletteIn ? 'is-in' : 'is-out'" @transitionend="toggleKnob">
+        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" @transitionend="toggleKnob">
             <canvas ref="palette"></canvas>
         </div>
 
-        <div class="rotator"
-             :class="{ 'disabled': isDisabled, 'dragging': isDragging }"
+        <div class="rcp__rotator"
+             :style="{ 'pointer-events': isDisabled ? 'none' : null }"
              @dblclick.self="rotateToMouse"
              ref="rotator"
              @transitionend="hidePalette">
-            <div class="knob" :class="isKnobIn ? 'is-in' : 'is-out'"></div>
+            <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'"></div>
         </div>
 
-        <div class="ripple"
-             :class="{ 'is-rippling': isRippling }"
+        <div class="rcp__ripple"
+             :class="{ 'rippling': isRippling }"
              :style="{ borderColor: color }"
              @animationend="stopRipple">
         </div>
 
         <button type="button"
-                class="selector"
-                :class="{ 'is-pressed': isPressed }"
+                class="rcp__selector"
+                :class="{ 'pressed': isPressed }"
                 :style="{ backgroundColor: color }"
                 @animationend="togglePicker"
                 @click="selectColor">
@@ -190,21 +190,15 @@
     };
 </script>
 
-<style lang="scss">
-    .color-picker {
-        $initial-color: #ff0000;
-        $button-border: #b2b2b2;
-        $material-curve-angular: cubic-bezier(0.35, 0, 0.25, 1);
+<style>
+    .rcp, .rcp div, .rcp button {
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        box-sizing: border-box;
+    }
 
-        @function z-depth-all($depth: 1) {
-            $color1: 0.12, 0.19, 0.38;
-            $blur1: 10px, 20px, 30px;
-
-            $color2: 0.16, 0.24, 0.48;
-            $blur2: 5px, 10px, 15px;
-            @return 0 0 nth($blur1, $depth) rgba(0, 0, 0, nth($color1, $depth)), 0 0 nth($blur2, $depth) rgba(0, 0, 0, nth($color2, $depth));
-        }
-
+    .rcp {
         display: block;
         overflow: hidden;
         width: 280px;
@@ -212,176 +206,157 @@
         position: relative;
         transform: scale(1.001);
         transition: transform 0.15s cubic-bezier(0.68, 0, 0.47, 2);
-
-        &:focus {
-            outline: 0;
-        }
-
-        &:hover .knob {
-            box-shadow: z-depth-all(2);
-        }
-
-        &.dragging {
-            transform: scale(1.04);
-
-            .rotator {
-                z-index: 1;
-            }
-        }
-
-        &,
-        .palette,
-        .rotator,
-        .selector,
-        .ripple,
-        .knob {
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-            box-sizing: border-box;
-
-            &::before {
-                box-sizing: border-box;
-            }
-        }
-
-        .palette {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            background-size: 100% 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            will-change: transform, opacity;
-            transition: transform .5s $material-curve-angular,
-                        opacity .5s $material-curve-angular;
-
-            &::before {
-                content: '';
-                display: block;
-                position: absolute;
-                width: 76%;
-                height: 76%;
-                top: 12%;
-                left: 12%;
-                background-color: #fff;
-                border-radius: 50%;
-            }
-
-            &.is-in {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            &.is-out {
-                transform: scale(0);
-                opacity: 0;
-            }
-        }
-
-        .rotator {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-
-            &.disabled {
-                pointer-events: none;
-            }
-        }
-
-        .knob {
-            box-shadow: z-depth-all(1);
-            border-radius: 50%;
-            position: absolute;
-            width: 7%;
-            height: 7%;
-            top: 2.5%;
-            left: 46.5%;
-            background-color: #fff;
-            transition: transform .4s $material-curve-angular;
-            outline: 0;
-            border-style: none;
-
-            &.is-in {
-                transform: scale(1);
-            }
-
-            &.is-out {
-                transform: scale(0);
-            }
-        }
-
-        .selector {
-            position: absolute;
-            width: 25%;
-            height: 25%;
-            top: 37.5%;
-            left: 37.5%;
-            padding: 0;
-            margin: 0;
-            border-radius: 50%;
-            background-color: $initial-color;
-            outline: 0;
-            cursor: pointer;
-            transition: transform .7s $material-curve-angular;
-            will-change: transform;
-            overflow: visible;
-            border: 6px solid #fff;
-            box-shadow: 0 0 0 1px $button-border;
-
-            &::-moz-focus-inner {
-              border: 0;
-            }
-
-            &:hover {
-                box-shadow: 0 0 1px 1px #333;
-            }
-
-            &:focus {
-                box-shadow: 0 0 1px 2px $button-border;
-            }
-
-            &.is-pressed {
-                animation: color-picker-beat .4s $material-curve-angular forwards;
-            }
-        }
-
-        .ripple {
-            width: 20%;
-            height: 20%;
-            border-radius: 50%;
-            border: $initial-color solid 8px;
-            opacity: 0;
-            position: absolute;
-            top: 40%;
-            left: 40%;
-            z-index: -1;
-        }
-
-        .is-rippling {
-            z-index: 0;
-            animation: color-picker-ripple .5s $material-curve-angular forwards;
-        }
     }
 
-@keyframes color-picker-ripple {
-    0%   { transform: scale(1); opacity: .3; }
-    50%  { opacity: .1; }
-    100% {
+    .rcp:focus {
+        outline: 0;
+    }
+
+    .rcp:hover .rcp__knob {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.19), 0 0 10px rgba(0, 0, 0, 0.24);
+    }
+
+    .rcp.dragging {
+        transform: scale(1.04);
+    }
+
+    .rcp.dragging .rcp__rotator {
+        z-index: 1;
+    }
+
+    .rcp__palette {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        will-change: transform, opacity;
+        transition: transform .5s cubic-bezier(0.35, 0, 0.25, 1),
+                    opacity .5s cubic-bezier(0.35, 0, 0.25, 1);
+    }
+
+    .rcp__palette::before {
+        box-sizing: border-box;
+        content: '';
+        display: block;
+        position: absolute;
+        width: 76%;
+        height: 76%;
+        top: 12%;
+        left: 12%;
+        background-color: #fff;
+        border-radius: 50%;
+    }
+
+    .rcp__palette.in {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .rcp__palette.out {
+        transform: scale(0);
         opacity: 0;
-        border-width: 0;
-        transform: scale(3.8);
     }
-}
 
-@keyframes color-picker-beat {
-    0%   { transform: scale(1); }
-    25%  { transform: scale(0.8); }
-    50%  { transform: scale(1); }
-    100% { transform: scale(1); }
-}
+    .rcp__rotator {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .rcp__knob {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.12), 0 0 5px rgba(0, 0, 0, 0.16);
+        border-radius: 50%;
+        position: absolute;
+        width: 7%;
+        height: 7%;
+        top: 2.5%;
+        left: 46.5%;
+        background-color: #fff;
+        transition: transform .4s cubic-bezier(0.35, 0, 0.25, 1);
+        outline: 0;
+        border-style: none;
+    }
+
+    .rcp__knob.in {
+        transform: scale(1);
+    }
+
+    .rcp__knob.out {
+        transform: scale(0);
+    }
+
+    .rcp__selector {
+        position: absolute;
+        width: 25%;
+        height: 25%;
+        top: 37.5%;
+        left: 37.5%;
+        padding: 0;
+        margin: 0;
+        border-radius: 50%;
+        background-color: #ff0000;
+        outline: 0;
+        cursor: pointer;
+        transition: transform .7s cubic-bezier(0.35, 0, 0.25, 1);
+        will-change: transform;
+        overflow: visible;
+        border: 6px solid #fff;
+        box-shadow: 0 0 0 1px #b2b2b2;
+    }
+
+    .rcp__selector::-moz-focus-inner {
+      border: 0;
+    }
+
+    .rcp__selector:hover {
+        box-shadow: 0 0 1px 1px #333;
+    }
+
+    .rcp__selector:focus {
+        box-shadow: 0 0 1px 2px #b2b2b2;
+    }
+
+    .rcp__selector.pressed {
+        animation: rcp-beat .4s cubic-bezier(0.35, 0, 0.25, 1) forwards;
+    }
+
+    .rcp__ripple {
+        width: 20%;
+        height: 20%;
+        border-radius: 50%;
+        border: #ff0000 solid 8px;
+        opacity: 0;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        z-index: -1;
+    }
+
+    .rcp__ripple.rippling {
+        z-index: 0;
+        animation: rcp-ripple .5s cubic-bezier(0.35, 0, 0.25, 1) forwards;
+    }
+
+    @keyframes rcp-ripple {
+        0%   { transform: scale(1); opacity: .3; }
+        50%  { opacity: .1; }
+        100% {
+            opacity: 0;
+            border-width: 0;
+            transform: scale(3.8);
+        }
+    }
+
+    @keyframes rcp-beat {
+        0%   { transform: scale(1); }
+        25%  { transform: scale(0.8); }
+        50%  { transform: scale(1); }
+        100% { transform: scale(1); }
+    }
 </style>
