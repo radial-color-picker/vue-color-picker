@@ -10,7 +10,7 @@
         </div>
 
         <div class="rcp__rotator"
-             :style="{ 'pointer-events': isDisabled ? 'none' : null }"
+             :style="{ 'pointer-events': isPressed || !isKnobIn ? 'none' : null }"
              @dblclick.self="rotateToMouse"
              ref="rotator">
             <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'" @transitionend="hidePalette"></div>
@@ -57,7 +57,6 @@
                 isPressed: false,
                 isRippling: false,
                 isDragging: false,
-                isDisabled: false,
             }
         },
         computed: {
@@ -98,7 +97,7 @@
         },
         methods: {
             onScroll(ev) {
-                if (this.isDisabled)
+                if (this.isPressed || !this.isKnobIn)
                     return;
 
                 ev.preventDefault();
@@ -112,7 +111,7 @@
                 this.updateColor(rotator.angle);
             },
             rotate(ev, isIncrementing) {
-                if (this.isDisabled)
+                if (this.isPressed || !this.isKnobIn)
                     return;
 
                 let multiplier = isIncrementing ? 1 : -1;
@@ -135,7 +134,7 @@
                 });
             },
             rotateToMouse(ev) {
-                if (this.isDisabled)
+                if (this.isPressed || !this.isKnobIn)
                     return;
 
                 rotator.setAngleFromEvent(ev);
@@ -146,9 +145,6 @@
                 if (this.isPaletteIn && this.isKnobIn) {
                     this.$emit('select', this.value);
                     this.isRippling = true;
-
-                    if (this.variant !== 'persistent')
-                        this.isDisabled = true;
                 } else {
                     this.isPaletteIn = true;
                 }
@@ -156,7 +152,6 @@
             togglePicker() {
                 if (this.variant !== 'persistent') {
                     if (this.isKnobIn) {
-                        this.isDisabled = true;
                         this.isKnobIn = false;
                     } else {
                         this.isKnobIn = true;
@@ -168,9 +163,7 @@
                 this.isPressed = false;
             },
             hidePalette() {
-                if (this.isKnobIn) {
-                    this.isDisabled = false;
-                } else {
+                if (!this.isKnobIn) {
                     this.isPaletteIn = false;
                 }
             },
