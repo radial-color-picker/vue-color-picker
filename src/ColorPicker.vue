@@ -48,7 +48,7 @@
             },
             variant: {
                 default: 'collapsible', // collapsible | persistent
-            }
+            },
         },
         data() {
             return {
