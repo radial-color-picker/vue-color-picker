@@ -5,8 +5,11 @@
          @keyup.enter="selectColor"
          @keydown.up.right.prevent="rotate($event, true)"
          @keydown.down.left.prevent="rotate($event, false)">
-        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" @transitionend="toggleKnob">
-            <canvas ref="palette"></canvas>
+        <div class="rcp__palette"
+             :class="isPaletteIn ? 'in' : 'out'"
+             @transitionend="toggleKnob"
+             ref="palette">
+            <canvas></canvas>
         </div>
 
         <div class="rcp__rotator"
@@ -84,7 +87,11 @@
                 this.$refs.rotator.addEventListener('wheel', this.onScroll);
             }
 
-            fillColorWheel(this.$refs.palette, this.$el.offsetWidth || 280);
+            this.$refs.palette.style.backgroundImage = 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)';
+
+            if (!this.$refs.palette.style.backgroundImage) {
+                fillColorWheel(this.$refs.palette.firstElementChild, this.$el.offsetWidth || 280);
+            }
 
             rotator = new Rotator(this.$refs.rotator, {
                 angle: this.value.hue,
