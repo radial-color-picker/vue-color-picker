@@ -309,8 +309,6 @@
         background-color: #ff0000;
         outline: 0;
         cursor: pointer;
-        transition: transform .7s cubic-bezier(0.35, 0, 0.25, 1);
-        will-change: transform;
         overflow: visible;
         border: 6px solid #fff;
         box-shadow: 0 0 0 1px #b2b2b2;
