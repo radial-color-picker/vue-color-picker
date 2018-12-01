@@ -147,20 +147,23 @@
             selectColor() {
                 this.isPressed = true;
 
-                if (!this.isDisabled) {
+                if (this.isPaletteIn) {
                     this.$emit('select', this.value);
                     this.isRippling = true;
+
+                    if (this.variant !== 'persistent')
+                        this.isDisabled = true;
                 } else {
                     this.isPaletteIn = true;
                 }
             },
             togglePicker() {
                 if (this.variant !== 'persistent') {
-                    if (this.isDisabled) {
-                        this.isKnobIn = true;
-                    } else {
+                    if (this.isKnobIn) {
                         this.isDisabled = true;
                         this.isKnobIn = false;
+                    } else {
+                        this.isKnobIn = true;
                     }
                 }
 
