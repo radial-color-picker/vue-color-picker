@@ -16,11 +16,7 @@
             <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'" @transitionend="hidePalette"></div>
         </div>
 
-        <div class="rcp__ripple"
-             :class="{ 'rippling': isRippling }"
-             :style="{ borderColor: color }"
-             @animationend="stopRipple">
-        </div>
+        <div class="rcp__ripple" :class="{ 'rippling': isRippling }" :style="{ borderColor: color }"></div>
 
         <button type="button"
                 class="rcp__selector"
@@ -167,6 +163,7 @@
                     }
                 }
 
+                this.isRippling = false;
                 this.isPressed = false;
             },
             hidePalette() {
@@ -175,9 +172,6 @@
                 } else {
                     this.isPaletteIn = false;
                 }
-            },
-            stopRipple() {
-                this.isRippling = false;
             },
         },
         beforeDestroy() {
