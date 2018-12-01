@@ -37,8 +37,17 @@
     export default {
         name: 'vue-color-picker',
         props: {
-            value: {
-                default: () => ({ hue: 0, saturation: 100, luminosity: 50, alpha: 1 }),
+            hue: {
+                default: 0,
+            },
+            saturation: {
+                default: 100,
+            },
+            luminosity: {
+                default: 50,
+            },
+            alpha: {
+                default: 1,
             },
             step: {
                 default: 2,
@@ -61,16 +70,12 @@
         },
         computed: {
             color() {
-                const { hue, saturation = 100, luminosity = 50, alpha = 1 } = this.value;
-
-                return `hsla(${hue}, ${saturation}%, ${luminosity}%, ${alpha})`;
-            }
+                return `hsla(${this.hue}, ${this.saturation}%, ${this.luminosity}%, ${this.alpha})`;
+            },
         },
         watch: {
-            'value.hue': function(newAngle, oldAngle) {
-                if (newAngle != oldAngle) {
-                    rotator.angle = newAngle;
-                }
+            hue: function(angle) {
+                rotator.angle = angle;
             },
         },
         mounted() {
@@ -85,7 +90,7 @@
             }
 
             rotator = new Rotator(this.$refs.rotator, {
-                angle: this.value.hue,
+                angle: this.hue,
                 onRotate: this.updateColor,
                 onDragStart: () => {
                     this.isDragging = true;
@@ -126,12 +131,7 @@
                 this.updateColor(rotator.angle);
             },
             updateColor(hue) {
-                this.$emit('input', {
-                    hue,
-                    saturation: this.value.saturation || 100,
-                    luminosity: this.value.luminosity || 50,
-                    alpha: this.value.alpha || 1,
-                });
+                this.$emit('change', hue);
             },
             rotateToMouse(ev) {
                 if (this.isPressed || !this.isKnobIn)
@@ -143,7 +143,7 @@
                 this.isPressed = true;
 
                 if (this.isPaletteIn && this.isKnobIn) {
-                    this.$emit('select', this.value);
+                    this.$emit('select', this.hue);
                     this.isRippling = true;
                 } else {
                     this.isPaletteIn = true;
