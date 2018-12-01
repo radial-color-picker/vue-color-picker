@@ -143,7 +143,7 @@
             selectColor() {
                 this.isPressed = true;
 
-                if (this.isPaletteIn) {
+                if (this.isPaletteIn && this.isKnobIn) {
                     this.$emit('select', this.value);
                     this.isRippling = true;
 
@@ -160,6 +160,7 @@
                         this.isKnobIn = false;
                     } else {
                         this.isKnobIn = true;
+                        this.isPaletteIn = true;
                     }
                 }
 
