@@ -5,10 +5,7 @@
          @keyup.enter="selectColor"
          @keydown.up.right.prevent="rotate($event, true)"
          @keydown.down.left.prevent="rotate($event, false)">
-        <div class="rcp__palette"
-             :class="isPaletteIn ? 'in' : 'out'"
-             @transitionend="toggleKnob"
-             ref="palette">
+        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" ref="palette">
             <canvas></canvas>
         </div>
 
@@ -162,6 +159,7 @@
                     if (this.isDisabled) {
                         this.isKnobIn = true;
                     } else {
+                        this.isDisabled = true;
                         this.isKnobIn = false;
                     }
                 }
@@ -169,24 +167,14 @@
                 this.isPressed = false;
             },
             hidePalette() {
-                if (!this.isDisabled) {
-                    this.isPaletteIn = false;
-                } else {
+                if (this.isKnobIn) {
                     this.isDisabled = false;
+                } else {
+                    this.isPaletteIn = false;
                 }
             },
             stopRipple() {
                 this.isRippling = false;
-            },
-            toggleKnob(ev) {
-                // 'transitionend' fires for every transitioned property
-                if (ev.propertyName === 'transform') {
-                    if (this.isDisabled) {
-                        this.isKnobIn = true;
-                    } else {
-                        this.isDisabled = true;
-                    }
-                }
             },
         },
         beforeDestroy() {
