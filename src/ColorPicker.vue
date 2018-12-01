@@ -15,9 +15,8 @@
         <div class="rcp__rotator"
              :style="{ 'pointer-events': isDisabled ? 'none' : null }"
              @dblclick.self="rotateToMouse"
-             ref="rotator"
-             @transitionend="hidePalette">
-            <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'"></div>
+             ref="rotator">
+            <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'" @transitionend="hidePalette"></div>
         </div>
 
         <div class="rcp__ripple"
