@@ -19,7 +19,7 @@
         <div class="rcp__ripple" :class="{ 'rippling': isRippling }" :style="{ borderColor: color }"></div>
 
         <button type="button"
-                class="rcp__selector"
+                class="rcp__well"
                 :class="{ 'pressed': isPressed }"
                 :style="{ backgroundColor: color }"
                 @animationend="togglePicker"
@@ -276,7 +276,7 @@
         transform: scale(0);
     }
 
-    .rcp__selector {
+    .rcp__well {
         position: absolute;
         width: 25%;
         height: 25%;
@@ -293,19 +293,19 @@
         box-shadow: 0 0 0 1px #b2b2b2;
     }
 
-    .rcp__selector::-moz-focus-inner {
+    .rcp__well::-moz-focus-inner {
       border: 0;
     }
 
-    .rcp__selector:hover {
+    .rcp__well:hover {
         box-shadow: 0 0 1px 1px #333;
     }
 
-    .rcp__selector:focus {
+    .rcp__well:focus {
         box-shadow: 0 0 1px 2px #b2b2b2;
     }
 
-    .rcp__selector.pressed {
+    .rcp__well.pressed {
         animation: rcp-beat .4s cubic-bezier(0.35, 0, 0.25, 1) forwards;
     }
 
