@@ -131,7 +131,7 @@
                 this.updateColor(rotator.angle);
             },
             updateColor(hue) {
-                this.$emit('change', hue);
+                this.$emit('input', hue);
             },
             rotateToMouse(ev) {
                 if (this.isPressed || !this.isKnobIn)
@@ -143,7 +143,7 @@
                 this.isPressed = true;
 
                 if (this.isPaletteIn && this.isKnobIn) {
-                    this.$emit('select', this.hue);
+                    this.$emit('change', this.hue);
                     this.isRippling = true;
                 } else {
                     this.isPaletteIn = true;
