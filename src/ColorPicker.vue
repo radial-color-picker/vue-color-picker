@@ -1,7 +1,7 @@
 <template>
-    <div tabindex="0"
+    <div :tabindex="disabled ? -1 : 0"
          class="rcp"
-         :class="{ 'dragging': isDragging }"
+         :class="{ 'dragging': isDragging, 'disabled': disabled }"
          @keyup.enter="selectColor"
          @keydown.up.right.prevent="rotate($event, true)"
          @keydown.down.left.prevent="rotate($event, false)">
@@ -10,7 +10,7 @@
         </div>
 
         <div class="rcp__rotator"
-             :style="{ 'pointer-events': isPressed || !isKnobIn ? 'none' : null }"
+             :style="{ 'pointer-events': disabled || isPressed || !isKnobIn ? 'none' : null }"
              @dblclick.self="rotateToMouse"
              ref="rotator">
             <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'" @transitionend="hidePalette"></div>
@@ -57,6 +57,9 @@
             },
             variant: {
                 default: 'collapsible', // collapsible | persistent
+            },
+            disabled: {
+                default: false,
             },
         },
         data() {
@@ -116,7 +119,7 @@
                 this.updateColor(rotator.angle);
             },
             rotate(ev, isIncrementing) {
-                if (this.isPressed || !this.isKnobIn)
+                if (this.disabled || this.isPressed || !this.isKnobIn)
                     return;
 
                 let multiplier = isIncrementing ? 1 : -1;
@@ -205,6 +208,11 @@
         transform: scale(1.04);
     }
 
+    .rcp.disabled {
+        cursor: not-allowed;
+        transform: scale(0.96);
+    }
+
     .rcp.dragging .rcp__rotator {
         z-index: 1;
     }
@@ -248,6 +256,10 @@
         opacity: 0;
     }
 
+    .disabled .rcp__palette {
+        background-image: radial-gradient(#808080, #fff) !important;
+    }
+
     .rcp__rotator {
         width: 100%;
         height: 100%;
@@ -274,6 +286,11 @@
 
     .rcp__knob.out {
         transform: scale(0);
+    }
+
+    .disabled .rcp__knob {
+        box-shadow: none !important;
+        pointer-events: none;
     }
 
     .rcp__well {
@@ -307,6 +324,11 @@
 
     .rcp__well.pressed {
         animation: rcp-beat .4s cubic-bezier(0.35, 0, 0.25, 1) forwards;
+    }
+
+    .disabled .rcp__well {
+        background-color: #bfbfbf !important;
+        pointer-events: none;
     }
 
     .rcp__ripple {
