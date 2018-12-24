@@ -32,9 +32,8 @@
     import fillColorWheel from '@radial-color-picker/color-wheel';
     import Rotator from '@radial-color-picker/rotator';
 
-    let rotator;
-
     export default {
+        rcp: null,
         name: 'vue-color-picker',
         props: {
             hue: {
@@ -78,7 +77,7 @@
         },
         watch: {
             hue: function(angle) {
-                rotator.angle = angle;
+                this.rcp.angle = angle;
             },
         },
         mounted() {
@@ -92,7 +91,7 @@
                 fillColorWheel(this.$refs.palette.firstElementChild, this.$el.offsetWidth || 280);
             }
 
-            rotator = new Rotator(this.$refs.rotator, {
+            this.rcp = new Rotator(this.$refs.rotator, {
                 angle: this.hue,
                 onRotate: this.updateColor,
                 onDragStart: () => {
@@ -111,12 +110,12 @@
                 ev.preventDefault();
 
                 if (ev.deltaY > 0) {
-                    rotator.angle += this.step;
+                    this.rcp.angle += this.step;
                 } else {
-                    rotator.angle -= this.step;
+                    this.rcp.angle -= this.step;
                 }
 
-                this.updateColor(rotator.angle);
+                this.updateColor(this.rcp.angle);
             },
             rotate(ev, isIncrementing) {
                 if (this.disabled || this.isPressed || !this.isKnobIn)
@@ -130,8 +129,8 @@
                     multiplier *= 3;
                 }
 
-                rotator.angle += this.step * multiplier;
-                this.updateColor(rotator.angle);
+                this.rcp.angle += this.step * multiplier;
+                this.updateColor(this.rcp.angle);
             },
             updateColor(hue) {
                 this.$emit('input', hue);
@@ -140,7 +139,7 @@
                 if (this.isPressed || !this.isKnobIn)
                     return;
 
-                rotator.setAngleFromEvent(ev);
+                this.rcp.setAngleFromEvent(ev);
             },
             selectColor() {
                 this.isPressed = true;
@@ -172,8 +171,8 @@
             },
         },
         beforeDestroy() {
-            rotator.destroy();
-            rotator = null;
+            this.rcp.destroy();
+            this.rcp = null;
         },
     };
 </script>
