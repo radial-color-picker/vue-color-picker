@@ -87,6 +87,7 @@
 
             this.$refs.palette.style.backgroundImage = 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)';
 
+            /* istanbul ignore else */
             if (!this.$refs.palette.style.backgroundImage) {
                 fillColorWheel(this.$refs.palette.firstElementChild, this.$el.offsetWidth || 280);
             }
