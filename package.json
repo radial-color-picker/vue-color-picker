@@ -11,6 +11,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "test": "vue-cli-service test:unit",
+    "ci": "vue-cli-service test:unit -i --ci -b",
     "build": "bili"
   },
   "dependencies": {
