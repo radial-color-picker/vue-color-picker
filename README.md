@@ -190,6 +190,11 @@ export default {
 </details>
 
 <details>
+    <summary>What's the browser support?</summary>
+    <p>The <b>last two versions of major browsers</b> (Chrome, Safari, Firefox, Edge) are supported though it will probably work in other browsers, webviews and runtimes as well.</p>
+</details>
+
+<details>
     <summary>Why does Google Chrome throw a <code>[Violation] Added non-passive event listener to a scroll-blocking 'touchmove' event.</code> warning in the console?</summary>
     <p><code>touchmove</code> is used with <code>preventDefault()</code> to block scrolling on mobile while rotating the color knob. Even the <a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#removing-the-need-to-cancel-events">Web Incubator Community Group</a> acknowledges that in some cases a passive event listener can't be used.</p>
 </details>
@@ -201,7 +206,6 @@ export default {
 <br>
 
 [Back To Top](#quick-links)
-
 
 ## Change log
 
