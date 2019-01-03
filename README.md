@@ -12,6 +12,9 @@
     <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker">
         <img src="https://img.shields.io/npm/l/@radial-color-picker/vue-color-picker.svg" alt="License">
     </a>
+    <a href="https://circleci.com/gh/radial-color-picker/vue-color-picker/tree/canary">
+        <img src="https://circleci.com/gh/radial-color-picker/vue-color-picker/tree/canary.svg?style=shield" alt="CircleCI">
+    </a>
 </p>
 
 ## Introduction
