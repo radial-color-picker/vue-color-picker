@@ -48,6 +48,7 @@ The right color picker, but not the framework you're looking for?
 * [Options](#options)
 * [FAQ](#first-asked-questions)
 * [Change log](#change-log)
+* [Migration from v1](#migration-from-v1)
 * [Contributing](#contributing)
 * [Credits](#credits)
 * [License](#license)
@@ -68,7 +69,7 @@ And in your app:
 
 ```vue
 <template>
-    <color-picker v-model="color"></color-picker>
+    <color-picker v-bind="color" @input="onInput"></color-picker>
 </template>
 
 <script>
@@ -85,6 +86,11 @@ export default {
                 alpha: 1
             },
         };
+    },
+    methods: {
+        onInput(hue) {
+            this.color.hue = hue;
+        },
     },
 };
 </script>
@@ -107,7 +113,7 @@ You can also use the minified sources directly:
     <link href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css" rel="stylesheet">
 </head>
 <body>
-    <color-picker v-model="color"></color-picker>
+    <color-picker v-bind="color" @input="onInput"></color-picker>
 
     <script>
         var ColorPicker = window.VueColorPicker;
@@ -124,6 +130,11 @@ You can also use the minified sources directly:
                     luminosity: 50,
                     alpha: 1
                 }
+            },
+            methods: {
+                onInput: function(hue) {
+                    this.color.hue = hue;
+                }
             }
         });
     </script>
@@ -133,27 +144,91 @@ You can also use the minified sources directly:
 [Back To Top](#quick-links)
 
 ## Options
-`<color-picker>` component has several props and events, of which only `v-model` is required. [See the example](./examples/with-config) which uses all options.
+`<color-picker>` component has several props and events. [See the "with-config" example](./examples/with-config) which uses all options.
 
 ### Props
 
-| Options       | Type     | Default/Description |
-|---------------|----------|---------------------|
-| `v-model`    | Object | Object for initializing/changing the color of the picker. Defaults to red: <br> `{hue: 0, saturation: 100, luminosity: 50, alpha: 1}`. |
-| `v-bind:mouse-scroll` | Boolean | Use wheel (scroll) event to rotate. Defaults to false. |
-| `v-bind:step` | Number | Amount of degrees to rotate the picker with keyboard and/or wheel. <br> Defaults to 2 degrees. |
+| Name         | Type    | Default       | Description |
+|--------------|---------|---------------|-------------|
+| hue          | Number  | `0`           | A number between `0-359`. **Required**. |
+| saturation   | Number  | `100`         | A number between `0-100` |
+| luminosity   | Number  | `50`          | A number between `0-100` |
+| alpha        | Number  | `1`           | A number between `0-1` |
+| disabled     | Boolean | `false`       | A boolean to disable UI interactions |
+| variant      | String  | `collapsible` | Use `persistent` to prevent collapsing/closing |
+| mouse-scroll | Boolean | `false`       | Use wheel (scroll) event to rotate. |
+| step         | Number  | `2`           | Amount of degrees to rotate the picker with keyboard and/or wheel. |
 
 ### Events
 
-| Options       | Type     | Description |
-|---------------|----------|-------------|
-| `v-on:select` | Function | Callback which is triggered when a color is selected. |
-| `v-on:input`  | Function | A function to invoke when color is changed (i.e. on rotation). |
+| Name     | Description |
+|----------|-------------|
+| `input`  | Emitted every time the color changes (i.e. rotation of the wheel). |
+| `change` | Emitted when the user dismisses the color picker (i.e. interacting with the middle color well). |
 
-Example:
-```vue
+[Back To Top](#quick-links)
+
+## First Asked Questions
+
+<details>
+    <summary>What's the browser support?</summary>
+    <p>The <b>last two versions of major browsers</b> (Chrome, Safari, Firefox, Edge) are supported though it will probably work in other browsers, webviews and runtimes as well.</p>
+</details>
+
+<details>
+    <summary>How to select other shades of the solid colors?</summary>
+    <p>We suggest to add a custom slider for saturation and luminosity or use <code>&lt;input type="range"&gt;</code>.</p>
+</details>
+
+<details>
+    <summary>Why HSL?</summary>
+    <p>Regular HEX color format is limitting (no alpha channel) and browser support for HSLA is great. It's also sometimes more intuitive to work with HSLA notation since hue and angles map 1:1. Primary red color is at 0º, primary green is at 120º and gold for example sits somewhere in between. When a user rotates the wheel the hue is updated respectively. The saturation, luminosity and alpha props are <b>display-only</b> values - you can only change the hue.
+    </p>
+    <blockquote>
+        The value of an <code>&lt;input&gt;</code> element of type <code>"color"</code> is a 7-character string specifying an RGB color in hexadecimal format. In addition, colors with an alpha channel are not supported; specifying a color in 9-character hexadecimal notation (e.g. <code>#009900aa</code>) will also result in the color being set to <code>"#000000"</code>.
+        <p><i><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color#Value">Setting The Value of input of type color - MDN</a></i></p>
+    </blockquote>
+</details>
+
+<details>
+    <summary>Why exactly <i><code>input</code></i>/<i><code>change</code></i> events?</summary>
+    <p>
+        Event names are based on the HTML <code>&lt;input type="color"&gt;</code>
+    </p>
+    <blockquote>
+        As is the case with other <code>&lt;input&gt;</code> types, there are two events that can be used to detect changes to the color value: input and change. input is fired on the <code>&lt;input&gt;</code> element every time the color changes. The change event is fired when the user dismisses the color picker.
+        <p><i><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color#Tracking_color_changes">Tracking color change of input of type color - MDN</a></i></p>
+    </blockquote>
+</details>
+
+<details>
+    <summary>Why does Google Chrome throw a <code>[Violation] Added non-passive event listener to a scroll-blocking 'touchmove' event.</code> warning in the console?</summary>
+    <p><code>touchmove</code> is used with <code>preventDefault()</code> to block scrolling on mobile while rotating the color knob. Even the <a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#removing-the-need-to-cancel-events">Web Incubator Community Group</a> acknowledges that in some cases a passive event listener can't be used.</p>
+</details>
+
+<details>
+    <summary>Why is the scroll-to-rotate functionality not turned on by default?</summary>
+    <p>It's another non-passive event that could potentially introduce jank on scroll. To rotate the color knob, but stay on the same scrolling position the <code>wheel</code> event is blocked with <code>preventDefault()</code>. Thus, if you really want this feature for your users you'll have to explicitly add <code>:mouse-scroll="true"</code>.</p>
+</details>
+
+<br>
+
+[Back To Top](#quick-links)
+
+## Change log
+
+Please see [Releases][link-releases] for more information on what has changed recently.
+
+[Back To Top](#quick-links)
+
+## Migration from v1
+
+Straight forward - `v-model` becomes `v-bind` and you need to add the `@input` event (which was previously added by the `v-model` directive implicitly).
+
+```diff
 <template>
-    <color-picker v-model="color" @select="onColorSelect"></color-picker>
+-   <color-picker v-model="color"></color-picker>
++   <color-picker v-bind="color" @input="onInput"></color-picker>
 </template>
 
 <script>
@@ -168,48 +243,16 @@ export default {
                 saturation: 100,
                 luminosity: 50,
                 alpha: 1
-            }
-        }
+            },
+        };
     },
-    methods: {
-        onColorSelect() {
-            // do something with this.color
-        }
-    }
++   methods: {
++       onInput: function(hue) {
++           this.color.hue = hue;
++       }
++   }
 };
-</script>
 ```
-
-[Back To Top](#quick-links)
-
-## First Asked Questions
-
-<details>
-    <summary>How to select other shades of the solid colors?</summary>
-    <p>We suggest to add a custom slider for saturation and luminosity or use <code>&lt;input type="range"&gt;</code>.</p>
-</details>
-
-<details>
-    <summary>What's the browser support?</summary>
-    <p>The <b>last two versions of major browsers</b> (Chrome, Safari, Firefox, Edge) are supported though it will probably work in other browsers, webviews and runtimes as well.</p>
-</details>
-
-<details>
-    <summary>Why does Google Chrome throw a <code>[Violation] Added non-passive event listener to a scroll-blocking 'touchmove' event.</code> warning in the console?</summary>
-    <p><code>touchmove</code> is used with <code>preventDefault()</code> to block scrolling on mobile while rotating the color knob. Even the <a href="https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#removing-the-need-to-cancel-events">Web Incubator Community Group</a> acknowledges that in some cases a passive event listener can't be used.</p>
-</details>
-
-<details>
-    <summary>Why is the scroll-to-rotate functionality not turned on by default?</summary>
-    <p>It's another non-passive event that could potentially introduce jank on scroll. To rotate the color knob, but stay on the same scrolling position the <code>wheel</code> event is blocked with <code>preventDefault()</code>. Thus, if you really want this feature for your users you'll have to explicitly add <code>:mouse-scroll="true"</code>.</p>
-</details>
-<br>
-
-[Back To Top](#quick-links)
-
-## Change log
-
-Please see [Releases][link-releases] for more information on what has changed recently.
 
 [Back To Top](#quick-links)
 
@@ -226,7 +269,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 - [Rosen Kanev][link-author]
 - [All Contributors][link-contributors]
 
-This component is based on the great work that was done for the AngularJs color picker [angular-radial-color-picker][link-angular-radial-color-picker].
+This component is based on the great work that was done for the [AngularJs color picker][link-angularjs-color-picker].
 
 [Back To Top](#quick-links)
 
