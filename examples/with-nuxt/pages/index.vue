@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <color-picker v-model="color" />
+        <color-picker v-bind="color" @input="onInput" />
         <h1>{{ msg }}</h1>
         <pre>{{ color }}</pre>
     </div>
@@ -10,25 +10,29 @@
 import ColorPicker from '@radial-color-picker/vue-color-picker';
 
 export default {
-    name: 'app',
-    components: { ColorPicker },
+    components: {
+        ColorPicker
+    },
     data() {
-        return {
-            msg: 'Welcome to Your Vue.js App',
-            color: {
-                hue: 50,
-                saturation: 100,
-                luminosity: 50,
-                alpha: 1,
-            },
-        };
+      return {
+          msg: 'Welcome to Your Vue.js App',
+          color: {
+            hue: 50,
+            saturation: 100,
+            luminosity: 50,
+            alpha: 1,
+          }
+      };
+    },
+    methods: {
+        onInput(hue) {
+            this.hue = hue;
+        },
     },
 };
 </script>
 
-<style lang="scss">
-@import "node_modules/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min";
-
+<style>
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

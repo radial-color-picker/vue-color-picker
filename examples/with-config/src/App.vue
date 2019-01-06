@@ -1,8 +1,18 @@
 <template>
     <div id="app">
-        <color-picker v-model="color" :mouse-scroll="useScroll" :step="step" />
+        <color-picker
+            :hue="hue"
+            :saturation="saturation"
+            :luminosity="luminosity"
+            :alpha="alpha"
+            :mouse-scroll="useScroll"
+            :step="step"
+            :variant="step"
+            @input="onInput"
+            @change="onChange"
+        />
         <h1>{{ msg }}</h1>
-        <pre>{{ color }}</pre>
+        <pre>{{ { hue, saturation, luminosity, alpha } }}</pre>
     </div>
 </template>
 
@@ -15,20 +25,41 @@ export default {
     data() {
         return {
             msg: 'Welcome to Your Vue.js App',
-            color: {
-                hue: 50,
-                saturation: 100,
-                luminosity: 50,
-                alpha: 1,
-            },
-            useScroll: true, // change color with mouse scroll
-            step: 5, // increase scroll (and keyboard) step size
+
+            // configure the color
+            hue: 50,
+            saturation: 100,
+            luminosity: 50,
+            alpha: 1,
+
+            // increase scroll (and keyboard) step size
+            step: 5,
+
+            // change color with mouse scroll
+            useScroll: true,
+
+            // 'persistent' for non-collapsing picker
+            variant: 'collapsible',
+
+            // support for disabling UI interactions too!
+            disabled: false,
         };
+    },
+    methods: {
+        // Emitted every time the color changes (i.e. rotation of the wheel).
+        onInput(hue) {
+            this.hue = hue;
+        },
+
+        // Emitted when the user dismisses the color picker (i.e. interacting with the middle color well).
+        onChange(hue) {
+            console.log('Color picker was dismissed', hue);
+        },
     },
 };
 </script>
 
-<style>
+<style lang="scss">
 @import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
 #app {

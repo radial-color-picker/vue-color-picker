@@ -100,7 +100,7 @@ export default {
 </style>
 ```
 
-Depending on your build tool of choice (webpack, browserify, rollup) you may have to setup the appropriate loaders or plugins. Checkout the [examples](./examples) folder. There's an example with browserify and with webpack. If you're using `vue-cli` or `poi` you don't have to do anything else - these tools come preconfigured and support CSS/SCSS import out of the box.
+Depending on your build tool of choice you may have to setup the appropriate loaders or plugins. Checkout the [examples](./examples) folder. There's an example with Vue CLI 3 and Nuxt.js. If you're using `vue-cli` or `poi` you don't have to do anything else - these tools come preconfigured and support CSS/SCSS import out of the box.
 
 #### UMD version
 
