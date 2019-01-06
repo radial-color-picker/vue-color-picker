@@ -1009,9 +1009,9 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-2.0.0.tgz#86bce8c853c30f17f04d226757f652303abb2d67"
 
-"@radial-color-picker/rotator@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-2.0.0.tgz#7bf3634e71a8cbc98d28fe02a8ea9b66b198d378"
+"@radial-color-picker/rotator@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-2.0.1.tgz#be72012800c716b09cf7a0edcbe496a3d1006fae"
 
 "@types/estree@0.0.39":
   version "0.0.39"
