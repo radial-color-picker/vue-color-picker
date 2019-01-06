@@ -13,7 +13,7 @@
         <img src="https://img.shields.io/npm/l/@radial-color-picker/vue-color-picker.svg" alt="License">
     </a>
     <a href="https://circleci.com/gh/radial-color-picker/vue-color-picker">
-        <img src="https://circleci.com/gh/radial-color-picker/vue-color-picker.svg?style=svg?style=shield" alt="CircleCI">
+        <img src="https://circleci.com/gh/radial-color-picker/vue-color-picker.svg?style=shield" alt="CircleCI">
     </a>
 </p>
 
