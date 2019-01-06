@@ -36,11 +36,6 @@
   "peerDependencies": {
     "vue": "^2.5.16"
   },
-  "browserslist": [
-    ">0.75%",
-    "not ie 11",
-    "not op_mini all"
-  ],
   "homepage": "https://github.com/radial-color-picker/vue-color-picker#readme",
   "repository": "git@github.com:radial-color-picker/vue-color-picker.git",
   "author": "Rosen Kanev <rkunev@gmail.com>",
