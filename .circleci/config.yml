@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     branches:
-      only: "canary"
+      only: "master"
     docker:
       - image: circleci/node:8
         environment:
