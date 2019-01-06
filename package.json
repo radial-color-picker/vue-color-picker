@@ -10,9 +10,10 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve --open",
+    "build": "bili",
     "test": "vue-cli-service test:unit",
     "ci": "vue-cli-service test:unit -i --ci -b",
-    "build": "bili"
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@radial-color-picker/color-wheel": "2.0.0",
