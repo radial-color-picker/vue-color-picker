@@ -44,7 +44,7 @@
 </head>
 <body>
     <div id="app">
-        <color-picker v-model="color"></color-picker>
+        <color-picker v-bind="color" @input="onInput"></color-picker>
         <h1>{{ msg }}</h1>
         <pre>{{ color }}</pre>
     </div>
@@ -66,6 +66,11 @@
                     alpha: 1,
                 },
             },
+            methods: {
+                onInput: function(hue) {
+                    this.color.hue = hue;
+                }
+            }
         });
     </script>
 </body>

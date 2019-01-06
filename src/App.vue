@@ -1,5 +1,5 @@
 <template>
-    <color-picker v-model="color" />
+    <color-picker v-bind="color" @input="onInput" />
 </template>
 
 <script>
@@ -16,6 +16,11 @@
                     alpha: 1,
                 },
             };
+        },
+        methods: {
+            onInput(hue) {
+                this.color.hue = hue;
+            },
         },
     };
 </script>

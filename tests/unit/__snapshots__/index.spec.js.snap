@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Init renders correctly 1`] = `
+<div
+  class="rcp"
+  tabindex="0"
+>
+  <div
+    class="rcp__palette in"
+  >
+    <canvas />
+  </div>
+   
+  <div
+    class="rcp__rotator"
+    style="transform: rotate(0deg);"
+  >
+    <div
+      class="rcp__knob in"
+    />
+  </div>
+   
+  <div
+    class="rcp__ripple"
+  />
+   
+  <button
+    class="rcp__well"
+    type="button"
+  />
+</div>
+`;
