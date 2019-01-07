@@ -85,11 +85,13 @@
                 this.$refs.rotator.addEventListener('wheel', this.onScroll);
             }
 
-            this.$refs.palette.style.backgroundImage = 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)';
+            const isConicGradientSupported = getComputedStyle(this.$refs.palette)
+                .backgroundImage
+                .includes('conic');
 
             // ignore conic-gradient support & polyfill
             /* istanbul ignore else */
-            if (!this.$refs.palette.style.backgroundImage) {
+            if (!isConicGradientSupported) {
                 fillColorWheel(this.$refs.palette.firstElementChild, this.$el.offsetWidth || 280);
             }
 
@@ -227,6 +229,7 @@
         width: 100%;
         height: 100%;
         background-size: 100% 100%;
+        background-image: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
         border-radius: 50%;
         overflow: hidden;
         will-change: transform, opacity;
