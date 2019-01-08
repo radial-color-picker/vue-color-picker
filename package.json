@@ -1,6 +1,6 @@
 {
   "name": "@radial-color-picker/vue-color-picker",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Radial Color Picker - Vue",
   "main": "dist/vue-color-picker.cjs.js",
   "browser": "dist/vue-color-picker.min.js",
