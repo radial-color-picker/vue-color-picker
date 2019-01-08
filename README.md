@@ -22,7 +22,7 @@
 Great UX starts with two basic principles - ease of use and simplicity. Selecting a color should be as easy as moving a slider, clicking a checkbox or pressing a key just like other basic form elements behave.
 
 This is a flexible and minimalistic color picker. Developed with mobile devices and keyboard usage in mind. Key features:
-* Small size - 3.4 KB gzipped (JS and CSS combined)
+* Small size - 3.6 KB gzipped (JS and CSS combined)
 * Supports touch devices
 * Optimized animations
 * Ease of use
