@@ -43,9 +43,10 @@
   "keywords": [
     "vue",
     "radial color picker",
-    "color picker"
+    "color picker",
+    "hue picker"
   ],
   "contributors": [
     "Dennis Dierkes <dierkes@smartsquare.de>"
-  ],
+  ]
 }
