@@ -13,7 +13,7 @@ exports[`Init renders correctly 1`] = `
    
   <div
     class="rcp__rotator"
-    style="will-change: transform; transform: rotate(0deg);"
+    style="transform: rotate(0deg);"
   >
     <div
       class="rcp__knob in"
@@ -22,12 +22,10 @@ exports[`Init renders correctly 1`] = `
    
   <div
     class="rcp__ripple"
-    style="border-color: hsla(0, 100%, 50%, 1);"
   />
    
   <button
     class="rcp__well"
-    style="background-color: hsl(0, 100%, 50%);"
     type="button"
   />
 </div>
