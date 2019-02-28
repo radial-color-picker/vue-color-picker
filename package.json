@@ -44,5 +44,8 @@
     "vue",
     "radial color picker",
     "color picker"
-  ]
+  ],
+  "contributors": [
+    "Dennis Dierkes <dierkes@smartsquare.de>"
+  ],
 }

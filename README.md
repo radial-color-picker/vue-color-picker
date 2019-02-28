@@ -268,6 +268,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT
 ## Credits
 
 - [Rosen Kanev][link-author]
+- [Dennis Dierkes](https://github.com/deen13)
 - [All Contributors][link-contributors]
 
 This component is based on the great work that was done for the [AngularJs color picker][link-angularjs-color-picker].
