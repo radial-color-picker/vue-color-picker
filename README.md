@@ -158,7 +158,7 @@ You can also use the minified sources directly:
 | variant      | String  | `collapsible` | Use `persistent` to prevent collapsing/closing |
 | mouse-scroll | Boolean | `false`       | Use wheel (scroll) event to rotate. |
 | step         | Number  | `2`           | Amount of degrees to rotate the picker with keyboard and/or wheel. |
-| collapsed    | Boolean | `false`       | Hides the palette initially |
+| initiallyCollapsed | Boolean | `false` | Hides the palette initially |
 
 ### Events
 

@@ -1,8 +1,8 @@
-import {shallowMount} from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import ColorPicker from '@/src/ColorPicker.vue';
+
 // canvas support in JSDom is weak and throws an error so the dependency is mocked
 import fillColorWheel from '@radial-color-picker/color-wheel';
-
 jest.mock('@radial-color-picker/color-wheel');
 
 describe('Init', () => {
@@ -34,6 +34,28 @@ describe('Init', () => {
         el.find('.rcp__rotator').trigger('wheel');
 
         expect(onScrollStub).toHaveBeenCalled();
+    });
+
+    it('has conflicting properties if collapsed is set to true and variant is set to persistent', () => {
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                initiallyCollapsed: true,
+                variant: 'persistent',
+            },
+        });
+
+        expect(el.vm.hasConflictingProperties()).toBe(true);
+    });
+
+    it('has no conlicts if collapsed is set to true and variant is set to collapsible', () => {
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                initiallyCollapsed: true,
+                variant: 'collapsible',
+            },
+        });
+
+        expect(el.vm.hasConflictingProperties()).toBe(false);
     });
 
     it('setups a fallback to canvas when `conic-gradient` CSS is not supported', () => {
@@ -78,28 +100,6 @@ describe('Core Methods', () => {
         el.vm.selectColor();
 
         expect(el.emitted('change')[0]).toEqual([30]);
-    });
-
-    it('has conflicting properties if collapsed is set to true and variant is set to persistent', () => {
-        const el = shallowMount(ColorPicker, {
-            propsData: {
-                initiallyCollapsed: true,
-                variant: 'persistent'
-            }
-        });
-
-        expect(el.vm.hasConflictingProperties()).toEqual(true);
-    });
-
-    it('has no conlicts if collapsed is set to true and variant is set to collapsible', () => {
-        const el = shallowMount(ColorPicker, {
-            propsData: {
-                initiallyCollapsed: true,
-                variant: 'collapsible'
-            }
-        });
-
-        expect(el.vm.hasConflictingProperties()).toEqual(false);
     });
 
     it('shows the palette when selectColor is called and the picker is closed', () => {
@@ -478,7 +478,7 @@ describe('Reactive Changes', () => {
             },
         });
 
-        el.setProps({hue: 60});
+        el.setProps({ hue: 60 });
 
         expect(el.vm.rcp.angle).toBe(60);
     });
@@ -493,7 +493,7 @@ describe('Reactive Changes', () => {
             },
         });
 
-        el.setProps({hue: 60});
+        el.setProps({ hue: 60 });
 
         expect(el.vm.hue).toBe(60);
         expect(el.vm.saturation).toBe(100);
