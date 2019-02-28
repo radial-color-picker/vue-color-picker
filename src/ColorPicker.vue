@@ -60,14 +60,14 @@
             disabled: {
                 default: false,
             },
-            collapsed: {
+            initiallyCollapsed: {
                 default: false
             }
         },
         data() {
             return {
-                isPaletteIn: !this.collapsed,
-                isKnobIn: !this.collapsed,
+                isPaletteIn: !this.initiallyCollapsed,
+                isKnobIn: !this.initiallyCollapsed,
                 isPressed: false,
                 isRippling: false,
                 isDragging: false,
