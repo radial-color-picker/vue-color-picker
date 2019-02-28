@@ -77,6 +77,9 @@
             color() {
                 return `hsla(${this.hue}, ${this.saturation}%, ${this.luminosity}%, ${this.alpha})`;
             },
+            propertiesAreConflicting() {
+                return this.initiallyCollapsed && this.variant === "persistent"
+            }
         },
         watch: {
             hue: function(angle) {
@@ -86,6 +89,10 @@
         mounted() {
             if (this.mouseScroll) {
                 this.$refs.rotator.addEventListener('wheel', this.onScroll);
+            }
+
+            if (this.propertiesAreConflicting) {
+                console.warn(`Incorrect config: using variant="persistent" and :initiallyCollapsed="true" at the same time is not supported.`)
             }
 
             const isConicGradientSupported = getComputedStyle(this.$refs.palette)
