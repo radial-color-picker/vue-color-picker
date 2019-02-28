@@ -60,11 +60,14 @@
             disabled: {
                 default: false,
             },
+            initiallyCollapsed: {
+                default: false
+            }
         },
         data() {
             return {
-                isPaletteIn: true,
-                isKnobIn: true,
+                isPaletteIn: !this.initiallyCollapsed,
+                isKnobIn: !this.initiallyCollapsed,
                 isPressed: false,
                 isRippling: false,
                 isDragging: false,
@@ -73,16 +76,20 @@
         computed: {
             color() {
                 return `hsla(${this.hue}, ${this.saturation}%, ${this.luminosity}%, ${this.alpha})`;
-            },
+            }
         },
         watch: {
-            hue: function(angle) {
+            hue: function (angle) {
                 this.rcp.angle = angle;
             },
         },
         mounted() {
             if (this.mouseScroll) {
                 this.$refs.rotator.addEventListener('wheel', this.onScroll);
+            }
+
+            if (this.hasConflictingProperties()) {
+                console.warn(`Incorrect config: using variant="persistent" and :initiallyCollapsed="true" at the same time is not supported.`)
             }
 
             const isConicGradientSupported = getComputedStyle(this.$refs.palette)
@@ -107,6 +114,9 @@
             });
         },
         methods: {
+            hasConflictingProperties() {
+                return this.initiallyCollapsed && this.variant === "persistent"
+            },
             onScroll(ev) {
                 if (this.isPressed || !this.isKnobIn)
                     return;
@@ -234,7 +244,7 @@
         overflow: hidden;
         will-change: transform, opacity;
         transition: transform .5s cubic-bezier(0.35, 0, 0.25, 1),
-                    opacity .5s cubic-bezier(0.35, 0, 0.25, 1);
+        opacity .5s cubic-bezier(0.35, 0, 0.25, 1);
     }
 
     .rcp__palette::before {
@@ -315,7 +325,7 @@
     }
 
     .rcp__well::-moz-focus-inner {
-      border: 0;
+        border: 0;
     }
 
     .rcp__well:hover {
@@ -353,8 +363,13 @@
     }
 
     @keyframes rcp-ripple {
-        0%   { transform: scale(1); opacity: .3; }
-        50%  { opacity: .1; }
+        0% {
+            transform: scale(1);
+            opacity: .3;
+        }
+        50% {
+            opacity: .1;
+        }
         100% {
             opacity: 0;
             border-width: 0;
@@ -363,9 +378,17 @@
     }
 
     @keyframes rcp-beat {
-        0%   { transform: scale(1); }
-        25%  { transform: scale(0.8); }
-        50%  { transform: scale(1); }
-        100% { transform: scale(1); }
+        0% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale(0.8);
+        }
+        50% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1);
+        }
     }
 </style>
