@@ -44,7 +44,7 @@
     "vue-template-compiler": "2.5.21"
   },
   "peerDependencies": {
-    "vue": "^2.5.16"
+    "vue": "^2.5.21"
   },
   "contributors": [
     "Dennis Dierkes <dierkes@smartsquare.de>"
