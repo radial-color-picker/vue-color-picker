@@ -36,28 +36,6 @@ describe('Init', () => {
         expect(onScrollStub).toHaveBeenCalled();
     });
 
-    it('has conflicting properties if collapsed is set to true and variant is set to persistent', () => {
-        const el = shallowMount(ColorPicker, {
-            propsData: {
-                initiallyCollapsed: true,
-                variant: 'persistent',
-            },
-        });
-
-        expect(el.vm.hasConflictingProperties()).toBe(true);
-    });
-
-    it('has no conlicts if collapsed is set to true and variant is set to collapsible', () => {
-        const el = shallowMount(ColorPicker, {
-            propsData: {
-                initiallyCollapsed: true,
-                variant: 'collapsible',
-            },
-        });
-
-        expect(el.vm.hasConflictingProperties()).toBe(false);
-    });
-
     it('setups a fallback to canvas when `conic-gradient` CSS is not supported', () => {
         const el = shallowMount(ColorPicker);
         const isConicGradientSupported = el.vm.$refs.palette.style.backgroundImage.length > 0;

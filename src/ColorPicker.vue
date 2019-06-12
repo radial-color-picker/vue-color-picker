@@ -93,7 +93,9 @@ export default {
             this.$refs.rotator.addEventListener('wheel', this.onScroll);
         }
 
-        if (this.hasConflictingProperties()) {
+        // ignore testing code that will be removed by dead code elimination for production
+        /* istanbul ignore next */
+        if (process.env.NODE_ENV === 'development' && this.initiallyCollapsed && this.variant === 'persistent') {
             console.warn(
                 `Incorrect config: using variant="persistent" and :initiallyCollapsed="true" at the same time is not supported.`
             );
@@ -119,9 +121,6 @@ export default {
         });
     },
     methods: {
-        hasConflictingProperties() {
-            return this.initiallyCollapsed && this.variant === 'persistent';
-        },
         onScroll(ev) {
             if (this.isPressed || !this.isKnobIn) return;
 

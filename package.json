@@ -12,7 +12,7 @@
     "prepublishOnly": "yarn build"
   },
   "main": "dist/vue-color-picker.cjs.js",
-  "browser": "dist/vue-color-picker.min.js",
+  "module": "dist/vue-color-picker.esm.js",
   "unpkg": "dist/vue-color-picker.min.js",
   "files": [
     "dist"
@@ -48,6 +48,7 @@
     "rollup-plugin-commonjs": "10.0.0",
     "rollup-plugin-node-resolve": "5.0.1",
     "rollup-plugin-postcss": "2.0.3",
+    "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-terser": "5.0.0",
     "rollup-plugin-vue": "5.0.0",
     "vue": "2.5.21",

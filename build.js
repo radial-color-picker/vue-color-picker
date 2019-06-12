@@ -7,6 +7,7 @@ const { log, logWithSpinner, stopSpinner, clearConsole, done } = require('@vue/c
 const { rollup } = require('rollup');
 const vue = require('rollup-plugin-vue');
 const babel = require('rollup-plugin-babel');
+const replace = require('rollup-plugin-replace');
 const cjs = require('rollup-plugin-commonjs');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const postcss = require('rollup-plugin-postcss');
@@ -63,6 +64,14 @@ const build = async ({ format, minify = false }) => {
         input: './src/ColorPicker.vue',
         external: ['vue'],
         plugins: [
+            // Replace env variable with 'production' for umd.min.js and 'development' for 'umd.js'
+            // Leave the process.env.NODE_ENV in CommonJS and ESM builds which are exclusively used only in JS bundlers like Webpack & Rollup
+            format === 'umd' &&
+                replace({
+                    'process.env.NODE_ENV': JSON.stringify(
+                        process.env.NODE_ENV || minify ? 'production' : 'development'
+                    ),
+                }),
             cjs(),
             nodeResolve(),
             postcss({
