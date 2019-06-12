@@ -2,19 +2,21 @@
   "name": "@radial-color-picker/vue-color-picker",
   "version": "2.1.0",
   "description": "Radial Color Picker - Vue",
+  "author": "Rosen Kanev <rkunev@gmail.com>",
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "bili",
+    "test": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "ci": "vue-cli-service test:unit -i --ci -b",
+    "prepublishOnly": "yarn build"
+  },
   "main": "dist/vue-color-picker.cjs.js",
   "browser": "dist/vue-color-picker.min.js",
   "unpkg": "dist/vue-color-picker.min.js",
   "files": [
     "dist"
   ],
-  "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build": "bili",
-    "test": "vue-cli-service test:unit",
-    "ci": "vue-cli-service test:unit -i --ci -b",
-    "prepublishOnly": "yarn build"
-  },
   "dependencies": {
     "@radial-color-picker/color-wheel": "2.0.0",
     "@radial-color-picker/rotator": "2.0.1"
@@ -23,12 +25,20 @@
     "@babel/core": "7.2.2",
     "@babel/preset-env": "7.2.3",
     "@vue/cli-plugin-babel": "3.2.2",
+    "@vue/cli-plugin-eslint": "3.8.0",
     "@vue/cli-plugin-unit-jest": "3.2.3",
     "@vue/cli-service": "3.2.3",
+    "@vue/eslint-config-prettier": "4.0.1",
     "@vue/test-utils": "1.0.0-beta.28",
     "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
     "bili": "3.4.2",
+    "eslint": "5.16.0",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-vue": "5.0.0",
+    "lint-staged": "8.1.5",
+    "prettier": "1.18.2",
     "rollup-plugin-vue": "4.3.2",
     "vue": "2.5.21",
     "vue-template-compiler": "2.5.21"
@@ -36,17 +46,25 @@
   "peerDependencies": {
     "vue": "^2.5.16"
   },
+  "contributors": [
+    "Dennis Dierkes <dierkes@smartsquare.de>"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
   "homepage": "https://github.com/radial-color-picker/vue-color-picker#readme",
-  "repository": "git@github.com:radial-color-picker/vue-color-picker.git",
-  "author": "Rosen Kanev <rkunev@gmail.com>",
-  "license": "MIT",
   "keywords": [
     "vue",
     "radial color picker",
     "color picker",
     "hue picker"
   ],
-  "contributors": [
-    "Dennis Dierkes <dierkes@smartsquare.de>"
-  ]
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "repository": "git@github.com:radial-color-picker/vue-color-picker.git"
 }
