@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker">
-        <img src="https://img.shields.io/npm/dt/@radial-color-picker/vue-color-picker.svg" alt="Downloads">
+        <img src="https://img.shields.io/npm/dm/@radial-color-picker/vue-color-picker.svg" alt="Downloads">
     </a>
     <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker">
         <img src="https://img.shields.io/npm/v/@radial-color-picker/vue-color-picker.svg" alt="Version">
