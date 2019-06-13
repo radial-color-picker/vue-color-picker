@@ -15,6 +15,9 @@
     <a href="https://circleci.com/gh/radial-color-picker/vue-color-picker">
         <img src="https://circleci.com/gh/radial-color-picker/vue-color-picker.svg?style=shield" alt="CircleCI">
     </a>
+    <a href="https://codecov.io/gh/radial-color-picker/vue-color-picker">
+      <img src="https://codecov.io/gh/radial-color-picker/vue-color-picker/branch/master/graph/badge.svg" alt="Code Coverage" />
+    </a>
 </p>
 
 ## Introduction
