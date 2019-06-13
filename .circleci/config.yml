@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    branches:
-      only: "master"
     docker:
       - image: circleci/node:8
         environment:
@@ -24,3 +22,5 @@ jobs:
           paths:
             - ~/.cache
       - run: yarn run ci
+      - store_artifacts:
+          path: coverage
