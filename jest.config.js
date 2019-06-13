@@ -14,5 +14,4 @@ module.exports = {
     testURL: 'http://localhost/',
     collectCoverage: true,
     collectCoverageFrom: ['<rootDir>/src/ColorPicker.vue'],
-    coverageReporters: ['html', 'text-summary'],
 };
