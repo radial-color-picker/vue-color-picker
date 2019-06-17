@@ -60,12 +60,12 @@ workflows:
   install-and-parallel-test:
     jobs:
       - install
-      - build
+      - build:
           requires:
             - install
-      - bundle-size
+      - bundle-size:
           requires:
             - build
-      - test
+      - test:
           requires:
             - install
