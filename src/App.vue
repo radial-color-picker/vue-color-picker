@@ -1,5 +1,5 @@
 <template>
-    <color-picker v-bind="color" @input="onInput" variant="persistent" :initiallyCollapsed="true" />
+    <color-picker v-bind="color" @input="onInput" />
 </template>
 
 <script>
