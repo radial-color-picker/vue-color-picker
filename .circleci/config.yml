@@ -25,6 +25,8 @@ jobs:
       # - store_artifacts:
       #     path: coverage
       # - run: curl -s https://codecov.io/bash | bash
+
+      # Run the build only
       - run:
           name: Build
           command: yarn build
