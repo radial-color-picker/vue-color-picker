@@ -13,7 +13,7 @@
   },
   "main": "dist/vue-color-picker.cjs.js",
   "module": "dist/vue-color-picker.esm.js",
-  "unpkg": "dist/vue-color-picker.min.js",
+  "unpkg": "dist/vue-color-picker.umd.min.js",
   "files": [
     "dist"
   ],
