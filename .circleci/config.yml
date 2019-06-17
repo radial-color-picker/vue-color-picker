@@ -9,7 +9,7 @@ defaults: &base
 version: 2
 jobs:
   install:
-    <<: *defaults
+    <<: *base
     steps:
       - checkout
       - restore_cache:
