@@ -8,7 +8,7 @@ defaults: &base
 
 version: 2
 jobs:
-  install:
+  build-and-test:
     <<: *base
     steps:
       - checkout
@@ -24,28 +24,12 @@ jobs:
           key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules/
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - app
-
-  build:
-    <<: *base
-    steps:
-      - attach_workspace:
-          at: ~/project
       - run:
           name: Build
           command: yarn build
       - run:
           name: Check Bundle Size
           command: yarn bundlesize
-
-  test:
-    <<: *base
-    steps:
-      - attach_workspace:
-          at: ~/project
       - run:
           name: Run Tests
           command: yarn run ci
@@ -54,15 +38,3 @@ jobs:
       - run:
           name: Upload Code Coverage
           command: curl -s https://codecov.io/bash | bash
-
-workflows:
-  version: 2
-  install-and-parallel-test:
-    jobs:
-      - install
-      - build:
-          requires:
-            - install
-      - test:
-          requires:
-            - install
