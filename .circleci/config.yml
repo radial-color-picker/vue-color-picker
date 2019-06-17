@@ -17,7 +17,9 @@ jobs:
             - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - v1-deps-{{ .Branch }}
             - v1-deps
-      - run: yarn install --frozen-lockfile
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
           key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
@@ -35,6 +37,8 @@ jobs:
       - run:
           name: Build
           command: yarn build
+      - store_artifacts:
+          path: dist
 
   bundle-size:
     <<: *base
@@ -42,7 +46,7 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run:
-          name: Get Bundle Size
+          name: Report Bundle Size
           command: yarn bundlesize
 
   test:
@@ -50,10 +54,14 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - run: yarn run ci
+      - run:
+          name: Run Tests
+          command: yarn run ci
       - store_artifacts:
           path: coverage
-      - run: curl -s https://codecov.io/bash | bash
+      - run:
+          name: Upload Code Coverage
+          command: curl -s https://codecov.io/bash | bash
 
 workflows:
   version: 2

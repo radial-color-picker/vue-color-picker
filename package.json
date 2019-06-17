@@ -15,7 +15,7 @@
   "bundlesize": [
     {
       "path": "./dist/vue-color-picker.umd.min.js",
-      "maxSize": "1.8 kB"
+      "maxSize": "2.8 kB"
     },
     {
       "path": "./dist/vue-color-picker.min.css",
