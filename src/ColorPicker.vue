@@ -15,6 +15,7 @@
             class="rcp__rotator"
             :style="{ 'pointer-events': disabled || isPressed || !isKnobIn ? 'none' : null }"
             @dblclick.self="rotateToMouse"
+            v-on="mouseScroll ? { wheel: onScroll } : null"
             ref="rotator"
         >
             <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'" @transitionend="hidePalette"></div>
@@ -89,10 +90,6 @@ export default {
         },
     },
     mounted() {
-        if (this.mouseScroll) {
-            this.$refs.rotator.addEventListener('wheel', this.onScroll);
-        }
-
         // ignore testing code that will be removed by dead code elimination for production
         /* istanbul ignore next */
         if (process.env.NODE_ENV === 'development' && this.initiallyCollapsed && this.variant === 'persistent') {
