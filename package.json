@@ -9,7 +9,8 @@
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "ci": "vue-cli-service test:unit -i --ci -b",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "bundlesize": "bundlesize"
   },
   "main": "dist/vue-color-picker.cjs.js",
   "module": "dist/vue-color-picker.esm.js",
