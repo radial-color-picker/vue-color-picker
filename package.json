@@ -19,7 +19,8 @@
   ],
   "dependencies": {
     "@radial-color-picker/color-wheel": "2.0.0",
-    "@radial-color-picker/rotator": "2.0.1"
+    "@radial-color-picker/rotator": "2.0.1",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",

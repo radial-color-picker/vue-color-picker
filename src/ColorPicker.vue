@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import * as _ from 'lodash';
 import fillColorWheel from '@radial-color-picker/color-wheel';
 import Rotator from '@radial-color-picker/rotator';
 
@@ -89,6 +90,7 @@ export default {
         },
     },
     mounted() {
+        console.log(_.head([1, 2, 3]));
         if (this.mouseScroll) {
             this.$refs.rotator.addEventListener('wheel', this.onScroll);
         }
