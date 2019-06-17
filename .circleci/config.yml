@@ -21,13 +21,13 @@ jobs:
           key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.cache
-      - run: yarn run ci
-      - store_artifacts:
-          path: coverage
-      - run: curl -s https://codecov.io/bash | bash
+      # - run: yarn run ci
+      # - store_artifacts:
+      #     path: coverage
+      # - run: curl -s https://codecov.io/bash | bash
       - run:
           name: Build
           command: yarn build
       - run:
           name: Get Bundle Size
-          command: yarn bundlesize
+          command: yarn bundlesize --debug
