@@ -37,16 +37,8 @@ jobs:
       - run:
           name: Build
           command: yarn build
-      - store_artifacts:
-          path: dist
-
-  bundle-size:
-    <<: *base
-    steps:
-      - attach_workspace:
-          at: ~/project
       - run:
-          name: Report Bundle Size
+          name: Check Bundle Size
           command: yarn bundlesize
 
   test:
@@ -71,9 +63,6 @@ workflows:
       - build:
           requires:
             - install
-      - bundle-size:
-          requires:
-            - build
       - test:
           requires:
             - install
