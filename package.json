@@ -79,15 +79,5 @@
       "git add"
     ]
   },
-  "repository": "git@github.com:radial-color-picker/vue-color-picker.git",
-  "bundlesize": [
-    {
-      "path": "dist/vue-color-picker.umd.min.js",
-      "maxSize": "1.8 kB"
-    },
-    {
-      "path": "dist/vue-color-picker.min.css",
-      "maxSize": "1 kB"
-    }
-  ]
+  "repository": "git@github.com:radial-color-picker/vue-color-picker.git"
 }
