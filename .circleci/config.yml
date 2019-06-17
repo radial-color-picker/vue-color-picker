@@ -26,5 +26,8 @@ jobs:
           path: coverage
       - run: curl -s https://codecov.io/bash | bash
       - run:
+          name: Build
+          command: yarn build
+      - run:
           name: Get Bundle Size
-          command: yarn bundlesize -f ~/app/dist/vue-color-picker.umd.min.js -s 2kB
+          command: yarn bundlesize

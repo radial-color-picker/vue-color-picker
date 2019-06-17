@@ -12,6 +12,16 @@
     "prepublishOnly": "yarn build",
     "bundlesize": "bundlesize"
   },
+  "bundlesize": [
+    {
+      "path": "./dist/vue-color-picker.umd.min.js",
+      "maxSize": "1.8 kB"
+    },
+    {
+      "path": "./dist/vue-color-picker.min.css",
+      "maxSize": "1 kB"
+    }
+  ],
   "main": "dist/vue-color-picker.cjs.js",
   "module": "dist/vue-color-picker.esm.js",
   "unpkg": "dist/vue-color-picker.umd.min.js",
