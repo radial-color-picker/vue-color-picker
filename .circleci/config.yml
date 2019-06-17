@@ -8,7 +8,7 @@ defaults: &base
 
 version: 2
 jobs:
-  build-and-test:
+  build:
     <<: *base
     steps:
       - checkout
