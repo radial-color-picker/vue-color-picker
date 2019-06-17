@@ -36,12 +36,12 @@ describe('Init', () => {
         expect(onScrollStub).toHaveBeenCalled();
     });
 
+    // jsdom doesn't support layouting so `getComputedStyle(palette).backgroundImage`
+    // would never include conic-gradient
     it('setups a fallback to canvas when `conic-gradient` CSS is not supported', () => {
-        const el = shallowMount(ColorPicker);
-        const isConicGradientSupported = el.vm.$refs.palette.style.backgroundImage.length > 0;
-        const count = isConicGradientSupported ? 0 : 1;
+        shallowMount(ColorPicker);
 
-        expect(fillColorWheel).toHaveBeenCalledTimes(count);
+        expect(fillColorWheel).toHaveBeenCalled();
     });
 });
 
