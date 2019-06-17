@@ -1,29 +1,37 @@
 version: 2
 jobs:
   build:
-    branches:
-      only: "master"
     docker:
       - image: circleci/node:8
         environment:
           ## this enables colors in the output
           TERM: xterm
-    working_directory: ~/app
+    working_directory: ~/project/app
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - v1-deps-{{ .Branch }}
             - v1-deps
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
       - save_cache:
-          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache
-      - run: yarn run ci
+            - node_modules/
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Check Bundle Size
+          command: yarn bundlesize
+      - run:
+          name: Run Tests
+          command: yarn run ci
       - store_artifacts:
           path: coverage
-      - run: curl -s https://codecov.io/bash | bash
+      - run:
+          name: Upload Code Coverage
+          command: curl -s https://codecov.io/bash | bash
