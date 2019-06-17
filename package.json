@@ -19,8 +19,7 @@
   ],
   "dependencies": {
     "@radial-color-picker/color-wheel": "2.0.0",
-    "@radial-color-picker/rotator": "2.0.1",
-    "lodash": "^4.17.11"
+    "@radial-color-picker/rotator": "2.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
@@ -78,5 +77,15 @@
       "git add"
     ]
   },
-  "repository": "git@github.com:radial-color-picker/vue-color-picker.git"
+  "repository": "git@github.com:radial-color-picker/vue-color-picker.git",
+  "bundlesize": [
+    {
+      "path": "./dist/vue-color-picker.umd.min.js",
+      "maxSize": "1.8 kB"
+    },
+    {
+      "path": "./dist/vue-color-picker.min.css",
+      "maxSize": "1 kB"
+    }
+  ]
 }

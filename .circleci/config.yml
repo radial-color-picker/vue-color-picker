@@ -25,3 +25,6 @@ jobs:
       - store_artifacts:
           path: coverage
       - run: curl -s https://codecov.io/bash | bash
+      - run:
+          name: Get Bundle Size
+          command: yarn bundlesize
