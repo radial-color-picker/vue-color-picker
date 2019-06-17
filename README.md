@@ -151,17 +151,17 @@ You can also use the minified sources directly:
 
 ### Props
 
-| Name         | Type    | Default       | Description |
-|--------------|---------|---------------|-------------|
-| hue          | Number  | `0`           | A number between `0-359`. **Required**. |
-| saturation   | Number  | `100`         | A number between `0-100` |
-| luminosity   | Number  | `50`          | A number between `0-100` |
-| alpha        | Number  | `1`           | A number between `0-1` |
-| disabled     | Boolean | `false`       | A boolean to disable UI interactions |
-| variant      | String  | `collapsible` | Use `persistent` to prevent collapsing/closing |
-| mouse-scroll | Boolean | `false`       | Use wheel (scroll) event to rotate. |
-| step         | Number  | `2`           | Amount of degrees to rotate the picker with keyboard and/or wheel. |
-| initiallyCollapsed | Boolean | `false` | Hides the palette initially |
+| Name         | Type    | Default        | Description |
+|--------------|---------|----------------|-------------|
+| hue          | Number  | `0`            | A number between `0-359`. **Required**. |
+| saturation   | Number  | `100`          | A number between `0-100` |
+| luminosity   | Number  | `50`           | A number between `0-100` |
+| alpha        | Number  | `1`            | A number between `0-1` |
+| disabled     | Boolean | `false`        | A boolean to disable UI interactions |
+| variant      | String  | `collapsible`  | Use `persistent` to prevent collapsing/closing |
+| mouse-scroll | Boolean | `false`        | Use wheel (scroll) event to rotate. |
+| step         | Number  | `2`            | Amount of degrees to rotate the picker with keyboard and/or wheel. |
+| initially-collapsed | Boolean | `false` | Hides the palette initially |
 
 ### Events
 
