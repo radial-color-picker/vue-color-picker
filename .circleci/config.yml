@@ -1,9 +1,9 @@
 defaults: &base
   docker:
     - image: circleci/node:8
-        environment:
-          ## this enables colors in the output
-          TERM: xterm
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
   working_directory: ~/project/app
 
 version: 2
