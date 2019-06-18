@@ -5,7 +5,7 @@
   "author": "Rosen Kanev <rkunev@gmail.com>",
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "node build.js",
+    "build": "node scripts/build.js",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "ci": "vue-cli-service test:unit -i --ci -b",
