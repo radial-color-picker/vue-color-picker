@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
-    "@babel/preset-env": "7.4.5",
     "@vue/babel-preset-app": "3.8.0",
     "@vue/cli-plugin-babel": "3.8.0",
     "@vue/cli-plugin-eslint": "3.8.0",
