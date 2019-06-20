@@ -82,3 +82,14 @@ You can also use the minified sources directly:
     </script>
 </body>
 ```
+
+## Using the component globally
+
+If you don't want to register the component everywhere it's used you can instead register it globally:
+
+```js
+import ColorPicker from '@radial-color-picker/vue-color-picker';
+import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
+
+Vue.use(ColorPicker);
+```
