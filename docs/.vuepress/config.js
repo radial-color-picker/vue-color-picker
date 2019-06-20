@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/vue-color-picker/',
     title: 'Radial Color Picker',
     description: 'Minimalistic color picker with a focus on size, accessibility and performance.',
     themeConfig: {
