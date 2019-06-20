@@ -28,7 +28,8 @@
   "module": "dist/vue-color-picker.esm.js",
   "unpkg": "dist/vue-color-picker.umd.min.js",
   "files": [
-    "dist"
+    "dist",
+    "nuxt"
   ],
   "dependencies": {
     "@radial-color-picker/color-wheel": "2.2.0",
