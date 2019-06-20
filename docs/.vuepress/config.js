@@ -22,4 +22,7 @@ module.exports = {
             ],
         },
     },
+    head: [
+        ['link', { rel: 'icon', href: '/vue-logo.png' }],
+    ],
 };
