@@ -11,7 +11,7 @@ const basePath = 'dist/vue-color-picker';
 
 const build = async ({ format, minify = false }) => {
     const inputOptions = {
-        input: './src/ColorPicker.vue',
+        input: './src/wrapper.js',
         external: ['vue'],
         plugins: [
             // Replace env variable with 'production' for umd.min.js and 'development' for 'umd.js'

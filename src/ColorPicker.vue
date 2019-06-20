@@ -40,7 +40,7 @@ import Rotator from '@radial-color-picker/rotator';
 
 export default {
     rcp: null,
-    name: 'vue-color-picker',
+    name: 'ColorPicker',
     props: {
         hue: {
             default: 0,
