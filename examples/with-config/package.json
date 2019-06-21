@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@radial-color-picker/vue-color-picker": "latest",
-    "vue": "^2.5.21"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-service": "^3.2.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.21"
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-service": "^3.8.4",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "postcss": {
     "plugins": {
