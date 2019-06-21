@@ -12,10 +12,9 @@
   },
   "dependencies": {
     "@radial-color-picker/vue-color-picker": "latest",
-    "cross-env": "^5.2.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.18.9"
   }
 }
