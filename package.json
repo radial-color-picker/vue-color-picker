@@ -14,16 +14,6 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
-  "bundlesize": [
-    {
-      "path": "./dist/vue-color-picker.umd.min.js",
-      "maxSize": "2.8 kB"
-    },
-    {
-      "path": "./dist/vue-color-picker.min.css",
-      "maxSize": "1 kB"
-    }
-  ],
   "main": "dist/vue-color-picker.cjs.js",
   "module": "dist/vue-color-picker.esm.js",
   "unpkg": "dist/vue-color-picker.umd.min.js",
@@ -79,12 +69,16 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "homepage": "https://github.com/radial-color-picker/vue-color-picker#readme",
+  "homepage": "https://radial-color-picker.github.io/vue-color-picker/",
   "keywords": [
     "vue",
     "radial color picker",
     "color picker",
-    "hue picker"
+    "color-picker",
+    "vue-color-picker",
+    "hue picker",
+    "nuxt",
+    "nuxt module"
   ],
   "license": "MIT",
   "lint-staged": {
@@ -93,5 +87,18 @@
       "git add"
     ]
   },
-  "repository": "git@github.com:radial-color-picker/vue-color-picker.git"
+  "bundlesize": [
+    {
+      "path": "./dist/vue-color-picker.umd.min.js",
+      "maxSize": "2.8 kB"
+    },
+    {
+      "path": "./dist/vue-color-picker.min.css",
+      "maxSize": "1 kB"
+    }
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/radial-color-picker/vue-color-picker.git"
+  }
 }
