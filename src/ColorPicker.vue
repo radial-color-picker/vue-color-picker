@@ -13,7 +13,10 @@
 
         <div
             class="rcp__rotator"
-            :style="{ 'pointer-events': disabled || isPressed || !isKnobIn ? 'none' : null }"
+            :style="{
+                'pointer-events': disabled || isPressed || !isKnobIn ? 'none' : null,
+                transform: `rotate(${ssrHue}deg)`,
+            }"
             @dblclick.self="rotateToMouse"
             v-on="mouseScroll ? { wheel: onScroll } : null"
             ref="rotator"
@@ -72,6 +75,7 @@ export default {
     },
     data() {
         return {
+            ssrHue: 0,
             isPaletteIn: !this.initiallyCollapsed,
             isKnobIn: !this.initiallyCollapsed,
             isPressed: false,
@@ -88,6 +92,12 @@ export default {
         hue: function(angle) {
             this.rcp.angle = angle;
         },
+    },
+    created() {
+        // update the SSR value once when the component is created
+        // prevents knob jumping when using Server Side Rendering
+        // where the knob's position is updated only after the client-side code is executed (on mount)
+        this.ssrHue = this.hue;
     },
     mounted() {
         // ignore testing code that will be removed by dead code elimination for production
