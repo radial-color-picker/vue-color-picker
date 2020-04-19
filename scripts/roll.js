@@ -2,12 +2,12 @@ const { rollup } = require('rollup');
 const vue = require('rollup-plugin-vue');
 const babel = require('rollup-plugin-babel');
 const replace = require('rollup-plugin-replace');
-const cjs = require('rollup-plugin-commonjs');
-const nodeResolve = require('rollup-plugin-node-resolve');
+const cjs = require('@rollup/plugin-commonjs');
+const nodeResolve = require('@rollup/plugin-node-resolve');
 const postcss = require('rollup-plugin-postcss');
 const { terser } = require('rollup-plugin-terser');
 
-const basePath = 'dist/vue-color-picker';
+const fileNameBase = 'vue-color-picker';
 
 const build = async ({ format, minify = false }) => {
     const inputOptions = {
@@ -15,7 +15,8 @@ const build = async ({ format, minify = false }) => {
         external: ['vue'],
         plugins: [
             // Replace env variable with 'production' for umd.min.js and 'development' for 'umd.js'
-            // Leave the process.env.NODE_ENV in CommonJS and ESM builds which are exclusively used only in JS bundlers like Webpack & Rollup
+            // Leave the process.env.NODE_ENV in CommonJS and ESM builds
+            // which are exclusively used only in JS bundlers like Webpack & Rollup
             format === 'umd' &&
                 replace({
                     'process.env.NODE_ENV': JSON.stringify(
@@ -25,7 +26,7 @@ const build = async ({ format, minify = false }) => {
             cjs(),
             nodeResolve(),
             postcss({
-                extract: `${basePath}${minify ? '.min' : ''}.css`,
+                extract: format === 'umd' && `${fileNameBase}${minify ? '.min' : ''}.css`,
                 inject: false,
                 minimize: minify,
                 sourceMap: minify,
@@ -53,7 +54,7 @@ const build = async ({ format, minify = false }) => {
     return bundle.write({
         format,
         globals: { vue: 'Vue' },
-        file: `${basePath}.${format}${minify ? '.min' : ''}.js`,
+        file: `dist/${fileNameBase}.${format}${minify ? '.min' : ''}.js`,
         name: 'VueColorPicker',
         sourcemap: minify,
     });

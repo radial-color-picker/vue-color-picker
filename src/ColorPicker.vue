@@ -89,7 +89,7 @@ export default {
         },
     },
     watch: {
-        hue: function(angle) {
+        hue: function (angle) {
             this.rcp.angle = angle;
         },
     },

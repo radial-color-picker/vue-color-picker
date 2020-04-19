@@ -446,7 +446,7 @@ describe('Reactive Changes', () => {
         expect(el.vm.color).toBe('hsla(90, 100%, 50%, 1)');
     });
 
-    it('updates rotator based on hue prop', () => {
+    it('updates rotator based on hue prop', async () => {
         const el = shallowMount(ColorPicker, {
             propsData: {
                 hue: 90,
@@ -458,7 +458,9 @@ describe('Reactive Changes', () => {
 
         el.setProps({ hue: 60 });
 
-        expect(el.vm.rcp.angle).toBe(60);
+        await el.vm.$nextTick();
+
+        expect(el.vm.rcp._angle).toBe(60);
     });
 
     it("doesn't mutate the saturation, luminosity or alpha props when hue changes", () => {
