@@ -60,6 +60,7 @@ The right color picker, but not the framework you're looking for?
 * [Usage](#usage)
 * [Options](#options)
 * [Change log](#change-log)
+* [Migration from v2](#migration-from-v2)
 * [Migration from v1](#migration-from-v1)
 * [Contributing](#contributing)
 * [Credits](#credits)
@@ -141,6 +142,27 @@ export default {
 ## Change log
 
 Please see [Releases][link-releases] for more information on what has changed recently.
+
+[Back To Top](#quick-links)
+
+## Migration from v2
+
+With v3 the inner circle is now transparent instead of solid white. If you previously relied on that and you prefer to keep the existing behavior you can do that by wrapping the `<color-picker>` with a `<div>` and add white background to it. Here's an example how to do that:
+
+```vue
+<template>
+    <div class="wrapper">
+        <color-picker :hue="hue" @input="onInput"></color-picker>
+    </div>
+</template>
+
+<style>
+    .wrapper {
+        padding: 32px;
+        background: #fff;
+    }
+</style>
+```
 
 [Back To Top](#quick-links)
 
