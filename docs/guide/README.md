@@ -6,7 +6,7 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
 
 ## Features
 
-* Small size - 3.8 KB gzipped (JS and CSS combined)
+* Small size - 4 KB gzipped (JS and CSS combined)
 * Supports touch devices
 * Optimized animations
 * Ease of use
@@ -23,4 +23,4 @@ The right color picker, but not the framework you're looking for?
 * [Vue](https://github.com/radial-color-picker/vue-color-picker) - you're here!
 * [React](https://github.com/radial-color-picker/react-color-picker)
 * [AngularJs](https://github.com/talamaska/angular-radial-color-picker)
-* [Angular](https://github.com/radial-color-picker/angular-color-picker) (under construction)
+* [Angular](https://github.com/radial-color-picker/angular-color-picker)
