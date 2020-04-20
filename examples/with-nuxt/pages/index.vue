@@ -11,18 +11,18 @@ import ColorPicker from '@radial-color-picker/vue-color-picker';
 
 export default {
     components: {
-        ColorPicker
+        ColorPicker,
     },
     data() {
-      return {
-          msg: 'Welcome to Your Vue.js App',
-          color: {
-            hue: 50,
-            saturation: 100,
-            luminosity: 50,
-            alpha: 1,
-          }
-      };
+        return {
+            msg: 'Welcome to Your Vue.js App',
+            color: {
+                hue: 50,
+                saturation: 100,
+                luminosity: 50,
+                alpha: 1,
+            },
+        };
     },
     methods: {
         onInput(hue) {

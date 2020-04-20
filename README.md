@@ -52,7 +52,7 @@ The right color picker, but not the framework you're looking for?
 * [Vue][link-vue-color-picker] - you're here!
 * [React][link-react-color-picker]
 * [AngularJs][link-angularjs-color-picker]
-* [Angular][link-angular-color-picker] (under construction)
+* [Angular][link-angular-color-picker]
 
 ## Quick Links
 

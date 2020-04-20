@@ -10,6 +10,6 @@ export default {
         link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
 
-    // Add the Color Picker component and it's CSS globally
+    // Add the Color Picker component and its CSS globally
     modules: ['@radial-color-picker/vue-color-picker/nuxt'],
 };
