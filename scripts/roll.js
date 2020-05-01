@@ -56,7 +56,7 @@ const build = async ({ format, minify = false }) => {
         globals: { vue: 'Vue' },
         file: `dist/${fileNameBase}.${format}${minify ? '.min' : ''}.js`,
         name: 'VueColorPicker',
-        sourcemap: minify,
+        sourcemap: false,
     });
 };
 
