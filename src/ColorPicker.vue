@@ -1,5 +1,14 @@
 <template>
     <div
+        role="slider"
+        :aria-roledescription="ariaRoledescription"
+        :aria-label="ariaLabel"
+        :aria-expanded="isPaletteIn ? 'true' : 'false'"
+        aria-valuemin="0"
+        aria-valuemax="359"
+        :aria-valuenow="hue"
+        :aria-valuetext="ariaValuetext || valuetext"
+        :aria-disabled="disabled ? 'true' : 'false'"
         class="rcp"
         :class="{ dragging: isDragging, disabled: disabled }"
         :tabindex="disabled ? -1 : 0"
@@ -29,6 +38,9 @@
         <button
             type="button"
             class="rcp__well"
+            :aria-label="ariaLabelColorWell"
+            :disabled="disabled"
+            :tabindex="disabled ? -1 : 0"
             :class="{ pressed: isPressed }"
             :style="{ backgroundColor: color }"
             @animationend="togglePicker"
@@ -40,6 +52,8 @@
 <script>
 import fillColorWheel from '@radial-color-picker/color-wheel';
 import Rotator from '@radial-color-picker/rotator';
+
+const colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta', 'red'];
 
 export default {
     rcp: null,
@@ -72,6 +86,18 @@ export default {
         initiallyCollapsed: {
             default: false,
         },
+        ariaLabel: {
+            default: 'color picker',
+        },
+        ariaRoledescription: {
+            default: 'radial slider',
+        },
+        ariaValuetext: {
+            default: '',
+        },
+        ariaLabelColorWell: {
+            default: 'color well',
+        },
     },
     data() {
         return {
@@ -86,6 +112,9 @@ export default {
     computed: {
         color() {
             return `hsla(${this.hue}, ${this.saturation}%, ${this.luminosity}%, ${this.alpha})`;
+        },
+        valuetext() {
+            return colors[Math.round(this.hue / 60)];
         },
     },
     watch: {
