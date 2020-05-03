@@ -13,8 +13,7 @@
         :class="{ dragging: isDragging, disabled: disabled }"
         :tabindex="disabled ? -1 : 0"
         @keyup.enter="selectColor"
-        @keydown.up.right.prevent="rotate($event, true)"
-        @keydown.down.left.prevent="rotate($event, false)"
+        @keydown.prevent="onKeyDown"
     >
         <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" ref="palette">
             <canvas></canvas>
@@ -54,6 +53,16 @@ import fillColorWheel from '@radial-color-picker/color-wheel';
 import Rotator from '@radial-color-picker/rotator';
 
 const colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta', 'red'];
+const keys = {
+    ArrowUp: (oldAngle, step) => oldAngle + step,
+    ArrowRight: (oldAngle, step) => oldAngle + step,
+    ArrowDown: (oldAngle, step) => oldAngle - step,
+    ArrowLeft: (oldAngle, step) => oldAngle - step,
+    PageUp: (oldAngle, step) => oldAngle + step * 10,
+    PageDown: (oldAngle, step) => oldAngle - step * 10,
+    Home: () => 0,
+    End: () => 359,
+};
 
 export default {
     rcp: null,
@@ -72,7 +81,7 @@ export default {
             default: 1,
         },
         step: {
-            default: 2,
+            default: 1,
         },
         mouseScroll: {
             default: false,
@@ -157,6 +166,12 @@ export default {
         });
     },
     methods: {
+        onKeyDown({ key }) {
+            if (this.disabled || this.isPressed || !this.isKnobIn || !(key in keys)) return;
+
+            this.rcp.angle = keys[key](this.rcp.angle, this.step);
+            this.updateColor(this.rcp.angle);
+        },
         onScroll(ev) {
             if (this.isPressed || !this.isKnobIn) return;
 
@@ -168,20 +183,6 @@ export default {
                 this.rcp.angle -= this.step;
             }
 
-            this.updateColor(this.rcp.angle);
-        },
-        rotate(ev, isIncrementing) {
-            if (this.disabled || this.isPressed || !this.isKnobIn) return;
-
-            let multiplier = isIncrementing ? 1 : -1;
-
-            if (ev.ctrlKey) {
-                multiplier *= 6;
-            } else if (ev.shiftKey) {
-                multiplier *= 3;
-            }
-
-            this.rcp.angle += this.step * multiplier;
             this.updateColor(this.rcp.angle);
         },
         updateColor(hue) {
