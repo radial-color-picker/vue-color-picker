@@ -162,6 +162,7 @@ export default {
             },
             onDragStop: () => {
                 this.isDragging = false;
+                this.$emit('change', this.hue);
             },
         });
     },
@@ -197,7 +198,7 @@ export default {
             this.isPressed = true;
 
             if (this.isPaletteIn && this.isKnobIn) {
-                this.$emit('change', this.hue);
+                this.$emit('select', this.hue);
                 this.isRippling = true;
             } else {
                 this.isPaletteIn = true;
