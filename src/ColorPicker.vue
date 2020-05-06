@@ -25,7 +25,6 @@
                 'pointer-events': disabled || isPressed || !isKnobIn ? 'none' : null,
                 transform: `rotate(${ssrHue}deg)`,
             }"
-            @dblclick.self="rotateToMouse"
             v-on="mouseScroll ? { wheel: onScroll } : null"
             ref="rotator"
         >
@@ -188,11 +187,6 @@ export default {
         },
         updateColor(hue) {
             this.$emit('input', hue);
-        },
-        rotateToMouse(ev) {
-            if (this.isPressed || !this.isKnobIn) return;
-
-            this.rcp.setAngleFromEvent(ev);
         },
         selectColor() {
             this.isPressed = true;
