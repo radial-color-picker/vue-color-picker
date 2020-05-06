@@ -13,7 +13,7 @@
         :class="{ dragging: isDragging, disabled: disabled }"
         :tabindex="disabled ? -1 : 0"
         @keyup.enter="selectColor"
-        @keydown.prevent="onKeyDown"
+        @keydown="onKeyDown"
     >
         <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" ref="palette">
             <canvas></canvas>
@@ -166,10 +166,12 @@ export default {
         });
     },
     methods: {
-        onKeyDown({ key }) {
-            if (this.disabled || this.isPressed || !this.isKnobIn || !(key in keys)) return;
+        onKeyDown(ev) {
+            if (this.disabled || this.isPressed || !this.isKnobIn || !(ev.key in keys)) return;
 
-            this.rcp.angle = keys[key](this.rcp.angle, this.step);
+            ev.preventDefault();
+
+            this.rcp.angle = keys[ev.key](this.rcp.angle, this.step);
             this.updateColor(this.rcp.angle);
         },
         onScroll(ev) {
