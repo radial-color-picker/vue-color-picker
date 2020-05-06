@@ -6,7 +6,7 @@
         :aria-expanded="isPaletteIn ? 'true' : 'false'"
         aria-valuemin="0"
         aria-valuemax="359"
-        :aria-valuenow="hue"
+        :aria-valuenow="angle"
         :aria-valuetext="ariaValuetext || valuetext"
         :aria-disabled="disabled ? 'true' : 'false'"
         class="rcp"
@@ -68,7 +68,7 @@ export default {
     name: 'ColorPicker',
     props: {
         hue: {
-            required: true,
+            default: 0,
         },
         saturation: {
             default: 100,
@@ -109,6 +109,7 @@ export default {
     },
     data() {
         return {
+            angle: 0,
             ssrHue: 0,
             isPaletteIn: !this.initiallyCollapsed,
             isKnobIn: !this.initiallyCollapsed,
@@ -119,14 +120,15 @@ export default {
     },
     computed: {
         color() {
-            return `hsla(${this.hue}, ${this.saturation}%, ${this.luminosity}%, ${this.alpha})`;
+            return `hsla(${this.angle}, ${this.saturation}%, ${this.luminosity}%, ${this.alpha})`;
         },
         valuetext() {
-            return colors[Math.round(this.hue / 60)];
+            return colors[Math.round(this.angle / 60)];
         },
     },
     watch: {
         hue: function (angle) {
+            this.angle = angle;
             this.rcp.angle = angle;
         },
     },
@@ -135,6 +137,7 @@ export default {
         // prevents knob jumping when using Server Side Rendering
         // where the knob's position is updated only after the client-side code is executed (on mount)
         this.ssrHue = this.hue;
+        this.angle = this.ssrHue;
     },
     mounted() {
         // ignore testing code that will be removed by dead code elimination for production
@@ -154,14 +157,17 @@ export default {
         }
 
         this.rcp = new Rotator(this.$refs.rotator, {
-            angle: this.hue,
-            onRotate: this.updateColor,
+            angle: this.angle,
+            onRotate: hue => {
+                this.angle = hue;
+                this.$emit('input', this.angle);
+            },
             onDragStart: () => {
                 this.isDragging = true;
             },
             onDragStop: () => {
                 this.isDragging = false;
-                this.$emit('change', this.hue);
+                this.$emit('change', this.angle);
             },
         });
     },
@@ -172,7 +178,10 @@ export default {
             ev.preventDefault();
 
             this.rcp.angle = keys[ev.key](this.rcp.angle, this.step);
-            this.updateColor(this.rcp.angle);
+
+            this.angle = this.rcp.angle;
+            this.$emit('input', this.angle);
+            this.$emit('change', this.angle);
         },
         onScroll(ev) {
             if (this.isPressed || !this.isKnobIn) return;
@@ -185,16 +194,15 @@ export default {
                 this.rcp.angle -= this.step;
             }
 
-            this.updateColor(this.rcp.angle);
-        },
-        updateColor(hue) {
-            this.$emit('input', hue);
+            this.angle = this.rcp.angle;
+            this.$emit('input', this.angle);
+            this.$emit('change', this.angle);
         },
         selectColor() {
             this.isPressed = true;
 
             if (this.isPaletteIn && this.isKnobIn) {
-                this.$emit('select', this.hue);
+                this.$emit('select', this.angle);
                 this.isRippling = true;
             } else {
                 this.isPaletteIn = true;
