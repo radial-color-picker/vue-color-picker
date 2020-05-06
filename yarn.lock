@@ -1079,10 +1079,10 @@
   resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-2.2.1.tgz#11ec7803744c4a4b6af465708e20bbd4727e6ee1"
   integrity sha512-J/fRIIwgsl3WLIZmCbs9IO31oj7pF32wpuWxlO5nZVJz1YsBMwBSg75hVPBVnJrijCQCss7xpgT+uSuSO9Xmrw==
 
-"@radial-color-picker/rotator@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-3.0.0.tgz#28cf1149038fe253ce1dad5ff9cbe06f05a0bd33"
-  integrity sha512-N7A6PutZK+BeuDvRt4Hv6bX352LwJIsjepVcOpsqVJ802VAgvrxPWKtgi87IpNvIuYXN6RHkLL4K37esHBrbfQ==
+"@radial-color-picker/rotator@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-3.0.1.tgz#8def5b06677e0e7c8db6e73d957df8e66712d8f1"
+  integrity sha512-RKtlLzZKAvDpRNLZEP61OxtZerBOmHKkQ656MNRMKwnMdF/+hwiozRLOTHWyhMkK1xueIOuiP3U50qtjSM1vAw==
 
 "@rollup/plugin-commonjs@11.1.0":
   version "11.1.0"
