@@ -2,7 +2,16 @@
 
 exports[`Init renders correctly 1`] = `
 <div
+  aria-disabled="false"
+  aria-expanded="true"
+  aria-label="color picker"
+  aria-roledescription="radial slider"
+  aria-valuemax="359"
+  aria-valuemin="0"
+  aria-valuenow="0"
+  aria-valuetext="red"
   class="rcp"
+  role="slider"
   tabindex="0"
 >
   <div
@@ -26,8 +35,10 @@ exports[`Init renders correctly 1`] = `
   />
    
   <button
+    aria-label="color well"
     class="rcp__well"
     style="background-color: hsl(0, 100%, 50%);"
+    tabindex="0"
     type="button"
   />
 </div>

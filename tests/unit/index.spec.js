@@ -11,7 +11,11 @@ describe('Init', () => {
     });
 
     it('renders correctly', () => {
-        const el = shallowMount(ColorPicker);
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
+        });
 
         expect(el.element).toMatchSnapshot();
     });
@@ -39,7 +43,11 @@ describe('Init', () => {
     // jsdom doesn't support layouting so `getComputedStyle(palette).backgroundImage`
     // would never include conic-gradient
     it('setups a fallback to canvas when `conic-gradient` CSS is not supported', () => {
-        shallowMount(ColorPicker);
+        shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
+        });
 
         expect(fillColorWheel).toHaveBeenCalled();
     });
@@ -47,7 +55,11 @@ describe('Init', () => {
 
 describe('Core Methods', () => {
     it('emits an `input` event when updateColor is called', () => {
-        const el = shallowMount(ColorPicker);
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
+        });
 
         el.vm.updateColor(90);
 
@@ -55,14 +67,18 @@ describe('Core Methods', () => {
     });
 
     it('starts the pressed animation when selectColor is called', () => {
-        const el = shallowMount(ColorPicker);
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
+        });
 
         el.vm.selectColor();
 
         expect(el.vm.isPressed).toBe(true);
     });
 
-    it('emits a `change` event when selectColor is called and the picker is opened', () => {
+    it('emits a `select` event when selectColor is called and the picker is opened', () => {
         const el = shallowMount(ColorPicker, {
             propsData: {
                 hue: 30,
@@ -77,11 +93,14 @@ describe('Core Methods', () => {
 
         el.vm.selectColor();
 
-        expect(el.emitted('change')[0]).toEqual([30]);
+        expect(el.emitted('select')[0]).toEqual([30]);
     });
 
     it('shows the palette when selectColor is called and the picker is closed', () => {
         const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
             data() {
                 return {
                     isPaletteIn: false,
@@ -97,6 +116,9 @@ describe('Core Methods', () => {
 
     it('closes the picker when togglePicker is called and the picker is opened', () => {
         const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
             data() {
                 return {
                     isKnobIn: true,
@@ -111,6 +133,9 @@ describe('Core Methods', () => {
 
     it('opens the picker when togglePicker is called and the picker is closed', () => {
         const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
             data() {
                 return {
                     isKnobIn: false,
@@ -128,6 +153,7 @@ describe('Core Methods', () => {
     it('keeps the picker opened when togglePicker is called and the picker is of variant persistent', () => {
         const el = shallowMount(ColorPicker, {
             propsData: {
+                hue: 0,
                 variant: 'persistent',
             },
             data() {
@@ -144,6 +170,9 @@ describe('Core Methods', () => {
 
     it('stops the press animation & ripple when togglePicker is called', () => {
         const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
             data() {
                 return {
                     isRippling: true,
@@ -160,6 +189,9 @@ describe('Core Methods', () => {
 
     it('hides the palette when hidePalette is called and knob is already hidden', () => {
         const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
             data() {
                 return {
                     isKnobIn: false,
@@ -175,6 +207,9 @@ describe('Core Methods', () => {
 
     it('prevents the palette from hiding when hidePalette is called and knob is not hidden yet', () => {
         const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
             data() {
                 return {
                     isKnobIn: true,
@@ -188,37 +223,11 @@ describe('Core Methods', () => {
         expect(el.vm.isPaletteIn).toBe(true);
     });
 
-    it('moves the knob when rotateToMouse is called', () => {
-        const setAngleFromEventStub = jest.fn();
-        const el = shallowMount(ColorPicker);
-        el.vm.rcp.setAngleFromEvent = setAngleFromEventStub;
-
-        el.vm.rotateToMouse();
-
-        expect(setAngleFromEventStub).toHaveBeenCalled();
-    });
-
-    it('prevents changes when rotateToMouse is called and picker is animating', () => {
-        const setAngleFromEventStub = jest.fn();
-        const el = shallowMount(ColorPicker, {
-            data() {
-                return {
-                    isPressed: true,
-                };
-            },
-        });
-        el.vm.rcp.setAngleFromEvent = setAngleFromEventStub;
-
-        el.vm.rotateToMouse();
-
-        expect(setAngleFromEventStub).not.toHaveBeenCalled();
-    });
-
     it('calls updateColor when onScroll is called and picker is not animating', () => {
         const updateColorStub = jest.fn();
         const el = shallowMount(ColorPicker, {
             propsData: {
-                hue: 30,
+                hue: 0,
             },
             data() {
                 return {
@@ -263,10 +272,60 @@ describe('Core Methods', () => {
             deltaY: -120,
         });
 
+        expect(updateColorStub).toHaveBeenCalledWith(21);
+    });
+
+    it('increases hue by 10 when PageUp is pressed', () => {
+        const updateColorStub = jest.fn();
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 30,
+                disabled: false,
+            },
+            data() {
+                return {
+                    isPressed: false,
+                    isKnobIn: true,
+                };
+            },
+            methods: {
+                updateColor: updateColorStub,
+            },
+        });
+
+        el.vm.rcp.angle = 30;
+
+        el.vm.onKeyDown({ key: 'PageUp' });
+
+        expect(updateColorStub).toHaveBeenCalledWith(40);
+    });
+
+    it('decreases hue by 10 when PageDown is pressed', () => {
+        const updateColorStub = jest.fn();
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 30,
+                disabled: false,
+            },
+            data() {
+                return {
+                    isPressed: false,
+                    isKnobIn: true,
+                };
+            },
+            methods: {
+                updateColor: updateColorStub,
+            },
+        });
+
+        el.vm.rcp.angle = 30;
+
+        el.vm.onKeyDown({ key: 'PageDown' });
+
         expect(updateColorStub).toHaveBeenCalledWith(20);
     });
 
-    it('increases hue by 12 when rotate is called with an up direction and ctrlKey is pressed', () => {
+    it('increases hue by 1 when ArrowUp or ArrowRight are pressed', () => {
         const updateColorStub = jest.fn();
         const el = shallowMount(ColorPicker, {
             propsData: {
@@ -286,110 +345,89 @@ describe('Core Methods', () => {
 
         el.vm.rcp.angle = 30;
 
-        el.vm.rotate(
-            {
-                deltaY: -120,
-                ctrlKey: true,
-            },
-            true
-        );
+        el.vm.onKeyDown({ key: 'ArrowUp' });
+        expect(updateColorStub).toHaveBeenCalledWith(31);
 
-        expect(updateColorStub).toHaveBeenCalledWith(42);
-    });
-
-    it('decreases hue by 12 when rotate is called with an up direction and ctrlKey is pressed', () => {
-        const updateColorStub = jest.fn();
-        const el = shallowMount(ColorPicker, {
-            propsData: {
-                hue: 30,
-                disabled: false,
-            },
-            data() {
-                return {
-                    isPressed: false,
-                    isKnobIn: true,
-                };
-            },
-            methods: {
-                updateColor: updateColorStub,
-            },
-        });
-
-        el.vm.rcp.angle = 30;
-
-        el.vm.rotate(
-            {
-                deltaY: -120,
-                ctrlKey: true,
-            },
-            false
-        );
-
-        expect(updateColorStub).toHaveBeenCalledWith(18);
-    });
-
-    it('increases hue by 6 when rotate is called with an up direction and shiftKey is pressed', () => {
-        const updateColorStub = jest.fn();
-        const el = shallowMount(ColorPicker, {
-            propsData: {
-                hue: 30,
-                disabled: false,
-            },
-            data() {
-                return {
-                    isPressed: false,
-                    isKnobIn: true,
-                };
-            },
-            methods: {
-                updateColor: updateColorStub,
-            },
-        });
-
-        el.vm.rcp.angle = 30;
-
-        el.vm.rotate(
-            {
-                deltaY: -120,
-                shiftKey: true,
-            },
-            true
-        );
-
-        expect(updateColorStub).toHaveBeenCalledWith(36);
-    });
-
-    it('increases hue by 2 when rotate is called with an up direction', () => {
-        const updateColorStub = jest.fn();
-        const el = shallowMount(ColorPicker, {
-            propsData: {
-                hue: 30,
-                disabled: false,
-            },
-            data() {
-                return {
-                    isPressed: false,
-                    isKnobIn: true,
-                };
-            },
-            methods: {
-                updateColor: updateColorStub,
-            },
-        });
-
-        el.vm.rcp.angle = 30;
-
-        el.vm.rotate(
-            {
-                deltaY: -120,
-            },
-            true
-        );
-
+        el.vm.onKeyDown({ key: 'ArrowRight' });
         expect(updateColorStub).toHaveBeenCalledWith(32);
     });
 
-    it('returns early when rotate is called and picker is disabled', () => {
+    it('decreases hue by 1 when ArrowDown or ArrowLeft are pressed', () => {
+        const updateColorStub = jest.fn();
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 30,
+                disabled: false,
+            },
+            data() {
+                return {
+                    isPressed: false,
+                    isKnobIn: true,
+                };
+            },
+            methods: {
+                updateColor: updateColorStub,
+            },
+        });
+
+        el.vm.rcp.angle = 30;
+
+        el.vm.onKeyDown({ key: 'ArrowDown' });
+        expect(updateColorStub).toHaveBeenCalledWith(29);
+
+        el.vm.onKeyDown({ key: 'ArrowLeft' });
+        expect(updateColorStub).toHaveBeenCalledWith(28);
+    });
+
+    it('sets the hue to 0 when Home is pressed', () => {
+        const updateColorStub = jest.fn();
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 30,
+                disabled: false,
+            },
+            data() {
+                return {
+                    isPressed: false,
+                    isKnobIn: true,
+                };
+            },
+            methods: {
+                updateColor: updateColorStub,
+            },
+        });
+
+        el.vm.rcp.angle = 30;
+
+        el.vm.onKeyDown({ key: 'Home' });
+        expect(updateColorStub).toHaveBeenCalledWith(0);
+    });
+
+    it('sets the hue to 359 when End is pressed', () => {
+        const updateColorStub = jest.fn();
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 30,
+                disabled: false,
+            },
+            data() {
+                return {
+                    isPressed: false,
+                    isKnobIn: true,
+                };
+            },
+            methods: {
+                updateColor: updateColorStub,
+            },
+        });
+
+        el.vm.rcp.angle = 30;
+
+        el.vm.onKeyDown({ key: 'End' });
+        expect(updateColorStub).toHaveBeenCalledWith(359);
+    });
+
+    it('returns early when onKeyDown is called and picker is disabled', () => {
         const updateColorStub = jest.fn();
         const el = shallowMount(ColorPicker, {
             propsData: {
@@ -407,7 +445,7 @@ describe('Core Methods', () => {
             },
         });
 
-        el.vm.rotate();
+        el.vm.onKeyDown({});
 
         expect(updateColorStub).not.toHaveBeenCalled();
     });
@@ -415,6 +453,9 @@ describe('Core Methods', () => {
     it('returns early when onScroll is called and picker is animating', () => {
         const updateColorStub = jest.fn();
         const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
             data() {
                 return {
                     isPressed: true,
@@ -482,7 +523,11 @@ describe('Reactive Changes', () => {
     });
 
     it('updates `isDragging` to `true` when Rotator starts the drag proccess', () => {
-        const el = shallowMount(ColorPicker);
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
+        });
 
         el.vm.rcp.onDragStart();
 
@@ -490,7 +535,11 @@ describe('Reactive Changes', () => {
     });
 
     it('updates `isDragging` to `false` when Rotator stops the drag proccess', () => {
-        const el = shallowMount(ColorPicker);
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
+        });
 
         el.vm.rcp.onDragStart();
         el.vm.rcp.onDragStop();
@@ -501,7 +550,11 @@ describe('Reactive Changes', () => {
 
 describe('Teardown', () => {
     it('cleans up Rotator unused object references & events', () => {
-        const el = shallowMount(ColorPicker);
+        const el = shallowMount(ColorPicker, {
+            propsData: {
+                hue: 0,
+            },
+        });
 
         el.destroy();
 
