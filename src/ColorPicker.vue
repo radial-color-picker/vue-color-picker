@@ -69,7 +69,7 @@ export default {
     name: 'ColorPicker',
     props: {
         hue: {
-            default: 0,
+            required: true,
         },
         saturation: {
             default: 100,
