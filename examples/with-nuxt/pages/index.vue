@@ -7,12 +7,9 @@
 </template>
 
 <script>
-import ColorPicker from '@radial-color-picker/vue-color-picker';
-
+// Note: you don't have to import and declare the color-picker component
+// This is done automatically in `nuxt.config.js`
 export default {
-    components: {
-        ColorPicker,
-    },
     data() {
         return {
             msg: 'Welcome to Your Vue.js App',

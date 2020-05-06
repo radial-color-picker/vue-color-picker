@@ -10,6 +10,7 @@
             :variant="step"
             @input="onInput"
             @change="onChange"
+            @select="onSelect"
         />
         <h1>{{ msg }}</h1>
         <pre>{{ { hue, saturation, luminosity, alpha } }}</pre>
@@ -46,13 +47,19 @@ export default {
         };
     },
     methods: {
-        // Emitted every time the color changes (i.e. rotation of the wheel).
+        // Emitted every time the color updates (i.e. rotation of the wheel).
         onInput(hue) {
             this.hue = hue;
         },
 
-        // Emitted when the user dismisses the color picker (i.e. interacting with the middle color well).
+        // Emitted after the user releases the knob
         onChange(hue) {
+            this.hue = hue;
+            console.log('Color changed. User selected:', hue);
+        },
+
+        // Emitted when the user dismisses the color picker (i.e. interacting with the middle color well).
+        onSelect(hue) {
             console.log('Color picker was dismissed', hue);
         },
     },
