@@ -1,6 +1,10 @@
 <template>
     <div id="app">
         <color-picker
+            aria-roledescription="radial slider"
+            aria-label="color picker"
+            aria-label-color-well="color well"
+            :aria-valuetext="valuetext"
             :hue="hue"
             :saturation="saturation"
             :luminosity="luminosity"
@@ -20,9 +24,18 @@
 <script>
 import ColorPicker from '@radial-color-picker/vue-color-picker';
 
+const colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta', 'red'];
+
 export default {
     name: 'app',
     components: { ColorPicker },
+    computed: {
+        // human readable text alternative of the hue (e.g. red)
+        // for more details see https://www.w3.org/TR/wai-aria-1.1/#aria-valuetext
+        valuetext() {
+            return colors[Math.round(this.hue / 60)];
+        },
+    },
     data() {
         return {
             msg: 'Welcome to Your Vue.js App',
@@ -44,6 +57,9 @@ export default {
 
             // support for disabling UI interactions too!
             disabled: false,
+
+            // can start from a collapsed state
+            initiallyCollapsed: false,
         };
     },
     methods: {
