@@ -1074,10 +1074,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@radial-color-picker/color-wheel@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-2.2.1.tgz#11ec7803744c4a4b6af465708e20bbd4727e6ee1"
-  integrity sha512-J/fRIIwgsl3WLIZmCbs9IO31oj7pF32wpuWxlO5nZVJz1YsBMwBSg75hVPBVnJrijCQCss7xpgT+uSuSO9Xmrw==
+"@radial-color-picker/color-wheel@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/color-wheel/-/color-wheel-2.2.2.tgz#0c8b0b550d550e3c63ee35fdccb4f95fe8f53ad6"
+  integrity sha512-TCiOm77puc0fWG/syMOM0FuPwwtJ2Yc2dUf/BbMhQe6RanRUfS1tcJCef3eYTwidWggLOqswr71sS+9tdfZ+Sg==
 
 "@radial-color-picker/rotator@3.0.1":
   version "3.0.1"

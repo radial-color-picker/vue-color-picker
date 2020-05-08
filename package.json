@@ -22,7 +22,7 @@
     "nuxt"
   ],
   "dependencies": {
-    "@radial-color-picker/color-wheel": "2.2.1",
+    "@radial-color-picker/color-wheel": "2.2.2",
     "@radial-color-picker/rotator": "3.0.1"
   },
   "devDependencies": {
