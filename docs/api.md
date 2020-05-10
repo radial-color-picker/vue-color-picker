@@ -9,9 +9,8 @@ sidebar: auto
 
 * Type: `Number`
 * Default: `0`
-* **Required**
 
-A number between `0-359`. Around 0º and 360º are reds. 120º is where greens are and 240º are blues.
+A number between `0-359`. Around 0º/360º are reds. 120º is where greens are and 240º are blues.
 
 ### saturation
 
@@ -48,7 +47,7 @@ A boolean to disable UI interactions. When `:disabled="true"` is used the color 
 ### step
 
 * Type: `Number`
-* Default: `2`
+* Default: `1`
 * _Optional_
 
 Amount of degrees to rotate the picker with keyboard and/or wheel.
@@ -81,6 +80,54 @@ Use wheel (scroll) event to rotate. By default it's off to keep things simple. A
 Keep in mind that by turning the _scroll to rotate_ functionality on it may result in actually worse UX than without it (preventing page scroll while mouse pointer is over the picker). It's also another non-passive event listener that could potentially introduce jank on scroll.
 :::
 
+### aria-label
+
+* Type: `String`
+* Default: `color picker`
+* _Optional_
+
+Defines a string value that labels the color picker. It provides the user with a recognizable name of the object.
+
+::: tip
+When a user interface is translated into multiple languages, ensure that `aria-label` values are translated.
+:::
+
+### aria-roledescription
+
+* Type: `String`
+* Default: `radial slider`
+* _Optional_
+
+Defines a human-readable, author-localized description for the role of the color picker. Users of assistive technologies depend on the presentation of the role name, such as "slider" for an understanding of the purpose of the element and, if it is a widget, how to interact with it.
+
+::: tip
+When a user interface is translated into multiple languages, ensure that `aria-roledescription` values are translated.
+:::
+
+### aria-valuetext
+
+* Type: `String`
+* Default: `'red' | 'yellow' | 'green' | 'cyan' | 'blue' | 'magenta'`
+* _Optional_
+
+Defines the human readable text alternative of the value for a range widget. You can bring your own color-name map if you want (e.g. "dark orange", "amber", "salmon")
+
+::: tip
+Make sure you update the `aria-valuetext` with any color change and as other aria attributes, when a user interface is translated into multiple languages, ensure that `aria-valuetext` values are translated.
+:::
+
+### aria-label-color-well
+
+* Type: `String`
+* Default: `color well`
+* _Optional_
+
+Defines a string value that labels the color well (middle selector).
+
+::: tip
+When a user interface is translated into multiple languages, ensure that `aria-label-color-well` values are translated.
+:::
+
 ## Events
 
 ### input
@@ -89,7 +136,7 @@ Keep in mind that by turning the _scroll to rotate_ functionality on it may resu
 * Params: `hue` (`Number`)
 * **Required**
 
-Emitted every time the color changes (i.e. rotation of the wheel). It's also the glue between the color picker component and the outside world. Use this to update the `hue` prop.
+Emitted every time the color updates. This could be a touchstart/mousedown event, when rotating the knob, keyboard shortcuts like <kbd>↑</kbd>, and scrolling if enabled. It's also the glue between the color picker component and the outside world. Use this to update the `hue` prop.
 
 ```vue{2,11,12,13}
 <template>
@@ -109,8 +156,15 @@ export default {
 };
 </script>
 ```
-
 ### change
+
+* Type: `Function`
+* Params: `hue` (`Number`)
+* _Optional_
+
+Emitted every time the color changes, but unlike `@input` this is not emitted while rotating the knob. `@change` is a less noisy version of `@input` which is useful if you want to react to knob rotation stop for example or to use the `<color-picker>` as an uncontrolled component.
+
+### select
 
 * Type: `Function`
 * Params: `hue` (`Number`)
@@ -120,7 +174,7 @@ Emitted when the user dismisses the color picker (i.e. interacting with the midd
 
 ```vue{2,12,13,14}
 <template>
-    <color-picker :hue="hue" @input="onInput" @change="onChange" />
+    <color-picker :hue="hue" @input="onInput" @select="onSelect" />
 </template>
 
 <script>
@@ -130,11 +184,10 @@ export default {
     },
     methods: {
         onInput(hue) { this.hue = hue },
-        onChange(hue) {
+        onSelect(hue) {
             console.log('Color picker was dismissed.', hue);
         },
     },
 };
 </script>
 ```
-

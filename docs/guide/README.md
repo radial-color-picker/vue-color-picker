@@ -10,12 +10,12 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
 * Supports touch devices
 * Optimized animations
 * Ease of use
-    * Double click anywhere to move the knob to a color
-    * <kbd>Tab</kbd> to focus the picker
-    * <kbd>↑</kbd> or <kbd>→</kbd> arrow key to increase hue. <kbd>Shift + ↑/→</kbd> to go quicker and <kbd>Ctrl + ↑/→</kbd> to go even quicker.
-    * <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>Shift + ↓/←</kbd> to go quicker and <kbd>Ctrl + ↓/←</kbd> to go even quicker.
-    * <kbd>Enter</kbd> to select a color and close the picker or to open it
-    * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in)
+    * Screen reader support.
+    * <kbd>Tab</kbd> to focus the picker.
+    * <kbd>↑</kbd> or <kbd>→</kbd> arrow key to increase hue. <kbd>PgUp</kbd> to go quicker.
+    * <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>PgDown</kbd> to go quicker.
+    * <kbd>Enter</kbd> to select a color and close the picker or to open it.
+    * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in).
 
 ## Ecosystem
 
