@@ -3,7 +3,6 @@
         role="slider"
         :aria-roledescription="ariaRoledescription"
         :aria-label="ariaLabel"
-        :aria-expanded="isPaletteIn ? 'true' : 'false'"
         aria-valuemin="0"
         aria-valuemax="359"
         :aria-valuenow="angle"
@@ -37,8 +36,8 @@
             type="button"
             class="rcp__well"
             :aria-label="ariaLabelColorWell"
-            :disabled="disabled"
-            :tabindex="disabled ? -1 : 0"
+            :disabled="true"
+            :tabindex="-1"
             :class="{ pressed: isPressed }"
             :style="{ backgroundColor: color }"
             @animationend="togglePicker"
@@ -254,10 +253,6 @@ export default {
     transition: transform 0.15s cubic-bezier(0.68, 0, 0.47, 2);
 }
 
-.rcp:focus {
-    outline: 0;
-}
-
 .rcp:hover .rcp__knob {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.19), 0 0 10px rgba(0, 0, 0, 0.24);
 }
@@ -383,6 +378,10 @@ export default {
 
 .rcp__well:hover {
     box-shadow: 0 0 1px 1px #333;
+}
+
+.rcp__well:disabled:hover {
+    cursor: default;
 }
 
 .rcp__well:focus {
