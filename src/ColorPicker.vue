@@ -1,17 +1,19 @@
 <template>
     <div
+        ref="el"
         role="slider"
         :aria-roledescription="ariaRoledescription"
         :aria-label="ariaLabel"
-        :aria-expanded="isPaletteIn ? 'true' : 'false'"
+        :aria-expanded="isPaletteIn"
         aria-valuemin="0"
         aria-valuemax="359"
         :aria-valuenow="angle"
         :aria-valuetext="ariaValuetext || valuetext"
-        :aria-disabled="disabled ? 'true' : 'false'"
+        :aria-disabled="disabled"
         class="rcp"
         :class="{ dragging: isDragging, disabled: disabled }"
         :tabindex="disabled ? -1 : 0"
+        :style="{ '--rcp-initial-angle': initialAngle }"
         @keyup.enter="selectColor"
         @keydown="onKeyDown"
     >
@@ -23,9 +25,8 @@
             class="rcp__rotator"
             :style="{
                 'pointer-events': disabled || isPressed || !isKnobIn ? 'none' : null,
-                transform: `rotate(${ssrHue}deg)`,
             }"
-            v-on="mouseScroll ? { wheel: onScroll } : null"
+            v-on="mouseScroll ? { wheel: onScroll } : {}"
             ref="rotator"
         >
             <div class="rcp__knob" :class="isKnobIn ? 'in' : 'out'" @transitionend="hidePalette"></div>
@@ -48,9 +49,10 @@
 </template>
 
 <script>
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
+
 import fillColorWheel from '@radial-color-picker/color-wheel';
 import Rotator from '@radial-color-picker/rotator';
-
 const colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta', 'red'];
 const keys = {
     ArrowUp: (oldAngle, step) => oldAngle + step,
@@ -64,8 +66,8 @@ const keys = {
 };
 
 export default {
-    rcp: null,
     name: 'ColorPicker',
+    emits: ['select', 'input', 'change'],
     props: {
         hue: {
             default: 0,
@@ -107,129 +109,168 @@ export default {
             default: 'color well',
         },
     },
-    data() {
-        return {
-            angle: 0,
-            ssrHue: 0,
-            isPaletteIn: !this.initiallyCollapsed,
-            isKnobIn: !this.initiallyCollapsed,
-            isPressed: false,
-            isRippling: false,
-            isDragging: false,
-        };
-    },
-    computed: {
-        color() {
-            return `hsla(${this.angle}, ${this.saturation}%, ${this.luminosity}%, ${this.alpha})`;
-        },
-        valuetext() {
-            return colors[Math.round(this.angle / 60)];
-        },
-    },
-    watch: {
-        hue: function (angle) {
-            this.angle = angle;
-            this.rcp.angle = angle;
-        },
-    },
-    created() {
-        // update the SSR value once when the component is created
-        // prevents knob jumping when using Server Side Rendering
-        // where the knob's position is updated only after the client-side code is executed (on mount)
-        this.ssrHue = this.hue;
-        this.angle = this.ssrHue;
-    },
-    mounted() {
+    setup(props, { emit }) {
+        // template refs
+        const el = ref(null);
+        const rotator = ref(null);
+        const palette = ref(null);
+
+        // instance values
+        let rcp = null;
+
+        // state
+        const initialAngle = props.hue + 'deg';
+        const angle = ref(props.hue);
+        const isPaletteIn = ref(!props.initiallyCollapsed);
+        const isKnobIn = ref(!props.initiallyCollapsed);
+        const isPressed = ref(false);
+        const isRippling = ref(false);
+        const isDragging = ref(false);
+
+        const color = computed(
+            () => `hsla(${angle.value}, ${props.saturation}%, ${props.luminosity}%, ${props.alpha})`
+        );
+
+        const valuetext = computed(() => {
+            return colors[Math.round(angle.value / 60)];
+        });
+
+        watch(
+            () => props.hue,
+            value => {
+                angle.value = value;
+                rcp.angle = value;
+            }
+        );
+
         // ignore testing code that will be removed by dead code elimination for production
-        /* istanbul ignore next */
-        if (process.env.NODE_ENV === 'development' && this.initiallyCollapsed && this.variant === 'persistent') {
+        // istanbul ignore next
+        if (__DEV__ && props.initiallyCollapsed && props.variant === 'persistent') {
             console.warn(
                 `Incorrect config: using variant="persistent" and :initiallyCollapsed="true" at the same time is not supported.`
             );
         }
 
-        const isConicGradientSupported = getComputedStyle(this.$refs.palette).backgroundImage.includes('conic');
+        onMounted(() => {
+            const isConicGradientSupported = getComputedStyle(palette.value).backgroundImage.includes('conic');
 
-        // ignore conic-gradient support & polyfill
-        /* istanbul ignore else */
-        if (!isConicGradientSupported) {
-            fillColorWheel(this.$refs.palette.firstElementChild, this.$el.offsetWidth || 280);
-        }
+            // ignore conic-gradient support & polyfill
+            // istanbul ignore else
+            if (!isConicGradientSupported) {
+                fillColorWheel(palette.value.firstElementChild, el.value.offsetWidth || 280);
+            }
 
-        this.rcp = new Rotator(this.$refs.rotator, {
-            angle: this.angle,
-            onRotate: hue => {
-                this.angle = hue;
-                this.$emit('input', this.angle);
-            },
-            onDragStart: () => {
-                this.isDragging = true;
-            },
-            onDragStop: () => {
-                this.isDragging = false;
-                this.$emit('change', this.angle);
-            },
+            // the Rorator module already has an extensive test suite
+            // istanbul ignore next
+            rcp = new Rotator(rotator.value, {
+                angle: angle.value,
+                onRotate(hue) {
+                    angle.value = hue;
+                    emit('input', angle.value);
+                },
+                onDragStart() {
+                    isDragging.value = true;
+                },
+                onDragStop() {
+                    isDragging.value = false;
+                    emit('change', angle.value);
+                },
+            });
         });
-    },
-    methods: {
-        onKeyDown(ev) {
-            if (this.disabled || this.isPressed || !this.isKnobIn || !(ev.key in keys)) return;
+
+        onBeforeUnmount(() => {
+            rcp.destroy();
+            rcp = null;
+        });
+
+        const onKeyDown = ev => {
+            if (props.disabled || isPressed.value || !isKnobIn.value || !(ev.key in keys)) return;
 
             ev.preventDefault();
 
-            this.rcp.angle = keys[ev.key](this.rcp.angle, this.step);
+            rcp.angle = keys[ev.key](rcp.angle, props.step);
 
-            this.angle = this.rcp.angle;
-            this.$emit('input', this.angle);
-            this.$emit('change', this.angle);
-        },
-        onScroll(ev) {
-            if (this.isPressed || !this.isKnobIn) return;
+            angle.value = rcp.angle;
+            emit('input', angle.value);
+            emit('change', angle.value);
+        };
+
+        const onScroll = ev => {
+            if (isPressed.value || !isKnobIn.value) return;
 
             ev.preventDefault();
 
             if (ev.deltaY > 0) {
-                this.rcp.angle += this.step;
+                rcp.angle += props.step;
             } else {
-                this.rcp.angle -= this.step;
+                rcp.angle -= props.step;
             }
 
-            this.angle = this.rcp.angle;
-            this.$emit('input', this.angle);
-            this.$emit('change', this.angle);
-        },
-        selectColor() {
-            this.isPressed = true;
+            angle.value = rcp.angle;
+            emit('input', angle.value);
+            emit('change', angle.value);
+        };
 
-            if (this.isPaletteIn && this.isKnobIn) {
-                this.$emit('select', this.angle);
-                this.isRippling = true;
+        const selectColor = () => {
+            isPressed.value = true;
+
+            if (isPaletteIn.value && isKnobIn.value) {
+                emit('select', angle.value);
+                isRippling.value = true;
             } else {
-                this.isPaletteIn = true;
+                isPaletteIn.value = true;
             }
-        },
-        togglePicker() {
-            if (this.variant !== 'persistent') {
-                if (this.isKnobIn) {
-                    this.isKnobIn = false;
+        };
+
+        const togglePicker = () => {
+            if (props.variant !== 'persistent') {
+                if (isKnobIn.value) {
+                    isKnobIn.value = false;
                 } else {
-                    this.isKnobIn = true;
-                    this.isPaletteIn = true;
+                    isKnobIn.value = true;
+                    isPaletteIn.value = true;
                 }
             }
 
-            this.isRippling = false;
-            this.isPressed = false;
-        },
-        hidePalette() {
-            if (!this.isKnobIn) {
-                this.isPaletteIn = false;
+            isRippling.value = false;
+            isPressed.value = false;
+        };
+
+        const hidePalette = () => {
+            if (!isKnobIn.value) {
+                isPaletteIn.value = false;
             }
-        },
-    },
-    beforeDestroy() {
-        this.rcp.destroy();
-        this.rcp = null;
+        };
+
+        return {
+            // private API intented for testing memory leaks
+            rcp,
+
+            // refs
+            el,
+            palette,
+            rotator,
+
+            // state
+            initialAngle,
+            angle,
+            isPaletteIn,
+            isKnobIn,
+            isDragging,
+            isRippling,
+            isPressed,
+
+            // computed
+            color,
+            valuetext,
+
+            // methods
+            onKeyDown,
+            onScroll,
+            selectColor,
+            togglePicker,
+            hidePalette,
+        };
     },
 };
 </script>
@@ -331,6 +372,7 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
+    transform: rotate(var(--rcp-initial-angle));
 }
 
 .rcp__knob {

@@ -12,6 +12,7 @@ exports[`Init renders correctly 1`] = `
   aria-valuetext="red"
   class="rcp"
   role="slider"
+  style="--rcp-initial-angle: 0deg;"
   tabindex="0"
 >
   <div
@@ -19,25 +20,22 @@ exports[`Init renders correctly 1`] = `
   >
     <canvas />
   </div>
-   
   <div
     class="rcp__rotator"
-    style="transform: rotate(0deg); will-change: transform;"
+    style="will-change: transform; transform: rotate(0deg);"
   >
     <div
       class="rcp__knob in"
     />
   </div>
-   
   <div
     class="rcp__ripple"
     style="border-color: hsla(0, 100%, 50%, 1);"
   />
-   
   <button
     aria-label="color well"
     class="rcp__well"
-    style="background-color: hsl(0, 100%, 50%);"
+    style="background-color: rgb(255, 0, 0);"
     tabindex="0"
     type="button"
   />

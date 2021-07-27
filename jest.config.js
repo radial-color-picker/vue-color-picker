@@ -1,7 +1,7 @@
 module.exports = {
+    // moduleFileExtensions: ['js', 'vue'],
     transform: {
         '^.+\\.vue$': 'vue-jest',
-        '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
         '^.+\\.jsx?$': 'babel-jest',
     },
     // allow using absolute import specifiers in test files
@@ -9,8 +9,11 @@ module.exports = {
     moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/$1',
     },
-    snapshotSerializers: ['jest-serializer-vue'],
-    testMatch: ['**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'],
+    testEnvironment: 'jsdom',
+    globals: {
+        __DEV__: true,
+    },
+    testMatch: ['**/tests/unit/**/*.spec.js'],
     testURL: 'http://localhost/',
     collectCoverage: true,
     collectCoverageFrom: ['<rootDir>/src/ColorPicker.vue'],

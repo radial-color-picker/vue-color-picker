@@ -1,7 +1,7 @@
 const fse = require('fs-extra');
 const zlib = require('zlib');
 const ui = require('cliui')({ width: 80 });
-const { log, chalk } = require('@vue/cli-shared-utils');
+const chalk = require('chalk');
 
 const outputDir = 'dist';
 
@@ -27,24 +27,24 @@ const printStats = () => {
             };
         })
         .sort((a, b) => {
-            // move CSS files to be last
-            if (isCSS(a.name) && isJS(b.name)) return 1;
+            // move CSS files to be first
+            if (isCSS(a.name) && isJS(b.name)) return -1;
 
             // otherwise sort alphabetically
             return a.name.localeCompare(b.name);
         });
 
     ui.div(
-        makeRow(chalk.cyan.bold('File'), chalk.cyan.bold('Size'), chalk.cyan.bold('Gzipped')) +
+        makeRow(chalk.whiteBright.bold('File'), chalk.whiteBright.bold('Size'), chalk.whiteBright.bold('Gzipped')) +
             `\n\n` +
             assets
                 .map(({ name, size, gzipped }) =>
-                    makeRow(isJS(name) ? chalk.green(name) : chalk.blue(name), size, gzipped)
+                    makeRow(isJS(name) ? chalk.cyan(name) : chalk.magenta(name), size, gzipped)
                 )
                 .join(`\n`)
     );
 
-    log(`\n${ui.toString()}\n\n  ${chalk.gray(`Images and other types of assets omitted.`)}\n`);
+    console.log(`\n${ui.toString()}\n\n  ${chalk.gray(`Images and other types of assets omitted.`)}\n`);
 };
 
 module.exports.printStats = printStats;
