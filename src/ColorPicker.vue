@@ -315,28 +315,7 @@ export default {
     height: 100%;
     background-size: 100% 100%;
     background-image: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
-
-    /**
-     * @hack: MS Edge 18 (not the Chromium based one) has a bug with mask-image and
-     * transforms. When `transform: scale(1.04)` is applied the mask-image scales too
-     * but its position is incorrect now. Otherwise the much shorter radial-gradient mask
-     * could've been used:
-     * mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
-     *
-     * Instead, below is an base64 inlined SVG:
-     * <?xml version="1.0" encoding="UTF-8"?>
-     * <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
-     *     <defs>
-     *        <mask id="mask" x="0" y="0" width="100" height="100">
-     *            <rect x="0" y="0" width="100" height="100" fill="#fff"/>
-     *            <circle cx="50" cy="50" r="38" />
-     *        </mask>
-     *    </defs>
-     *
-     *    <rect x="0" y="0" width="100" height="100" mask="url(#mask)"/>
-     * </svg>
-     */
-    mask-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMCAxMDAiPgogICAgPGRlZnM+CiAgICAgICAgPG1hc2sgaWQ9Im1hc2siIHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICAgICAgICAgICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmZmYiLz4KICAgICAgICAgICAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMzgiIC8+CiAgICAgICAgPC9tYXNrPgogICAgPC9kZWZzPgoKICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBtYXNrPSJ1cmwoI21hc2spIi8+Cjwvc3ZnPgo=');
+    mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
     border-radius: 50%;
     overflow: hidden;
     will-change: transform, opacity;
