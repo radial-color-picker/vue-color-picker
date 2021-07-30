@@ -1,6 +1,7 @@
 ---
 sidebar: auto
 ---
+
 # Config Reference
 
 ## Props

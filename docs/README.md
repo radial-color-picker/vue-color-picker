@@ -1,9 +1,11 @@
 ---
 home: true
-title: foo
 heroImage: /logo.png
 actionText: Get Started →
 actionLink: /guide/
+actions:
+    - text: Get Started →
+      link: /guide/
 features:
 - title: Small size
   details: Say no to web bloat! Sitting at 2.8 KB gzipped JS it's probably one of the smallest color pickers out there.
