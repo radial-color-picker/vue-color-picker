@@ -365,7 +365,7 @@ export default {
 }
 
 .disabled .rcp__palette {
-    background-image: radial-gradient(#808080, #fff) !important;
+    filter: contrast(0.25);
 }
 
 .rcp__rotator {
