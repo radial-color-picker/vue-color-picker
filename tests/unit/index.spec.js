@@ -1,17 +1,9 @@
 import { shallowMount } from '@vue/test-utils';
 import ColorPicker from '@/src/ColorPicker.vue';
 
-// canvas support in JSDom is weak and throws an error so the dependency is mocked
-import fillColorWheel from '@radial-color-picker/color-wheel';
-jest.mock('@radial-color-picker/color-wheel');
-
 const noop = () => {};
 
 describe('Init', () => {
-    beforeEach(() => {
-        fillColorWheel.mockClear();
-    });
-
     it('renders correctly', () => {
         const el = shallowMount(ColorPicker, {
             props: {
@@ -37,18 +29,6 @@ describe('Init', () => {
         await rotatorEl.trigger('wheel', { deltaY: 120 });
 
         expect(el.emitted('input')[0]).toEqual([31]);
-    });
-
-    // jsdom doesn't support layouting so `getComputedStyle(palette).backgroundImage`
-    // would never include conic-gradient
-    it('setups a fallback to canvas when `conic-gradient` CSS is not supported', () => {
-        shallowMount(ColorPicker, {
-            props: {
-                hue: 0,
-            },
-        });
-
-        expect(fillColorWheel).toHaveBeenCalled();
     });
 });
 

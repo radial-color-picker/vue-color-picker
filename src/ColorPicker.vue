@@ -17,7 +17,7 @@
         @keyup.enter="selectColor"
         @keydown="onKeyDown"
     >
-        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" ref="palette">
+        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'">
             <canvas></canvas>
         </div>
 
@@ -51,7 +51,6 @@
 <script>
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue';
 
-import fillColorWheel from '@radial-color-picker/color-wheel';
 import Rotator from '@radial-color-picker/rotator';
 const colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta', 'red'];
 const keys = {
@@ -113,7 +112,6 @@ export default {
         // template refs
         const el = ref(null);
         const rotator = ref(null);
-        const palette = ref(null);
 
         // instance values
         let rcp = null;
@@ -152,14 +150,6 @@ export default {
         }
 
         onMounted(() => {
-            const isConicGradientSupported = getComputedStyle(palette.value).backgroundImage.includes('conic');
-
-            // ignore conic-gradient support & polyfill
-            // istanbul ignore else
-            if (!isConicGradientSupported) {
-                fillColorWheel(palette.value.firstElementChild, el.value.offsetWidth || 280);
-            }
-
             // the Rorator module already has an extensive test suite
             // istanbul ignore next
             rcp = new Rotator(rotator.value, {
@@ -248,7 +238,6 @@ export default {
 
             // refs
             el,
-            palette,
             rotator,
 
             // state
