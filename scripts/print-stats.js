@@ -5,16 +5,16 @@ const chalk = require('chalk');
 
 const outputDir = 'dist';
 
-const isJS = name => /\.js$/.test(name);
-const isCSS = name => /\.css$/.test(name);
-const formatSize = size => (size / 1024).toFixed(2) + ' KiB';
+const isJS = (name) => /\.js$/.test(name);
+const isCSS = (name) => /\.css$/.test(name);
+const formatSize = (size) => (size / 1024).toFixed(2) + ' KiB';
 const makeRow = (a, b, c) => `  ${a}\t    ${b}\t ${c}`;
 
 const printStats = () => {
     const assets = fse
         .readdirSync(outputDir)
-        .filter(fileName => isCSS(fileName) || isJS(fileName))
-        .map(fileName => {
+        .filter((fileName) => isCSS(fileName) || isJS(fileName))
+        .map((fileName) => {
             const filePath = `${outputDir}/${fileName}`;
 
             const { size } = fse.statSync(filePath);

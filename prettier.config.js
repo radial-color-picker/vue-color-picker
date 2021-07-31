@@ -3,5 +3,6 @@ module.exports = {
     singleQuote: true,
     tabWidth: 4,
     trailingComma: 'es5',
-    arrowParens: 'avoid',
+    endOfLine: 'auto',
+    vueIndentScriptAndStyle: true,
 };
