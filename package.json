@@ -17,9 +17,11 @@
   "main": "dist/vue-color-picker.cjs.js",
   "module": "dist/vue-color-picker.es.js",
   "unpkg": "dist/vue-color-picker.umd.min.js",
+  "types": "index.d.ts",
   "files": [
     "dist",
-    "nuxt"
+    "nuxt",
+    "index.d.ts"
   ],
   "dependencies": {
     "@radial-color-picker/color-wheel": "2.2.2",
@@ -54,7 +56,7 @@
     "vuepress": "2.0.0-beta.22"
   },
   "peerDependencies": {
-    "vue": "^2.5.21"
+    "vue": "^3.0.0"
   },
   "contributors": [
     "Dennis Dierkes <dierkes@smartsquare.de>"
