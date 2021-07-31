@@ -24,18 +24,15 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "@radial-color-picker/color-wheel": "2.2.2",
     "@radial-color-picker/rotator": "3.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
+    "@babel/core": "7.14.8",
     "@size-limit/file": "5.0.2",
     "@vitejs/plugin-vue": "1.2.5",
     "@vue/babel-preset-app": "4.3.1",
     "@vue/compiler-sfc": "3.1.5",
-    "@vue/component-compiler-utils": "3.2.2",
     "@vue/test-utils": "2.0.0-rc.11",
-    "@vuepress/plugin-register-components": "1.8.2",
     "autoprefixer": "10.3.1",
     "babel-jest": "26.6.3",
     "chalk": "4.1.1",
@@ -47,7 +44,6 @@
     "jest": "26.6.3",
     "lint-staged": "11.1.1",
     "postcss": "8.3.6",
-    "postcss-loader": "6.1.1",
     "prettier": "2.0.5",
     "size-limit": "5.0.2",
     "vite": "2.4.3",
