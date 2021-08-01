@@ -270,6 +270,8 @@
     .rcp button {
         -webkit-touch-callout: none;
         -webkit-tap-highlight-color: transparent;
+        -webkit-user-select: none;
+        -moz-user-select: none;
         user-select: none;
         box-sizing: border-box;
     }
@@ -315,6 +317,7 @@
         height: 100%;
         background-size: 100% 100%;
         background-image: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+        -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
         mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
         border-radius: 50%;
         overflow: hidden;
@@ -366,7 +369,7 @@
     }
 
     .disabled .rcp__knob {
-        box-shadow: none !important;
+        box-shadow: none;
         pointer-events: none;
     }
 
