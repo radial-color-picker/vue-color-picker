@@ -1295,10 +1295,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@radial-color-picker/rotator@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-3.0.1.tgz#8def5b06677e0e7c8db6e73d957df8e66712d8f1"
-  integrity sha512-RKtlLzZKAvDpRNLZEP61OxtZerBOmHKkQ656MNRMKwnMdF/+hwiozRLOTHWyhMkK1xueIOuiP3U50qtjSM1vAw==
+"@radial-color-picker/rotator@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@radial-color-picker/rotator/-/rotator-3.0.2.tgz#44289355f9dcf28f58af1a6964d28ef55b3ff518"
+  integrity sha512-JiSVkN/hSMKqIcQz8KaeLvbzA0UrZkKQL2Q8s4MUxehjLcciTSctG75V8trHk0tPkTfglZjLlmg+S5+xO3GBLQ==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"

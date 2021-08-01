@@ -24,7 +24,7 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "@radial-color-picker/rotator": "3.0.1"
+    "@radial-color-picker/rotator": "3.0.2"
   },
   "devDependencies": {
     "@babel/core": "7.14.8",
