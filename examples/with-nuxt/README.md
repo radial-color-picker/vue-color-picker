@@ -1,5 +1,9 @@
 # Example - With Nuxt.js
 
+**Note:** Current version of Nuxt (v2.x) doesn't support Vue 3. The example will be updated with the upcoming Nuxt major release.
+
+---
+
 Example shows how to setup `vue-color-picker` with [Nuxt.js](https://nuxtjs.org). Setup process is the same as an app built with Vue CLI, but the CSS is configured globally for all pages in `next.config.js`.
 
 ## How to use
