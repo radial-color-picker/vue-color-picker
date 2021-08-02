@@ -12,11 +12,8 @@
     <a href="https://www.npmjs.com/package/@radial-color-picker/vue-color-picker">
         <img src="https://img.shields.io/npm/l/@radial-color-picker/vue-color-picker.svg" alt="License">
     </a>
-    <a href="https://circleci.com/gh/radial-color-picker/vue-color-picker">
-        <img src="https://circleci.com/gh/radial-color-picker/vue-color-picker.svg?style=shield" alt="CircleCI">
-    </a>
     <a href="https://codecov.io/gh/radial-color-picker/vue-color-picker">
-      <img src="https://codecov.io/gh/radial-color-picker/vue-color-picker/branch/master/graph/badge.svg" alt="Code Coverage" />
+        <img src="https://codecov.io/gh/radial-color-picker/vue-color-picker/branch/master/graph/badge.svg" alt="Code Coverage" />
     </a>
 </p>
 
@@ -25,7 +22,7 @@
 Great UX starts with two basic principles - ease of use and simplicity. Selecting a color should be as easy as moving a slider, clicking a checkbox or pressing a key just like other basic form elements behave.
 
 This is a flexible and minimalistic color picker. Developed with mobile devices and keyboard usage in mind. Key features:
-* Small size - 4 KB gzipped (JS and CSS combined)
+* Small size - 3.3 KB gzipped (JS and CSS combined)
 * Supports touch devices
 * Optimized animations
 * Ease of use
@@ -35,6 +32,7 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
     * <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>PgDown</kbd> to go quicker.
     * <kbd>Enter</kbd> to select a color and close the picker or to open it.
     * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in).
+* Experimental TypeScript support
 
 ## Documentation
 
@@ -53,16 +51,6 @@ The right color picker, but not the framework you're looking for?
 * [React][link-react-color-picker]
 * [AngularJs][link-angularjs-color-picker]
 * [Angular][link-angular-color-picker]
-
-## Quick Links
-
-* [Demos](#demos)
-* [Usage](#usage)
-* [Change log](#change-log)
-* [Migration](#migration)
-* [Contributing](#contributing)
-* [Credits](#credits)
-* [License](#license)
 
 ## Demos
 
@@ -84,36 +72,51 @@ And in your app:
 </template>
 
 <script>
-import ColorPicker from '@radial-color-picker/vue-color-picker';
+    import { reactive } from 'vue';
+    import ColorPicker from '@radial-color-picker/vue-color-picker';
 
-export default {
-    components: { ColorPicker },
-    data() {
-        return {
-            color: {
+    export default {
+        components: { ColorPicker },
+        setup() {
+            const color = reactive({
                 hue: 50,
                 saturation: 100,
                 luminosity: 50,
-                alpha: 1
-            },
-        };
-    },
-    methods: {
-        onInput(hue) {
-            this.color.hue = hue;
+                alpha: 1,
+            });
+
+            return {
+                color,
+                onInput(hue) {
+                    color.hue = hue;
+                },
+            };
         },
-    },
-};
+    };
 </script>
 
 <style>
-@import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
+    @import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 </style>
 ```
 
 ## Change log
 
 Please see [Releases][link-releases] for more information on what has changed recently.
+
+## Vue 3 and `@vue/compat`
+
+If your app isn't ready to upgrade to Vue 3 you can slowly transition via `@vue/compat` and the [instructions provided there](https://www.npmjs.com/package/@vue/compat). Once you're done you might notice a warning message - `ATTR_FALSE_VALUE`. This is intended behavior and you can optionally silence the warning with `configureCompat({ ATTR_FALSE_VALUE: false })`. When using Vue 3 without the compat layer the warning will go away too.
+
+<details>
+    <summary>Details</summary>
+    <pre>
+[Vue warn]: (deprecation ATTR_FALSE_VALUE) Attribute "aria-disabled" with v-bind value `false` will <br>render aria-disabled="false" instead of removing it in Vue 3. To remove the attribute, use `null` or <br>`undefined` instead. If the usage is intended, you can disable the compat behavior and suppress this warning with:<br>
+configureCompat({ ATTR_FALSE_VALUE: false })<br>
+Details: https://v3.vuejs.org/guide/migration/attribute-coercion.html
+at &lt;ColorPicker&gt;
+at &lt;App&gt;</pre>
+</details>
 
 ## Migration
 
@@ -138,58 +141,6 @@ Please see [Releases][link-releases] for more information on what has changed re
 +     @change="onColorChange"
 +     @select="onColorSelect"
   />
-```
-
-### Migration from v2
-
-With v3 the inner circle is now transparent instead of solid white. If you previously relied on that and you prefer to keep the existing behavior you can do that by wrapping the `<color-picker>` with a `<div>` and add white background to it. Here's an example how to do that:
-
-```vue
-<template>
-    <div class="wrapper">
-        <color-picker :hue="hue" @input="onInput"></color-picker>
-    </div>
-</template>
-
-<style>
-    .wrapper {
-        padding: 32px;
-        background: #fff;
-    }
-</style>
-```
-
-### Migration from v1
-
-Straight forward - `v-model` becomes `v-bind` and you need to add the `@input` event (which was previously added by the `v-model` directive implicitly).
-
-```diff
-<template>
--   <color-picker v-model="color"></color-picker>
-+   <color-picker v-bind="color" @input="onInput"></color-picker>
-</template>
-
-<script>
-import ColorPicker from '@radial-color-picker/vue-color-picker';
-
-export default {
-    components: { ColorPicker },
-    data() {
-        return {
-            color: {
-                hue: 50,
-                saturation: 100,
-                luminosity: 50,
-                alpha: 1
-            },
-        };
-    },
-+   methods: {
-+       onInput: function(hue) {
-+           this.color.hue = hue;
-+       }
-+   }
-};
 ```
 
 ## Contributing

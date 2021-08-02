@@ -3,15 +3,19 @@
 </template>
 
 <script>
+    import { ref } from 'vue';
+
     export default {
-        name: 'ExampleNonCollapsingMode',
-        data() {
-            return { hue: 50 };
-        },
-        methods: {
-            updateColor(hue) {
-                this.hue = hue;
-            },
+        name: 'example-non-collapsing-mode',
+        setup() {
+            const hue = ref(50);
+
+            return {
+                hue,
+                updateColor(value) {
+                    hue.value = value;
+                },
+            };
         },
     };
 </script>

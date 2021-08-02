@@ -3,22 +3,24 @@
 </template>
 
 <script>
+    import { reactive } from 'vue';
+
     export default {
         name: 'example-non-primary',
-        data() {
+        setup() {
+            const color = reactive({
+                hue: 338,
+                saturation: 91,
+                luminosity: 57,
+                alpha: 0.95,
+            });
+
             return {
-                color: {
-                    hue: 338,
-                    saturation: 91,
-                    luminosity: 57,
-                    alpha: 0.95,
+                color,
+                updateColor(value) {
+                    color.hue = value;
                 },
             };
-        },
-        methods: {
-            updateColor(hue) {
-                this.color.hue = hue;
-            },
         },
     };
 </script>

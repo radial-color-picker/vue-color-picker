@@ -3,17 +3,18 @@
 </template>
 
 <script>
+    import { ref } from 'vue';
+
     export default {
         name: 'example-uncontrolled',
-        data() {
+        setup() {
+            const color = ref('hsl(0, 100%, 50%)');
+
             return {
-                color: 'hsl(0, 100%, 50%)',
+                onColorSelect(hue) {
+                    color.value = `hsl(${hue}, 100%, 50%)`;
+                },
             };
-        },
-        methods: {
-            onColorSelect(hue) {
-                this.color = `hsl(${hue}, 100%, 50%)`;
-            },
         },
     };
 </script>

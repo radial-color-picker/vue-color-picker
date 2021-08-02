@@ -135,28 +135,11 @@ When a user interface is translated into multiple languages, ensure that `aria-l
 
 * Type: `Function`
 * Params: `hue` (`Number`)
-* **Required**
 
 Emitted every time the color updates. This could be a touchstart/mousedown event, when rotating the knob, keyboard shortcuts like <kbd>↑</kbd>, and scrolling if enabled. It's also the glue between the color picker component and the outside world. Use this to update the `hue` prop.
 
-```vue{2,11,12,13}
-<template>
-    <color-picker :hue="hue" @input="onInput" />
-</template>
+@[code vue{2,15-17}](./.vuepress/components/ExampleBasic.vue)
 
-<script>
-export default {
-    data() {
-        return { hue: 50 };
-    },
-    methods: {
-        onInput(hue) {
-            this.hue = hue;
-        },
-    },
-};
-</script>
-```
 ### change
 
 * Type: `Function`
@@ -173,22 +156,26 @@ Emitted every time the color changes, but unlike `@input` this is not emitted wh
 
 Emitted when the user dismisses the color picker (i.e. interacting with the middle color well). Can be used as a secondary confirmation step from the user that this is the color value to be saved for example.
 
-```vue{2,12,13,14}
+```vue{2,15,16,17}
 <template>
     <color-picker :hue="hue" @input="onInput" @select="onSelect" />
 </template>
 
 <script>
-export default {
-    data() {
-        return { hue: 50 };
-    },
-    methods: {
-        onInput(hue) { this.hue = hue },
-        onSelect(hue) {
-            console.log('Color picker was dismissed.', hue);
+    import { ref } from 'vue';
+
+    export default {
+        setup() {
+            const hue = ref(50);
+
+            return {
+                hue,
+                onInput(value) { hue.value = value; },
+                onSelect(value) {
+                    console.log('Color picker was dismissed.', hue);
+                },
+            };
         },
-    },
-};
+    };
 </script>
 ```

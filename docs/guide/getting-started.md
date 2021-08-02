@@ -15,34 +15,34 @@ And in your app:
 </template>
 
 <script>
-import ColorPicker from '@radial-color-picker/vue-color-picker';
+    import ColorPicker from '@radial-color-picker/vue-color-picker';
 
-export default {
-    components: { ColorPicker },
-    data() {
-        return {
-            color: {
+    export default {
+        components: { ColorPicker },
+        setup() {
+            const color = reactive({
                 hue: 50,
                 saturation: 100,
                 luminosity: 50,
-                alpha: 1
-            },
-        };
-    },
-    methods: {
-        onInput(hue) {
-            this.color.hue = hue;
+                alpha: 1,
+            });
+
+            return {
+                color,
+                onInput(hue) {
+                    color.hue = hue;
+                },
+            };
         },
-    },
-};
+    };
 </script>
 
 <style>
-@import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
+    @import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 </style>
 ```
 
-Depending on your build tool of choice you may have to setup the appropriate loaders or plugins. Checkout the [examples](https://github.com/radial-color-picker/vue-color-picker/tree/master/examples) folder. There's an example with Vue CLI 3 and Nuxt.js. If you're using `vue-cli` and `poi` you don't have to do anything else - these tools come preconfigured and support CSS/SCSS import out of the box.
+Depending on your build tool of choice you may have to setup the appropriate loaders or plugins. Checkout the [examples](https://github.com/radial-color-picker/vue-color-picker/tree/master/examples) folder. There's an example with Vite and CSS. If you're using tools such as Vite, Vue CLI, or Poi you don't have to do anything else - these tools come preconfigured and support CSS import out of the box.
 
 
 ## Using the component globally
@@ -50,26 +50,11 @@ Depending on your build tool of choice you may have to setup the appropriate loa
 If you don't want to register the component everywhere it's used you can instead register it globally:
 
 ```js
+// in your App.vue or main.js file
 import ColorPicker from '@radial-color-picker/vue-color-picker';
 import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
 Vue.use(ColorPicker);
-```
-
-## Nuxt Module
-
-Install the NPM package as usual by running:
-```bash
-npm install @radial-color-picker/vue-color-picker
-```
-
-and then just add the ColorPicker Nuxt module to `nuxt.config.js`. The `ColorPicker` component will be automatically registered and its stylesheet will be loaded automatically for you.
-
-```js
-// nuxt.config.js
-export default {
-    modules: ['@radial-color-picker/vue-color-picker/nuxt'],
-}
 ```
 
 ## Using CDN
@@ -78,8 +63,8 @@ You can also use the minified sources directly:
 
 ```html
 <head>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.js"></script>
+    <script src="https://unpkg.com/vue@3.1.5/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
     <link href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css" rel="stylesheet">
 </head>
 <body>
@@ -90,25 +75,26 @@ You can also use the minified sources directly:
     <script>
         var ColorPicker = window.VueColorPicker;
 
-        var app = new Vue({
-            el: '#app',
+        Vue.createApp({
             components: {
-                ColorPicker: ColorPicker
+                ColorPicker: ColorPicker,
             },
-            data: {
-                color: {
+            setup() {
+                const color = Vue.reactive({
                     hue: 50,
                     saturation: 100,
                     luminosity: 50,
-                    alpha: 1
-                }
+                    alpha: 1,
+                });
+
+                return {
+                    color,
+                    onInput(hue) {
+                        color.hue = hue;
+                    },
+                };
             },
-            methods: {
-                onInput: function(hue) {
-                    this.color.hue = hue;
-                }
-            }
-        });
+        }).mount('#app');
     </script>
 </body>
 ```

@@ -3,15 +3,19 @@
 </template>
 
 <script>
+    import { ref } from 'vue';
+
     export default {
         name: 'example-basic',
-        data() {
-            return { hue: 50 };
-        },
-        methods: {
-            updateColor(hue) {
-                this.hue = hue;
-            },
+        setup() {
+            const hue = ref(50);
+
+            return {
+                hue,
+                updateColor(value) {
+                    hue.value = value;
+                },
+            };
         },
     };
 </script>

@@ -8,7 +8,7 @@ actions:
       link: /guide/
 features:
 - title: Small size
-  details: Say no to web bloat! Sitting at 2.8 KB gzipped JS it's probably one of the smallest color pickers out there.
+  details: Say no to web bloat! Sitting at 2.3 KB gzipped JS it's probably one of the smallest color pickers out there.
 - title: Ease of use
   details: Developed with mobile devices and keyboard usage in mind. Screen reader support.
 - title: Performant

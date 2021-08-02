@@ -6,7 +6,7 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
 
 ## Features
 
-* Small size - 4 KB gzipped (JS and CSS combined)
+* Small size - 3.3 KB gzipped (JS and CSS combined)
 * Supports touch devices
 * Optimized animations
 * Ease of use
@@ -16,6 +16,7 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
     * <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>PgDown</kbd> to go quicker.
     * <kbd>Enter</kbd> to select a color and close the picker or to open it.
     * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in).
+* Experimental TypeScript support
 
 ## Ecosystem
 
