@@ -23,7 +23,7 @@ jobs:
       - name: Run linting
         run: yarn lint
       - name: Check Bundle Size
-        run: yarn bundlesize
+        run: yarn size-limit
       - name: Run tests
         run: yarn run test:ci
       - name: Upload coverage to Codecov
