@@ -20,7 +20,6 @@
   "types": "index.d.ts",
   "files": [
     "dist",
-    "nuxt",
     "index.d.ts"
   ],
   "dependencies": {
