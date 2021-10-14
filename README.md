@@ -17,12 +17,6 @@
     </a>
 </p>
 
----
-
-**HEADS UP!** You're currently viewing the documentation for the Vue 3 version of the color picker - `vue-color-picker@next`. If you're looking for v4, [please checkout 4.0 branch](https://github.com/radial-color-picker/vue-color-picker/tree/4.0).
-
----
-
 ## Introduction
 
 Great UX starts with two basic principles - ease of use and simplicity. Selecting a color should be as easy as moving a slider, clicking a checkbox or pressing a key just like other basic form elements behave.

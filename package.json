@@ -1,6 +1,6 @@
 {
   "name": "@radial-color-picker/vue-color-picker",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Radial Color Picker - Vue",
   "author": "Rosen Kanev <rkunev@gmail.com>",
   "scripts": {
