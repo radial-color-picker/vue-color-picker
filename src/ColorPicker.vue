@@ -17,9 +17,7 @@
         @keyup.enter="selectColor"
         @keydown="onKeyDown"
     >
-        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'">
-            <canvas></canvas>
-        </div>
+        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" />
 
         <div
             class="rcp__rotator"
