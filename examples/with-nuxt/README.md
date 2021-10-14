@@ -1,10 +1,8 @@
 # Example - With Nuxt.js
 
-**Note:** Current version of Nuxt (v2.x) doesn't support Vue 3. The example will be updated with the upcoming Nuxt major release.
-
 ---
 
-Example shows how to setup `vue-color-picker` with [Nuxt.js](https://nuxtjs.org). Setup process is the same as an app built with Vue CLI, but the CSS is configured globally for all pages in `next.config.js`.
+Example shows how to setup `vue-color-picker` with [Nuxt.js](https://v3.nuxtjs.org/). Setup process is the same as an app built with Vue CLI or Vite, but the CSS is configured globally for all pages in `next.config.ts`.
 
 ## How to use
 Download the example [or clone the whole project](https://github.com/radial-color-picker/vue-color-picker.git):
@@ -30,4 +28,4 @@ npm run build
 npm start
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://v3.nuxtjs.org/).

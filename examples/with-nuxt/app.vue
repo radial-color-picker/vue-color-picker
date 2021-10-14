@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div>
         <color-picker v-bind="color" @input="onInput" />
         <h1>{{ msg }}</h1>
         <pre>{{ color }}</pre>
@@ -7,9 +7,10 @@
 </template>
 
 <script>
-    // Note: you don't have to import and declare the color-picker component
-    // This is done automatically in `nuxt.config.js`
+    import ColorPicker from '@radial-color-picker/vue-color-picker';
+
     export default {
+        components: { ColorPicker },
         data() {
             return {
                 msg: 'Welcome to Your Vue.js App',

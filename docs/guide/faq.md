@@ -4,7 +4,7 @@
 
 The good news: yes, via Vite's server-side rendering.
 
-The bad news: Nuxt v2.x doesn't support Vue 3 and until it does the `ColorPicker` isn't compatible with Nuxt's server-side rendering/static site generation.
+The bad news: As of this writing Nuxt v3 has been released, but it is still in Beta. Use at your own risk.
 
 ## What's the browser support?
 

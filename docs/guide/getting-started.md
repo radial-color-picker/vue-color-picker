@@ -50,11 +50,17 @@ Depending on your build tool of choice you may have to setup the appropriate loa
 If you don't want to register the component everywhere it's used you can instead register it globally:
 
 ```js
-// in your App.vue or main.js file
+// in your main.js file
+import { createApp } from 'vue';
+import App from './App.vue';
+
 import ColorPicker from '@radial-color-picker/vue-color-picker';
 import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
-Vue.use(ColorPicker);
+const app = createApp(App);
+
+app.use(ColorPicker);
+app.mount('#app');
 ```
 
 ## Using CDN
@@ -63,7 +69,7 @@ You can also use the minified sources directly:
 
 ```html
 <head>
-    <script src="https://unpkg.com/vue@3.1.5/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js"></script>
     <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
     <link href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css" rel="stylesheet">
 </head>

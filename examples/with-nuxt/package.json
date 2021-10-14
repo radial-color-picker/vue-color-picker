@@ -5,13 +5,14 @@
   "author": "Rosen Kanev",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
-    "@radial-color-picker/vue-color-picker": "latest",
-    "nuxt": "^2.0.0"
+    "@radial-color-picker/vue-color-picker": "latest"
+  },
+  "devDependencies": {
+    "nuxt3": "latest"
   }
 }

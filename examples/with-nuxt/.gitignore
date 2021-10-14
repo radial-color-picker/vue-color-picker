@@ -17,3 +17,8 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw*
+
+# Nuxt files
+.nuxt
+nuxt.d.ts
+.output
