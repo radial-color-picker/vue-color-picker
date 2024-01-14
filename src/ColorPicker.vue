@@ -11,7 +11,7 @@
         :aria-valuetext="ariaValuetext || valuetext"
         :aria-disabled="disabled"
         class="rcp"
-        :class="{ dragging: isDragging, disabled: disabled }"
+        :class="{ dragging: isDragging }"
         :tabindex="disabled ? -1 : 0"
         :style="{ '--rcp-initial-angle': initialAngle }"
         @keyup.enter="selectColor"
@@ -313,7 +313,7 @@
         transform: scale(1.04);
     }
 
-    .rcp.disabled {
+    .rcp[aria-disabled='true'] {
         cursor: not-allowed;
         transform: scale(0.96);
     }
@@ -336,7 +336,7 @@
         opacity: 0;
     }
 
-    .disabled .rcp__palette {
+    .rcp[aria-disabled='true'] .rcp__palette {
         filter: contrast(0.25);
     }
 
@@ -371,7 +371,7 @@
         transform: scale(0);
     }
 
-    .disabled .rcp__knob {
+    .rcp[aria-disabled='true'] .rcp__knob {
         box-shadow: none;
         pointer-events: none;
     }
@@ -404,7 +404,7 @@
         animation: rcp-beat 0.4s cubic-bezier(0.35, 0, 0.25, 1) forwards;
     }
 
-    .disabled .rcp__well {
+    .rcp[aria-disabled='true'] .rcp__well {
         background-color: #bfbfbf !important;
         pointer-events: none;
     }
