@@ -300,6 +300,15 @@
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.19), 0 0 10px rgba(0, 0, 0, 0.24);
     }
 
+    /* Allow clicking through the transparent area surrounding the well when collapsed */
+    .rcp[aria-expanded='false'] {
+        pointer-events: none;
+    }
+
+    .rcp[aria-expanded='false'] .rcp__well {
+        pointer-events: auto;
+    }
+
     .rcp.dragging {
         transform: scale(1.04);
     }
