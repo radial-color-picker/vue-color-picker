@@ -272,13 +272,21 @@
         -moz-user-select: none;
         user-select: none;
         box-sizing: border-box;
+        border-radius: 50%;
+    }
+
+    .rcp,
+    .rcp__knob,
+    .rcp__ripple,
+    .rcp__well {
+        aspect-ratio: 1;
     }
 
     .rcp {
-        display: block;
-        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 280px;
-        height: 280px;
         position: relative;
         transform: scale(1.001);
         transition: transform 0.15s cubic-bezier(0.68, 0, 0.47, 2);
@@ -301,24 +309,13 @@
         transform: scale(0.96);
     }
 
-    .rcp.dragging .rcp__rotator {
-        z-index: 1;
-    }
-
     .rcp__palette {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         background-size: 100% 100%;
         background-image: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
         -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
         mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
-        border-radius: 50%;
-        overflow: hidden;
         will-change: transform, opacity;
         transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1), opacity 0.5s cubic-bezier(0.35, 0, 0.25, 1);
     }
@@ -338,20 +335,22 @@
     }
 
     .rcp__rotator {
-        width: 100%;
-        height: 100%;
         position: absolute;
+        inset: 0;
         transform: rotate(var(--rcp-initial-angle));
     }
 
     .rcp__knob {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.12), 0 0 5px rgba(0, 0, 0, 0.16);
-        border-radius: 50%;
-        position: absolute;
         width: 7%;
-        height: 7%;
-        top: 2.5%;
-        left: 46.5%;
+
+        /*
+         * "2.5%" adds distance from the top edge of the rotator to center the knob inside the gradient ring
+         * "auto" centers the knob horizontally inside the rotator plane
+         * the bottom value of 0 is added just to levarage the margin shorthand syntax
+         */
+        margin: 2.5% auto 0;
+
         background-color: #fff;
         transition: transform 0.4s cubic-bezier(0.35, 0, 0.25, 1);
         outline: 0;
@@ -372,20 +371,15 @@
     }
 
     .rcp__well {
-        position: absolute;
         width: 25%;
-        height: 25%;
-        top: 37.5%;
-        left: 37.5%;
         padding: 0;
         margin: 0;
-        border-radius: 50%;
         background-color: #ff0000;
         outline: 0;
         cursor: pointer;
-        overflow: visible;
         border: 6px solid #fff;
         box-shadow: 0 0 0 1px #b2b2b2;
+        z-index: 1;
     }
 
     .rcp__well::-moz-focus-inner {
@@ -411,18 +405,14 @@
 
     .rcp__ripple {
         width: 20%;
-        height: 20%;
-        border-radius: 50%;
-        border: #ff0000 solid 8px;
-        opacity: 0;
+        opacity: 1;
         position: absolute;
-        top: 40%;
-        left: 40%;
-        z-index: -1;
+
+        /* red is just a default initial value which matches the red hue at 0º */
+        border: 8px solid #ff0000;
     }
 
     .rcp__ripple.rippling {
-        z-index: 0;
         animation: rcp-ripple 0.5s cubic-bezier(0.35, 0, 0.25, 1) forwards;
     }
 
