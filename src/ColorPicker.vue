@@ -17,7 +17,7 @@
         @keyup.enter="selectColor"
         @keydown="onKeyDown"
     >
-        <div class="rcp__palette" :class="isPaletteIn ? 'in' : 'out'" />
+        <div class="rcp__palette" />
 
         <div
             class="rcp__rotator"
@@ -327,14 +327,11 @@
         mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
         will-change: transform, opacity;
         transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1), opacity 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-    }
-
-    .rcp__palette.in {
         transform: scale(1);
         opacity: 1;
     }
 
-    .rcp__palette.out {
+    .rcp[aria-expanded='false'] .rcp__palette {
         transform: scale(0);
         opacity: 0;
     }
