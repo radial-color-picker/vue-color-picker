@@ -386,12 +386,13 @@
         border: 0;
     }
 
-    .rcp__well:hover {
-        box-shadow: 0 0 1px 1px #333;
+    .rcp:focus-visible .rcp__knob,
+    .rcp__well:focus-visible {
+        box-shadow: 0 0 0 2px rgba(160, 174, 192, 0.6);
     }
 
-    .rcp__well:focus {
-        box-shadow: 0 0 1px 2px #b2b2b2;
+    .rcp__well:hover {
+        box-shadow: 0 0 1px 1px #333;
     }
 
     .rcp__well.pressed {
