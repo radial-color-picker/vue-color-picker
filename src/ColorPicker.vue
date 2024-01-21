@@ -11,7 +11,6 @@
         :aria-valuetext="ariaValuetext || valuetext"
         :aria-disabled="disabled"
         class="rcp"
-        :class="{ dragging: isDragging }"
         :tabindex="disabled ? -1 : 0"
         :style="{ '--rcp-initial-angle': initialAngle }"
         @keyup.enter="selectColor"
@@ -121,7 +120,6 @@
             const isKnobIn = ref(!props.initiallyCollapsed);
             const isPressed = ref(false);
             const isRippling = ref(false);
-            const isDragging = ref(false);
 
             const color = computed(
                 () => `hsla(${angle.value}, ${props.saturation}%, ${props.luminosity}%, ${props.alpha})`
@@ -156,11 +154,7 @@
                         angle.value = hue;
                         emit('input', angle.value);
                     },
-                    onDragStart() {
-                        isDragging.value = true;
-                    },
                     onDragStop() {
-                        isDragging.value = false;
                         emit('change', angle.value);
                     },
                 });
@@ -243,7 +237,6 @@
                 angle,
                 isPaletteIn,
                 isKnobIn,
-                isDragging,
                 isRippling,
                 isPressed,
 
@@ -300,7 +293,7 @@
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.19), 0 0 10px rgba(0, 0, 0, 0.24);
     }
 
-    /* Allow clicking through the transparent area surrounding the well when collapsed */
+    /* Allow tapping through the transparent area surrounding the well when collapsed */
     .rcp[aria-expanded='false'] {
         pointer-events: none;
     }
@@ -309,7 +302,8 @@
         pointer-events: auto;
     }
 
-    .rcp.dragging {
+    /* Slightly scale up the color picker when rotating, but not when tapping the well */
+    .rcp:active:focus {
         transform: scale(1.04);
     }
 
