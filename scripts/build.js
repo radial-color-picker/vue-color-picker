@@ -12,10 +12,11 @@ const fileNameBase = 'vue-color-picker';
 const getBuildConfig = ({ formats, minify }) => {
     return {
         define: {
-            // @workaround vite replaces process.env.NODE_ENV with 'production' during build
-            // after dead code elimination is applied the whole if branch is removed
-            // what we want instead is to remove it only in UMD builds
-            __DEV__: formats.includes('umd') ? false : 'process.env.NODE_ENV === "development"',
+            // When there's an if (process.env.NODE_ENV === 'development') {} statement in the code
+            // this removes the whole if branch for UMD builds, but leaves it in for CJS/ES builds.
+            // So a warning will be shown to consumers of the library while they are developing locally,
+            // but it will be removed through dead code elimination in a production build.
+            ...(formats.includes('umd') ? { 'process.env.NODE_ENV': '"production"' } : {}),
         },
         logLevel: 'silent',
         configFile: false,

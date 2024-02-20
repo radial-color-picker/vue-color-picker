@@ -1,11 +1,7 @@
----
-sidebar: auto
----
-
 # Examples
 
 :::tip
-Looking for a quicker way to try it out yourself? Checkout the [examples](https://github.com/radial-color-picker/vue-color-picker/tree/master/examples) folder in GitHub. There's an example with Vite and a vanilla example without a build step.
+Looking for a quicker way to try it out yourself? Checkout the [examples](https://github.com/radial-color-picker/vue-color-picker/tree/main/examples) folder in GitHub. There's an example with Vite and a vanilla example without a build step.
 
 There's a [codepen](https://codepen.io/rkunev/pen/zjEmwV/) as well.
 :::
@@ -16,7 +12,7 @@ In it's most basic form the color picker can be used as below.
 
 <ExampleBasic />
 
-@[code](./.vuepress/components/ExampleBasic.vue)
+<<< @/.vitepress/components/examples/Basic.vue{2,6,11,14-17}
 
 ## Working with non-primary colors
 
@@ -24,7 +20,7 @@ The basic example assumes only the most saturated colors and uses the default va
 
 <ExampleNonPrimary />
 
-@[code vue](./.vuepress/components/ExampleNonPrimary.vue)
+<<< @/.vitepress/components/examples/NonPrimary.vue{2,6,11-17,19-22}
 
 ## Uncontrolled component
 
@@ -32,7 +28,7 @@ If you only need to react to `@change` or `@select` events you can skip `hue` + 
 
 <ExampleUncontrolled />
 
-@[code vue](./.vuepress/components/ExampleUncontrolled.vue)
+<<< @/.vitepress/components/examples/Uncontrolled.vue
 
 ## Persistent mode
 
@@ -40,7 +36,7 @@ It's not always convenient to show the picker in a modal window that is shown/hi
 
 <ExampleNonCollapsingMode />
 
-@[code vue](./.vuepress/components/ExampleNonCollapsingMode.vue)
+<<< @/.vitepress/components/examples/NonCollapsingMode.vue{2}
 
 ## Accessibility
 
@@ -48,7 +44,7 @@ The color picker already has built-in screen reader support, but if you wish to 
 
 <ExampleAccessibility />
 
-@[code vue](./.vuepress/components/ExampleAccessibility.vue)
+<<< @/.vitepress/components/examples/Accessibility.vue{2,8,19-26,30}
 
 <style>
 .rcp {

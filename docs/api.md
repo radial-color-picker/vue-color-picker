@@ -1,5 +1,5 @@
 ---
-sidebar: auto
+outline: deep
 ---
 
 # Config Reference
@@ -138,7 +138,7 @@ When a user interface is translated into multiple languages, ensure that `aria-l
 
 Emitted every time the color updates. This could be a touchstart/mousedown event, when rotating the knob, keyboard shortcuts like <kbd>↑</kbd>, and scrolling if enabled. It's also the glue between the color picker component and the outside world. Use this to update the `hue` prop.
 
-@[code vue{2,15-17}](./.vuepress/components/ExampleBasic.vue)
+<<< @/.vitepress/components/examples/Basic.vue{2,15-17}
 
 ### change
 

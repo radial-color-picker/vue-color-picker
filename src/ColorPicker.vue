@@ -139,7 +139,7 @@
 
             // ignore testing code that will be removed by dead code elimination for production
             // istanbul ignore next
-            if (__DEV__ && props.initiallyCollapsed && props.variant === 'persistent') {
+            if (process.env.NODE_ENV === 'development' && props.initiallyCollapsed && props.variant === 'persistent') {
                 console.warn(
                     `Incorrect config: using variant="persistent" and :initiallyCollapsed="true" at the same time is not supported.`
                 );
