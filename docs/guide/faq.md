@@ -10,11 +10,9 @@ The bad news: As of this writing Nuxt v3 has been released, but it is still in B
 
 The **last two versions of major browsers** (Chrome, Safari, Firefox, Edge) are supported though it will probably work in other browsers, webviews and runtimes as well.
 
-
 ## How to select other shades of the solid colors?
 
 The saturation, luminosity and alpha props are **display-only** values - you can only change the hue through the picker. We suggest to add a custom slider for saturation and luminosity or use `<input type="range">`.
-
 
 ## Why HSL?
 

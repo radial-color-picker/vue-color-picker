@@ -6,22 +6,23 @@ This is a flexible and minimalistic color picker. Developed with mobile devices 
 
 ## Features
 
-* Small size - 3.3 KB gzipped (JS and CSS combined)
-* Supports touch devices
-* Optimized animations
-* Ease of use
-    * Screen reader support.
-    * <kbd>Tab</kbd> to focus the picker.
-    * <kbd>↑</kbd> or <kbd>→</kbd> arrow key to increase hue. <kbd>PgUp</kbd> to go quicker.
-    * <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>PgDown</kbd> to go quicker.
-    * <kbd>Enter</kbd> to select a color and close the picker or to open it.
-    * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in).
-* Experimental TypeScript support
+-   Small size - 3.3 KB gzipped (JS and CSS combined)
+-   Supports touch devices
+-   Optimized animations
+-   Ease of use
+    -   Screen reader support.
+    -   <kbd>Tab</kbd> to focus the picker.
+    -   <kbd>↑</kbd> or <kbd>→</kbd> arrow key to increase hue. <kbd>PgUp</kbd> to go quicker.
+    -   <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>PgDown</kbd> to go quicker.
+    -   <kbd>Enter</kbd> to select a color and close the picker or to open it.
+    -   Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in).
+-   Experimental TypeScript support
 
 ## Ecosystem
 
 The right color picker, but not the framework you're looking for?
-* [Vue](https://github.com/radial-color-picker/vue-color-picker) - you're here!
-* [React](https://github.com/radial-color-picker/react-color-picker)
-* [AngularJs](https://github.com/talamaska/angular-radial-color-picker)
-* [Angular](https://github.com/radial-color-picker/angular-color-picker)
+
+-   [Vue](https://github.com/radial-color-picker/vue-color-picker) - you're here!
+-   [React](https://github.com/radial-color-picker/react-color-picker)
+-   [AngularJs](https://github.com/talamaska/angular-radial-color-picker)
+-   [Angular](https://github.com/radial-color-picker/angular-color-picker)

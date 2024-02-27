@@ -290,7 +290,9 @@
     }
 
     .rcp:hover .rcp__knob {
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.19), 0 0 10px rgba(0, 0, 0, 0.24);
+        box-shadow:
+            0 0 20px rgba(0, 0, 0, 0.19),
+            0 0 10px rgba(0, 0, 0, 0.24);
     }
 
     /* Allow tapping through the transparent area surrounding the well when collapsed */
@@ -320,7 +322,9 @@
         -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
         mask-image: radial-gradient(circle at 50% 50%, transparent 53.5%, black 54%);
         will-change: transform, opacity;
-        transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1), opacity 0.5s cubic-bezier(0.35, 0, 0.25, 1);
+        transition:
+            transform 0.5s cubic-bezier(0.35, 0, 0.25, 1),
+            opacity 0.5s cubic-bezier(0.35, 0, 0.25, 1);
         transform: scale(1);
         opacity: 1;
     }
@@ -341,7 +345,9 @@
     }
 
     .rcp__knob {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.12), 0 0 5px rgba(0, 0, 0, 0.16);
+        box-shadow:
+            0 0 10px rgba(0, 0, 0, 0.12),
+            0 0 5px rgba(0, 0, 0, 0.16);
         width: 7%;
 
         /*

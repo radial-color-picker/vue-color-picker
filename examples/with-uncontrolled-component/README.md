@@ -1,11 +1,13 @@
 # Example - With Uncontrolled Component
 
 Example shows how to only listen for changes of the color and skip `hue` and `@input`. Useful only for simple cases and the recommended usage is still
+
 ```vue
 <color-picker :hue="hue" @input="onInput" />
 ```
 
 ## How to use
+
 Download the example [or clone the whole project](https://github.com/radial-color-picker/vue-color-picker.git):
 
 ```bash
@@ -14,19 +16,23 @@ cd with-uncontrolled-component
 ```
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run dev
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://vitejs.dev/guide/).

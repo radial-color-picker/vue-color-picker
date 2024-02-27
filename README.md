@@ -22,44 +22,47 @@
 Great UX starts with two basic principles - ease of use and simplicity. Selecting a color should be as easy as moving a slider, clicking a checkbox or pressing a key just like other basic form elements behave.
 
 This is a flexible and minimalistic color picker. Developed with mobile devices and keyboard usage in mind. Key features:
-* Small size - 3.3 KB gzipped (JS and CSS combined)
-* Supports touch devices
-* Optimized animations
-* Ease of use
-    * Screen reader support.
-    * <kbd>Tab</kbd> to focus the picker.
-    * <kbd>↑</kbd> or <kbd>→</kbd> arrow key to increase hue. <kbd>PgUp</kbd> to go quicker.
-    * <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>PgDown</kbd> to go quicker.
-    * <kbd>Enter</kbd> to select a color and close the picker or to open it.
-    * Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in).
-* Experimental TypeScript support
+
+-   Small size - 3.3 KB gzipped (JS and CSS combined)
+-   Supports touch devices
+-   Optimized animations
+-   Ease of use
+    -   Screen reader support.
+    -   <kbd>Tab</kbd> to focus the picker.
+    -   <kbd>↑</kbd> or <kbd>→</kbd> arrow key to increase hue. <kbd>PgUp</kbd> to go quicker.
+    -   <kbd>↓</kbd> or <kbd>←</kbd> arrow key to decrease hue. <kbd>PgDown</kbd> to go quicker.
+    -   <kbd>Enter</kbd> to select a color and close the picker or to open it.
+    -   Mouse <kbd>ScrollUp</kbd> to increase and <kbd>ScrollDown</kbd> to decrease hue (Opt-in).
+-   Experimental TypeScript support
 
 ## Documentation
 
 You can find the documentation on the [website](https://radial-color-picker.github.io/vue-color-picker/).
 The documentation is divided into several sections:
 
-* [Getting Started](https://radial-color-picker.github.io/vue-color-picker/guide/getting-started.html)
-* [Examples](https://radial-color-picker.github.io/vue-color-picker/examples.html)
-* [Config Reference](https://radial-color-picker.github.io/vue-color-picker/api.html)
-* [First Asked Questions](https://radial-color-picker.github.io/vue-color-picker/guide/faq.html)
+-   [Getting Started](https://radial-color-picker.github.io/vue-color-picker/guide/getting-started.html)
+-   [Examples](https://radial-color-picker.github.io/vue-color-picker/examples.html)
+-   [Config Reference](https://radial-color-picker.github.io/vue-color-picker/api.html)
+-   [First Asked Questions](https://radial-color-picker.github.io/vue-color-picker/guide/faq.html)
 
 ## Ecosystem
 
 The right color picker, but not the framework you're looking for?
-* [Vue][link-vue-color-picker] - you're here!
-* [React][link-react-color-picker]
-* [AngularJs][link-angularjs-color-picker]
-* [Angular][link-angular-color-picker]
+
+-   [Vue][link-vue-color-picker] - you're here!
+-   [React][link-react-color-picker]
+-   [AngularJs][link-angularjs-color-picker]
+-   [Angular][link-angular-color-picker]
 
 ## Demos
 
-* Basic Example - [Codepen](https://codepen.io/rkunev/pen/zjEmwV/)
-* Other Examples in the [docs](https://radial-color-picker.github.io/vue-color-picker/examples.html)
+-   Basic Example - [Codepen](https://codepen.io/rkunev/pen/zjEmwV/)
+-   Other Examples in the [docs](https://radial-color-picker.github.io/vue-color-picker/examples.html)
 
 ## Usage
 
 Color Picker on [npm](https://www.npmjs.com/package/@radial-color-picker/vue-color-picker)
+
 ```bash
 npm install @radial-color-picker/vue-color-picker@next
 ```
@@ -151,9 +154,9 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) and [CODE_OF_CONDUCT](.github
 
 ## Credits
 
-- [Rosen Kanev][link-author]
-- [Dennis Dierkes](https://github.com/deen13)
-- [All Contributors][link-contributors]
+-   [Rosen Kanev][link-author]
+-   [Dennis Dierkes](https://github.com/deen13)
+-   [All Contributors][link-contributors]
 
 This component is based on the great work that was done for the [AngularJs color picker][link-angularjs-color-picker].
 

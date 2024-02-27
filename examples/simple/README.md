@@ -3,6 +3,7 @@
 This is a basic example of how to use `vue-color-picker` with the UMD build (useful for quick prototyping in the browser for example).
 
 ## How to use
+
 Download the example [or clone the whole project](https://github.com/radial-color-picker/vue-color-picker.git):
 
 ```bash

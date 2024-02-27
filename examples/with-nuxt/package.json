@@ -1,18 +1,18 @@
 {
-  "name": "example-with-nuxt",
-  "version": "1.0.0",
-  "description": "Example with Nuxt.js",
-  "author": "Rosen Kanev",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt dev",
-    "build": "nuxt build",
-    "start": "node .output/server/index.mjs"
-  },
-  "dependencies": {
-    "@radial-color-picker/vue-color-picker": "latest"
-  },
-  "devDependencies": {
-    "nuxt3": "latest"
-  }
+    "name": "example-with-nuxt",
+    "version": "1.0.0",
+    "description": "Example with Nuxt.js",
+    "author": "Rosen Kanev",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt dev",
+        "build": "nuxt build",
+        "start": "node .output/server/index.mjs"
+    },
+    "dependencies": {
+        "@radial-color-picker/vue-color-picker": "latest"
+    },
+    "devDependencies": {
+        "nuxt3": "latest"
+    }
 }

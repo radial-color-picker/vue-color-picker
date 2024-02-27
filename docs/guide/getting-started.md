@@ -3,6 +3,7 @@
 ## Using NPM
 
 Color Picker on [npm](https://www.npmjs.com/package/@radial-color-picker/vue-color-picker)
+
 ```bash
 npm install @radial-color-picker/vue-color-picker
 ```
@@ -44,7 +45,6 @@ And in your app:
 
 Depending on your build tool of choice you may have to setup the appropriate loaders or plugins. Checkout the [examples](https://github.com/radial-color-picker/vue-color-picker/tree/master/examples) folder. There's an example with Vite and CSS. If you're using tools such as Vite, Vue CLI, or Poi you don't have to do anything else - these tools come preconfigured and support CSS import out of the box.
 
-
 ## Using the component globally
 
 If you don't want to register the component everywhere it's used you can instead register it globally:
@@ -71,7 +71,10 @@ You can also use the minified sources directly:
 <head>
     <script src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js"></script>
     <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
-    <link href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css" rel="stylesheet">
+    <link
+        href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css"
+        rel="stylesheet"
+    />
 </head>
 <body>
     <div id="app">
