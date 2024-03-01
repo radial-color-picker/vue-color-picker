@@ -3,7 +3,7 @@
 # abort on errors
 set -e
 
-yarn docs:build
+bun run docs:build
 cd docs/.vuepress/dist
 
 git init

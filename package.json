@@ -9,7 +9,7 @@
     "test": "vitest",
     "test:ci": "vitest run --coverage --no-file-parallelism --bail 1",
     "lint": "eslint --ext .js,vue src",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "bun run build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
@@ -67,8 +67,8 @@
   "license": "MIT",
   "lint-staged": {
     "*.{js,vue}": [
-      "yarn eslint",
-      "yarn prettier --write"
+      "bun run eslint",
+      "bun run prettier --write"
     ]
   },
   "size-limit": [
