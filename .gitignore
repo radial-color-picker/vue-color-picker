@@ -18,4 +18,4 @@ yarn-error.log*
 
 # vitepress folders
 .temp
-.cache
+docs/.vitepress/cache
