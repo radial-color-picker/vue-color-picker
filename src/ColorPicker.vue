@@ -1,6 +1,5 @@
 <template>
     <div
-        ref="el"
         role="slider"
         :aria-roledescription="ariaRoledescription"
         :aria-label="ariaLabel"
@@ -138,7 +137,7 @@
             );
 
             // ignore testing code that will be removed by dead code elimination for production
-            // istanbul ignore next
+            /* v8 ignore next 5 */
             if (process.env.NODE_ENV === 'development' && props.initiallyCollapsed && props.variant === 'persistent') {
                 console.warn(
                     `Incorrect config: using variant="persistent" and :initiallyCollapsed="true" at the same time is not supported.`
@@ -147,7 +146,7 @@
 
             onMounted(() => {
                 // the Rorator module already has an extensive test suite
-                // istanbul ignore next
+                /* v8 ignore next 10 */
                 rcp = new Rotator(rotator.value, {
                     angle: angle.value,
                     onRotate(hue) {
@@ -229,7 +228,6 @@
                 rcp,
 
                 // refs
-                el,
                 rotator,
 
                 // state

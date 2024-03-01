@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Init renders correctly 1`] = `
+exports[`Init > renders correctly 1`] = `
 <div
   aria-disabled="false"
   aria-expanded="true"
@@ -16,7 +16,7 @@ exports[`Init renders correctly 1`] = `
   tabindex="0"
 >
   <div
-    class="rcp__palette in"
+    class="rcp__palette"
   />
   <div
     class="rcp__rotator"

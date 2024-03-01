@@ -58,7 +58,7 @@ const getBuildConfig = ({ formats, minify }) => {
 
         console.log('Building for production as library (commonjs, es, umd, umd-min)...');
 
-        await build(getBuildConfig({ formats: ['es', 'cjs'] }));
+        await build(getBuildConfig({ formats: ['es', 'cjs'], minify: false }));
         await build(getBuildConfig({ formats: ['umd'], minify: false }));
         await build(getBuildConfig({ formats: ['umd'], minify: true }));
 
