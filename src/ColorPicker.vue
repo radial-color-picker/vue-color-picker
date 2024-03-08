@@ -255,8 +255,8 @@
 
 <style>
     .rcp,
-    .rcp div,
-    .rcp button {
+    .rcp *,
+    .rcp *:before {
         -webkit-touch-callout: none;
         -webkit-tap-highlight-color: transparent;
         -webkit-user-select: none;
@@ -381,9 +381,17 @@
         background-color: #ff0000;
         outline: 0;
         cursor: pointer;
-        border: 6px solid #fff;
-        box-shadow: 0 0 0 1px #b2b2b2;
+        border: 1px solid #b2b2b2;
         z-index: 1;
+        position: relative;
+    }
+
+    .rcp__well:before {
+        content: '';
+        position: absolute;
+        display: block;
+        inset: 0;
+        border: 6px solid #fff;
     }
 
     .rcp__well::-moz-focus-inner {
@@ -396,7 +404,7 @@
     }
 
     .rcp__well:hover {
-        box-shadow: 0 0 1px 1px #333;
+        border-color: #6b7280;
     }
 
     .rcp__well.pressed {
