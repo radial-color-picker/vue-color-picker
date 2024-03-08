@@ -14,7 +14,7 @@ export default {
     extends: DefaultTheme,
     Layout: InteractiveHomePageLayout,
     enhanceApp({ app }) {
-        app.use(ColorPicker);
+        app.component('ColorPicker', ColorPicker);
 
         app.component('ExampleBasic', ExampleBasic);
         app.component('ExampleAccessibility', ExampleAccessibility);

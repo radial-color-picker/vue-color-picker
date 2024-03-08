@@ -59,7 +59,7 @@ import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
 const app = createApp(App);
 
-app.use(ColorPicker);
+app.component('ColorPicker', ColorPicker);
 app.mount('#app');
 ```
 

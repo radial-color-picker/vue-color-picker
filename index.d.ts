@@ -1,4 +1,4 @@
-import { DefineComponent, ComponentOptionsMixin, PluginInstallFunction } from 'vue';
+import { DefineComponent, ComponentOptionsMixin } from 'vue';
 
 export type ColorPickerProps = {
     /**
@@ -69,7 +69,15 @@ export type ColorPickerEmits = {
     select: (hue: number) => void;
 };
 
-declare const ColorPicker: PluginInstallFunction &
-    DefineComponent<ColorPickerProps, {}, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, ColorPickerEmits>;
+declare const ColorPicker: DefineComponent<
+    ColorPickerProps,
+    {},
+    {},
+    {},
+    {},
+    ComponentOptionsMixin,
+    ComponentOptionsMixin,
+    ColorPickerEmits
+>;
 
 export default ColorPicker;

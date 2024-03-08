@@ -27,7 +27,7 @@ const getBuildConfig = ({ formats, minify }) => {
             brotliSize: false,
             sourcemap: !!minify,
             lib: {
-                entry: path.resolve(__dirname, '../src/wrapper.js'),
+                entry: path.resolve(__dirname, '../src/ColorPicker.vue'),
                 name: 'VueColorPicker',
                 formats,
             },
