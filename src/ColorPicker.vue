@@ -254,6 +254,12 @@
 </script>
 
 <style>
+    /**
+     * The ColorPicker has 2 tab stops - one for the visual object that the user moves
+     * and one for the second type of interaction, i.e. selecting a color via the well
+     *
+     * @see https://www.w3.org/WAI/ARIA/apg/patterns/slider/
+     */
     .rcp,
     .rcp *,
     .rcp *:before {
