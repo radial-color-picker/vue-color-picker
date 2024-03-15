@@ -20,7 +20,7 @@
 <template>
     <Layout>
         <template #home-hero-image>
-            <color-picker :hue="hue" @input="updateColor" />
+            <ColorPicker :hue="hue" @input="updateColor" />
         </template>
     </Layout>
 </template>

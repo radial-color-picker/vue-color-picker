@@ -3,7 +3,7 @@
 Example shows how to only listen for changes of the color and skip `hue` and `@input`. Useful only for simple cases and the recommended usage is still
 
 ```vue
-<color-picker :hue="hue" @input="onInput" />
+<ColorPicker :hue="hue" @input="onInput" />
 ```
 
 ## How to use

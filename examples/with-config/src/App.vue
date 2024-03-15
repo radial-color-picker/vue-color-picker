@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <color-picker
+        <ColorPicker
             aria-roledescription="radial slider"
             aria-label="color picker"
             aria-label-color-well="color well"

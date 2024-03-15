@@ -146,7 +146,7 @@ Emitted every time the color updates. This could be a touchstart/mousedown event
 -   Params: `hue` (`Number`)
 -   _Optional_
 
-Emitted every time the color changes, but unlike `@input` this is not emitted while rotating the knob. `@change` is a less noisy version of `@input` which is useful if you want to react to knob rotation stop for example or to use the `<color-picker>` as an uncontrolled component.
+Emitted every time the color changes, but unlike `@input` this is not emitted while rotating the knob. `@change` is a less noisy version of `@input` which is useful if you want to react to knob rotation stop for example or to use the `<ColorPicker>` as an uncontrolled component.
 
 ### select
 
@@ -158,7 +158,7 @@ Emitted when the user dismisses the color picker (i.e. interacting with the midd
 
 ```vue{2,15,16,17}
 <template>
-    <color-picker :hue="hue" @input="onInput" @select="onSelect" />
+    <ColorPicker :hue="hue" @input="onInput" @select="onSelect" />
 </template>
 
 <script>

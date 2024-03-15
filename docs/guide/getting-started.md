@@ -12,7 +12,7 @@ And in your app:
 
 ```vue
 <template>
-    <color-picker v-bind="color" @input="onInput"></color-picker>
+    <ColorPicker v-bind="color" @input="onInput" />
 </template>
 
 <script>
@@ -78,7 +78,7 @@ You can also use the minified sources directly:
 </head>
 <body>
     <div id="app">
-        <color-picker v-bind="color" @input="onInput"></color-picker>
+        <ColorPicker v-bind="color" @input="onInput" />
     </div>
 
     <script>

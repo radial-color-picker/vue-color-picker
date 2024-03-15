@@ -1,6 +1,6 @@
 <template>
     <div>
-        <color-picker v-bind="color" @input="onInput" />
+        <ColorPicker v-bind="color" @input="onInput" />
         <h1>{{ msg }}</h1>
         <pre>{{ color }}</pre>
     </div>

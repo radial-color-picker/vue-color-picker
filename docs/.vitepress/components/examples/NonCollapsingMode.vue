@@ -1,5 +1,5 @@
 <template>
-    <color-picker variant="persistent" :hue="hue" @input="updateColor" />
+    <ColorPicker variant="persistent" :hue="hue" @input="updateColor" />
 </template>
 
 <script>

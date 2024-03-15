@@ -71,7 +71,7 @@ And in your app:
 
 ```vue
 <template>
-    <color-picker v-bind="color" @input="onInput"></color-picker>
+    <ColorPicker v-bind="color" @input="onInput" />
 </template>
 
 <script>

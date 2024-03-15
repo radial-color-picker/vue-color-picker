@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <color-picker @change="onChange" />
+        <ColorPicker @change="onChange" />
         <h1>{{ msg }}</h1>
         <pre>{{ color }}</pre>
     </div>

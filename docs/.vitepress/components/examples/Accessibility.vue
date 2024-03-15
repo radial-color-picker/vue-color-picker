@@ -1,5 +1,5 @@
 <template>
-    <color-picker v-bind="color" @input="onInput" :aria-valuetext="valuetext" />
+    <ColorPicker v-bind="color" @input="onInput" :aria-valuetext="valuetext" />
 </template>
 
 <script>

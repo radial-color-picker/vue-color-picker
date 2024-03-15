@@ -1,5 +1,5 @@
 <template>
-    <color-picker @select="onColorSelect" />
+    <ColorPicker @select="onColorSelect" />
 </template>
 
 <script>

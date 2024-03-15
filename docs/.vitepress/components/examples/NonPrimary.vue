@@ -1,5 +1,5 @@
 <template>
-    <color-picker v-bind="color" @input="updateColor" />
+    <ColorPicker v-bind="color" @input="updateColor" />
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <color-picker :hue="hue" @input="updateColor" />
+    <ColorPicker :hue="hue" @input="updateColor" />
 </template>
 
 <script>
