@@ -64,7 +64,7 @@ The right color picker, but not the framework you're looking for?
 Color Picker on [npm](https://www.npmjs.com/package/@radial-color-picker/vue-color-picker)
 
 ```bash
-npm install @radial-color-picker/vue-color-picker@next
+npm install @radial-color-picker/vue-color-picker
 ```
 
 And in your app:
