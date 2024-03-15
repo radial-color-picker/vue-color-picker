@@ -351,9 +351,9 @@
         /*
          * "2.5%" adds distance from the top edge of the rotator to center the knob inside the gradient ring
          * "auto" centers the knob horizontally inside the rotator plane
-         * the bottom value of 0 is added just to levarage the margin shorthand syntax
          */
-        margin: 2.5% auto 0;
+        margin-top: 2.5%;
+        margin-inline: auto;
 
         background-color: #fff;
         transition: transform 0.4s cubic-bezier(0.35, 0, 0.25, 1);
