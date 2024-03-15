@@ -5,7 +5,7 @@
         <title>Radial Color Picker | Vue | Simple</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="https://unpkg.com/vue@3.1.5/dist/vue.global.prod.js"></script>
+        <script src="https://unpkg.com/vue@3.4.21/dist/vue.global.prod.js"></script>
         <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
         <link
             rel="stylesheet"
@@ -47,7 +47,7 @@
     </head>
     <body>
         <div id="app">
-            <ColorPicker v-bind="color" @input="onInput" />
+            <color-picker v-bind="color" @input="onInput"></color-picker>
             <h1>{{ msg }}</h1>
             <pre>{{ color }}</pre>
         </div>

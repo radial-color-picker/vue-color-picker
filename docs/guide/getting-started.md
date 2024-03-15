@@ -69,7 +69,7 @@ You can also use the minified sources directly:
 
 ```html
 <head>
-    <script src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/vue@3.4.21/dist/vue.global.prod.js"></script>
     <script src="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.umd.min.js"></script>
     <link
         href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css"
@@ -78,7 +78,7 @@ You can also use the minified sources directly:
 </head>
 <body>
     <div id="app">
-        <ColorPicker v-bind="color" @input="onInput" />
+        <color-picker v-bind="color" @input="onInput"></color-picker>
     </div>
 
     <script>
