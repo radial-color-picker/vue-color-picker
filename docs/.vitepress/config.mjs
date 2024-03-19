@@ -5,7 +5,7 @@ export default defineConfig({
     title: 'Radial Color Picker',
     description: 'Minimalistic color picker with a focus on size, accessibility and performance.',
     head: [
-        ['link', { rel: 'image/png', href: '/vue-color-picker/logo.png' }],
+        ['link', { rel: 'icon', href: '/vue-color-picker/logo.png', type: 'image/png' }],
         ['meta', { property: 'og:image', content: '/vue-color-picker/logo.png' }],
         ['meta', { property: 'og:image:height', content: '640' }],
         ['meta', { property: 'og:image:width', content: '640' }],
