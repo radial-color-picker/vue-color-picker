@@ -4,7 +4,7 @@ layout: home
 hero:
     name: 'Radial Color Picker'
     tagline: 'Minimalistic color picker with a focus on size, accessibility and performance.'
-    image: /logo.png
+    image: /vue-color-picker/logo.png
     actions:
         - theme: brand
           text: Get Started
