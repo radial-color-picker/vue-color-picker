@@ -5,8 +5,8 @@ export default defineConfig({
     title: 'Radial Color Picker',
     description: 'Minimalistic color picker with a focus on size, accessibility and performance.',
     head: [
-        ['link', { rel: 'image/png', href: './.vitepress/img/logo.png' }],
-        ['meta', { property: 'og:image', content: './.vitepress/img/logo.png' }],
+        ['link', { rel: 'image/png', href: '/vue-color-picker/img/logo.png' }],
+        ['meta', { property: 'og:image', content: '/vue-color-picker/img/logo.png' }],
         ['meta', { property: 'og:image:height', content: '640' }],
         ['meta', { property: 'og:image:width', content: '640' }],
         ['meta', { property: 'og:locale', content: 'en' }],
@@ -24,7 +24,7 @@ export default defineConfig({
     ],
 
     themeConfig: {
-        logo: '/.vitepress/img/logo.png',
+        logo: '/vue-color-picker/img/logo.png',
 
         nav: [
             { text: 'Guide', link: '/guide/' },

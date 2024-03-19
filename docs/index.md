@@ -4,7 +4,7 @@ layout: home
 hero:
     name: 'Radial Color Picker'
     tagline: 'Minimalistic color picker with a focus on size, accessibility and performance.'
-    image: ./.vitepress/img/logo.png
+    image: /logo.png
     actions:
         - theme: brand
           text: Get Started
