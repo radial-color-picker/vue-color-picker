@@ -13,7 +13,7 @@
         <img src="https://img.shields.io/npm/l/@radial-color-picker/vue-color-picker.svg" alt="License">
     </a>
     <a href="https://codecov.io/gh/radial-color-picker/vue-color-picker">
-        <img src="https://codecov.io/gh/radial-color-picker/vue-color-picker/branch/master/graph/badge.svg" alt="Code Coverage" />
+        <img src="https://codecov.io/gh/radial-color-picker/vue-color-picker/branch/main/graph/badge.svg" alt="Code Coverage" />
     </a>
 </p>
 

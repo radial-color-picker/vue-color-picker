@@ -7,7 +7,7 @@ This is a basic example of how to use `vue-color-picker` with the UMD build (use
 Download the example [or clone the whole project](https://github.com/radial-color-picker/vue-color-picker.git):
 
 ```bash
-curl https://codeload.github.com/radial-color-picker/vue-color-picker/tar.gz/master | tar -xz --strip=2 vue-color-picker-master/examples/simple
+curl https://codeload.github.com/radial-color-picker/vue-color-picker/tar.gz/main | tar -xz --strip=2 vue-color-picker-main/examples/simple
 cd simple
 ```
 
