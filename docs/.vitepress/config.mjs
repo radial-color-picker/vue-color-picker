@@ -24,7 +24,7 @@ export default defineConfig({
     ],
 
     themeConfig: {
-        logo: '/vue-color-picker/logo.png',
+        logo: '/logo.png',
 
         nav: [
             { text: 'Guide', link: '/guide/' },
