@@ -17,6 +17,7 @@ And in your app:
 
 <script>
     import ColorPicker from '@radial-color-picker/vue-color-picker';
+    import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
     export default {
         components: { ColorPicker },
@@ -37,10 +38,6 @@ And in your app:
         },
     };
 </script>
-
-<style>
-    @import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
-</style>
 ```
 
 Depending on your build tool of choice you may have to setup the appropriate loaders or plugins. Checkout the [examples](https://github.com/radial-color-picker/vue-color-picker/tree/main/examples) folder. There's an example with Vite and CSS. If you're using tools such as Vite, Vue CLI, or Poi you don't have to do anything else - these tools come preconfigured and support CSS import out of the box.

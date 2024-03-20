@@ -77,6 +77,7 @@ And in your app:
 <script>
     import { reactive } from 'vue';
     import ColorPicker from '@radial-color-picker/vue-color-picker';
+    import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
 
     export default {
         components: { ColorPicker },
@@ -97,10 +98,6 @@ And in your app:
         },
     };
 </script>
-
-<style>
-    @import '@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
-</style>
 ```
 
 ## Change log
